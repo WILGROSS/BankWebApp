@@ -1,0 +1,30 @@
+#landing-page {
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    .totals-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 24px;
+      gap: 12px;
+      @include shadow-primary;
+      background: $gradient-primary;
+      border-radius: 8px;
+      max-width: 330px;
+
+      .line {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 0;
+
+        .value {
+          @include text-lg;
+          margin-bottom: -0.5em;
+        }
+      }
+    }
+  }
+}

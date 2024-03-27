@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div id="landing-page">
+    <div class="container">
+        <h2 class="text-center">Overview</h2>
+        <div class="totals-card">
+            <div class="line">
+                <h3>Total Customers:</h3>
+                <div class="value">@Model._landingPageViewModel.TotalCustomers</div>
+            </div>
+            <div class="line">
+                <h3>Total Accounts:</h3>
+                <div class="value">@Model._landingPageViewModel.TotalAccounts</div>
+            </div>
+            <div class="line">
+                <h3>Total Balance:</h3>
+                <div class="value">@(Model._landingPageViewModel.TotalBalance.ToString("C2"))</div>
+            </div>
+        </div>
+    </div>
+</div>

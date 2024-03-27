@@ -1,0 +1,149 @@
+#contact-footer {
+  background-color: $gray-900;
+  .container {
+    display: flex;
+    gap: 244px;
+    padding: 72px 0 64px;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      max-width: 416px;
+
+      .logo {
+        padding-bottom: 40px;
+      }
+
+      @include text-s;
+      color: $gray-500;
+
+      .newsletter {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 40px 0 72px;
+        @include navigation-text;
+        color: white;
+
+        button {
+          position: absolute;
+          top: 74px;
+          right: 0;
+          width: 124px;
+          height: 44px;
+          border-top-right-radius: 6px;
+          border-bottom-right-radius: 6px;
+          border: none;
+          @include navigation-text;
+          background-color: $primary;
+          color: white;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: darken($primary, 4%);
+          }
+          &:active {
+            background-color: darken($primary, 8%);
+          }
+        }
+
+        .newsletter-box {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .input-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+
+          input {
+            all: unset;
+            height: 44px;
+            width: 100%;
+            padding: 0 16px 0 48px;
+            border: 1px $gray-700 solid;
+            border-radius: 6px;
+            @include text-s;
+            color: $gray-600;
+            background-color: lighten($gray-900, 2%);
+          }
+
+          input:focus {
+            @include shadow-primary;
+            border: 1px lighten($primary, 10%) solid;
+            background-color: lighten($gray-900, 1%);
+          }
+
+          .envelope-icon {
+            position: absolute;
+            left: 16px;
+          }
+        }
+
+        .info-label {
+          @include text-s;
+          border-radius: 4px;
+          width: fit-content;
+          padding: 5px;
+          display: inline-block;
+        }
+        .info-label.error {
+          background-color: $danger;
+          color: lighten($danger, 30%);
+        }
+        .info-label.success {
+          background-color: $success;
+          color: lighten($success, 60%);
+        }
+      }
+
+      .legal {
+        @include text-xs;
+      }
+    }
+
+    .links {
+      display: flex;
+      gap: 71px;
+
+      .link-box {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 150px;
+        a {
+          @include navigation-text;
+          color: white;
+          transition: color 0.3s ease;
+
+          &:active {
+            text-decoration: none;
+            color: $gray-200;
+          }
+        }
+        .news {
+          padding-bottom: 40px;
+        }
+      }
+
+      .contact-us {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        @include navigation-text;
+        color: white;
+        a {
+          @include navigation-hover;
+          transition: color 0.3s ease;
+
+          &:active {
+            text-decoration: none;
+            color: $gray-200;
+          }
+        }
+      }
+    }
+  }
+}
