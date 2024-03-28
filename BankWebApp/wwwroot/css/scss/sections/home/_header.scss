@@ -1,9 +1,11 @@
 #home-header {
   padding: 1rem 0;
+  background-color: $dark-secondary;
 
   .container {
     display: grid;
     align-items: center;
+    background-color: $dark-secondary;
 
     gap: 30px;
     grid-template-columns: 1fr auto;
