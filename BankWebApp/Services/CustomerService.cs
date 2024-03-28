@@ -1,6 +1,5 @@
 ﻿using BankWebApp.Data;
 using BankWebApp.ViewModels;
-using Microsoft.EntityFrameworkCore;
 
 namespace BankWebApp.Services
 {
@@ -16,7 +15,7 @@ namespace BankWebApp.Services
             var query = _context.Customers.Select(c => new CustomerViewmodel
             {
                 CustomerId = c.CustomerId,
-                Name = $"{c.Givenname} {c.Surname}",
+                Name = c.Givenname + " " + c.Surname,
                 City = c.City,
                 Country = c.Country
             });
