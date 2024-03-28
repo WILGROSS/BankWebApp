@@ -11,8 +11,7 @@ namespace BankWebApp.Pages
     {
         public readonly ApplicationDbContext _context;
         private readonly ILogger<IndexModel> _logger;
-
-        public CustomersViewmodel _customers;
+        public List<CustomersViewmodel> _customers { get; set; }
         public CustomersModel(ILogger<IndexModel> logger, ApplicationDbContext context)
         {
             _logger = logger;
@@ -20,14 +19,12 @@ namespace BankWebApp.Pages
         }
         public void OnGet()
         {
-            _customers = _context.Customers.Select(s => new CustomerViewmodel
+            _customers = _context.Customers.Select(s => new CustomersViewmodel
             {
                 CustomerId = s.CustomerId,
-                Name = s.Givenname,
-                Surname = s.Surname,
+                Name = $"{s.Givenname} {s.Surname}",
                 City = s.City,
                 Country = s.Country
-
             }).ToList();
         }
     }
