@@ -15,15 +15,16 @@ namespace BankWebApp.Services
             var query = _context.Customers.Select(c => new CustomerViewmodel
             {
                 CustomerId = c.CustomerId,
-                Name = c.Givenname + " " + c.Surname,
+                FirstName = c.Givenname,
+                LastName = c.Surname,
                 City = c.City,
                 Country = c.Country
             });
             if (sortColumn == "Name")
                 if (sortOrder == "asc")
-                    query = query.OrderBy(c => c.Name);
+                    query = query.OrderBy(c => c.LastName);
                 else if (sortOrder == "desc")
-                    query = query.OrderByDescending(c => c.Name);
+                    query = query.OrderByDescending(c => c.LastName);
 
             if (sortColumn == "Country")
                 if (sortOrder == "asc")
