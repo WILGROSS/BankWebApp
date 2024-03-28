@@ -11,7 +11,7 @@ namespace BankWebApp.Pages
     {
         public readonly ApplicationDbContext _context;
         private readonly ILogger<IndexModel> _logger;
-        public List<CustomersViewmodel> _customers { get; set; }
+        public List<CustomerViewmodel> _customers { get; set; }
         public CustomersModel(ILogger<IndexModel> logger, ApplicationDbContext context)
         {
             _logger = logger;
@@ -19,7 +19,7 @@ namespace BankWebApp.Pages
         }
         public void OnGet(string sortColumn, string sortOrder)
         {
-            var query = _context.Customers.Select(c => new CustomersViewmodel
+            var query = _context.Customers.Select(c => new CustomerViewmodel
             {
 
                 CustomerId = c.CustomerId,
