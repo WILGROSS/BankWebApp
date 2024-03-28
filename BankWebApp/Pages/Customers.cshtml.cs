@@ -17,15 +17,36 @@ namespace BankWebApp.Pages
             _logger = logger;
             _context = context;
         }
-        public void OnGet()
+        public void OnGet(string sortColumn, string sortOrder)
         {
-            _customers = _context.Customers.Select(s => new CustomersViewmodel
+            var query = _context.Customers.Select(c => new CustomersViewmodel
             {
-                CustomerId = s.CustomerId,
-                Name = $"{s.Givenname} {s.Surname}",
-                City = s.City,
-                Country = s.Country
-            }).ToList();
+
+                CustomerId = c.CustomerId,
+                Name = $"{c.Givenname}",
+                City = c.City,
+                Country = c.Country
+
+            });
+            if (sortColumn == "Name")
+                if (sortOrder == "asc")
+                    query = query.OrderBy(c => c.Name);
+                else if (sortOrder == "desc")
+                    query = query.OrderByDescending(c => c.Name);
+
+            if (sortColumn == "Country")
+                if (sortOrder == "asc")
+                    query = query.OrderBy(c => c.Country);
+                else if (sortOrder == "desc")
+                    query = query.OrderByDescending(c => c.Country);
+
+            if (sortColumn == "City")
+                if (sortOrder == "asc")
+                    query = query.OrderBy(c => c.City);
+                else if (sortOrder == "desc")
+                    query = query.OrderByDescending(c => c.City);
+
+            _customers = query.ToList();
         }
     }
 }
