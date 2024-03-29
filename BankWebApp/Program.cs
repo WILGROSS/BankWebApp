@@ -24,6 +24,7 @@ namespace BankWebApp
 
             builder.Services.AddTransient<DataInitializer>();
             builder.Services.AddTransient<ICustomerService, CustomerService>();
+            builder.Services.AddTransient<ILandingPageService, LandingPageService>();
 
             var app = builder.Build();
             using (var scope = app.Services.CreateScope())
