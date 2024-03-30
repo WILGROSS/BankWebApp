@@ -1,0 +1,42 @@
+#customers-table {
+  .container {
+    .search-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      padding: 20px 20px 0 20px;
+
+      .info {
+        @include text-m;
+        color: $gray-600;
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        font-size: 0;
+        input {
+          all: unset;
+          @include text-s;
+          height: 34px;
+          padding: 0 8px 0 16px;
+          border-top-left-radius: 8px;
+          background-color: $dark-secondary;
+          color: $gray-300;
+
+          &:focus {
+            border: 1px lighten($primary, 10%) solid;
+            border-right: none;
+            height: 32px;
+            background-color: lighten($dark-secondary, 1%);
+          }
+        }
+        .btn-medium {
+          border-radius: 0;
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+      }
+    }
+  }
+}

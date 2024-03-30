@@ -1,73 +1,78 @@
 @mixin button {
-    display: flex;
-    padding: 8px 28px;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 14px;
+  display: flex;
+  padding: 8px 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
 }
 
-.btn-theme { 
-    @include button;
+.btn-medium {
+  all: unset;
+  @include text-m;
+  height: 34px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background-color: $primary;
+
+  &:hover {
+    text-decoration: none;
     color: $white;
-    background: $gradient-primary;
-    border: none;
-
-    &:hover {
-        text-decoration: none;
-        background: $secondary;
-        color: $white;
-    }
+    @include shadow-primary-s;
+    background: darken($primary, 2%);
+    cursor: pointer;
+  }
+  &:active {
+    background-color: $secondary;
+    box-shadow: none;
+  }
 }
 
-.mobile-menu { 
-    padding: 18px 22px;
-    font-size: 2em;
-    background: $transparent;
-    border: none;
+.btn-theme {
+  @include button;
+  color: $white;
+  background: $gradient-primary;
+  border: none;
 
-    &:hover,
-    &:focus,
-    &:active {
-        text-decoration: none;
-        background: transparent;
-    }
+  &:hover {
+    text-decoration: none;
+    background: $secondary;
+    color: $white;
+  }
 }
 
+.mobile-menu {
+  padding: 18px 22px;
+  font-size: 2em;
+  background: $transparent;
+  border: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    background: transparent;
+  }
+}
 
 @mixin circle-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    height: 44px;
-    width: 44px;
-    @include shadow-s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 44px;
+  width: 44px;
+  @include shadow-s;
 }
-
 
 .button-circle,
 i.buttion-circle,
 a.buttion-circle {
-   @include circle-button;
-   color: $gray-900;
-   background: $white;
-   border: none;
-   transition: all 0.15s ease-in-out; 
+  @include circle-button;
+  color: $gray-900;
+  background: $white;
+  border: none;
+  transition: all 0.15s ease-in-out;
 }
-  
-
-
-
-  
-
-  
-
-  
-
-
-
-  
-
