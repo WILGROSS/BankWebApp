@@ -1,0 +1,25 @@
+table {
+  background-color: $dark-secondary;
+  border-radius: 8px;
+  border-collapse: collapse;
+  padding: 8px;
+
+  thead {
+    text-align: justify;
+
+    th {
+      padding: 12px 0px;
+    }
+  }
+
+  tr {
+    td {
+      width: fit-content;
+      padding: 8px 16px;
+    }
+  }
+
+  tr:nth-child(even) {
+    background: $gray-800;
+  }
+}

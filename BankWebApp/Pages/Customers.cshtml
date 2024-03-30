@@ -103,14 +103,24 @@
         }
 
     </tbody>
+    <tfoot>
+        <tr>
+            <td>
+                @if (Model._customers.Count < Model.TotalCount)
+                {
+                    <form method="get" asp-page="/Customers">
+                        <input type="hidden" name="sortColumn" value="@Request.Query["sortColumn"]" />
+                        <input type="hidden" name="sortOrder" value="@Request.Query["sortOrder"]" />
+                        <input type="hidden" name="searchQuery" value="@Request.Query["searchQuery"]" />
+                        <input type="hidden" name="loadedRows" value="@(Model.LoadedRows + 24)" />
+                        <button type="submit" class="btn btn-primary">Load More</button>
+                    </form>
+                }
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tfoot>
 </table>
-    @if (Model._customers.Count < Model.TotalCount)
-    {
-        <form method="get" asp-page="/Customers">
-            <input type="hidden" name="sortColumn" value="@Request.Query["sortColumn"]" />
-            <input type="hidden" name="sortOrder" value="@Request.Query["sortOrder"]" />
-            <input type="hidden" name="searchQuery" value="@Request.Query["searchQuery"]" />
-            <input type="hidden" name="loadedRows" value="@(Model.LoadedRows + 24)" />
-            <button type="submit" class="btn btn-primary">Load More</button>
-        </form>
-    }
