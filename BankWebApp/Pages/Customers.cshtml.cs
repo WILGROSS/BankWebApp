@@ -9,14 +9,19 @@ namespace BankWebApp.Pages
         private readonly ICustomerService _customerService;
         private readonly ILogger<IndexModel> _logger;
         public List<CustomerViewmodel> _customers { get; set; }
+        public int LoadedRows { get; set; }
+
         public CustomersModel(ILogger<IndexModel> logger, ICustomerService customerService)
         {
             _logger = logger;
             _customerService = customerService;
         }
-        public void OnGet(string sortColumn, string sortOrder, string searchQuery)
+
+        public void OnGet(string sortColumn, string sortOrder, string searchQuery, int loadedRows = 20)
         {
-            _customers = _customerService.GetCustomers(sortColumn, sortOrder, searchQuery);
+            LoadedRows = loadedRows;
+            _customers = _customerService.GetCustomers(sortColumn, sortOrder, searchQuery, loadedRows);
         }
     }
+
 }
