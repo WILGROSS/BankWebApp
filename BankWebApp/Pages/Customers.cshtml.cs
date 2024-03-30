@@ -18,7 +18,7 @@ namespace BankWebApp.Pages
 
         public void OnGet(string sortColumn, string sortOrder, string searchQuery = "", int? loadedRows = null)
         {
-            loadedRows ??= 24;
+            loadedRows ??= 12;
             LoadedRows = loadedRows.Value;
             var customerResult = _customerService.GetCustomers(sortColumn, sortOrder, searchQuery, LoadedRows);
             _customers = customerResult.Customers;

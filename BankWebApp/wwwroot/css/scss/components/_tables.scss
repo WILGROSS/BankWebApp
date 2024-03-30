@@ -2,19 +2,20 @@ table {
   background-color: $dark-secondary;
   border-radius: 8px;
   border-collapse: collapse;
-  padding: 8px;
+  margin: 10px 0;
 
   thead {
-    text-align: justify;
+    text-align: left;
 
     th {
-      padding: 12px 0px;
+      padding: 12px 16px 0px;
+      border-bottom: $gray-800 solid 1px;
     }
   }
 
   tr {
+    width: fit-content;
     td {
-      width: fit-content;
       padding: 8px 16px;
     }
   }
