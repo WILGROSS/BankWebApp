@@ -6,6 +6,7 @@
     <thead>
 
         <tr>
+            <th></th>
             <th scope="col">Id</th>
             <th scope="col">
                 Name
@@ -54,6 +55,12 @@
                    style="text-decoration:none">
                     Down
                 </a>
+            </th>
+            <th>
+                <form method="get" asp-page="/Customers">
+                    <input type="text" name="searchQuery" />
+                    <button type="submit">Search</button>
+                </form>
             </th>
             <th></th>
         </tr>

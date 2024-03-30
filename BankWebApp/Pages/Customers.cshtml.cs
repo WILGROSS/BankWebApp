@@ -1,10 +1,6 @@
-using BankAppWeb.ViewModels;
-using BankWebApp.Data;
 using BankWebApp.Services;
 using BankWebApp.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
 namespace BankWebApp.Pages
 {
@@ -18,9 +14,9 @@ namespace BankWebApp.Pages
             _logger = logger;
             _customerService = customerService;
         }
-        public void OnGet(string sortColumn, string sortOrder)
+        public void OnGet(string sortColumn, string sortOrder, string searchQuery)
         {
-            _customers = _customerService.GetCustomers(sortColumn, sortOrder);
+            _customers = _customerService.GetCustomers(sortColumn, sortOrder, searchQuery);
         }
     }
 }
