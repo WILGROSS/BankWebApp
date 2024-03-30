@@ -2,9 +2,26 @@
 @model BankWebApp.Pages.CustomersModel
 @{
 }
+<div>
+    @if (Model.TotalCount > 0)
+    {
+        <div>
+            Displaying @Math.Min(Model.LoadedRows, Model._customers.Count) of @Model.TotalCount
+        </div>
+    }
+    else
+    {
+        <div>No results were found matching search criteria</div>
+    }
+    <div>
+        <form method="get" asp-page="/Customers">
+            <input type="text" name="searchQuery" />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
 <table>
     <thead>
-
         <tr>
             <th scope="col">Id</th>
             <th scope="col">
@@ -12,13 +29,17 @@
                 <a asp-page="/Customers"
                    asp-route-sortColumn="Name"
                    asp-route-sortOrder="asc"
+                   asp-route-searchQuery="@Request.Query["searchQuery"]"
+                   asp-route-loadedRows="@Request.Query["loadedRows"]"
                    style="text-decoration:none">
                     Up
                 </a>
-
+                
                 <a asp-page="/Customers"
                    asp-route-sortColumn="Name"
                    asp-route-sortOrder="desc"
+                   asp-route-searchQuery="@Request.Query["searchQuery"]"
+                   asp-route-loadedRows="@Request.Query["loadedRows"]"
                    style="text-decoration:none">
                     Down
                 </a>
@@ -28,6 +49,8 @@
                 <a asp-page="/Customers"
                    asp-route-sortColumn="City"
                    asp-route-sortOrder="asc"
+                   asp-route-searchQuery="@Request.Query["searchQuery"]"
+                   asp-route-loadedRows="@Request.Query["loadedRows"]"
                    style="text-decoration:none">
                     Up
                 </a>
@@ -35,6 +58,8 @@
                 <a asp-page="/Customers"
                    asp-route-sortColumn="City"
                    asp-route-sortOrder="desc"
+                   asp-route-searchQuery="@Request.Query["searchQuery"]"
+                   asp-route-loadedRows="@Request.Query["loadedRows"]"
                    style="text-decoration:none">
                     Down
                 </a>
@@ -44,6 +69,8 @@
                 <a asp-page="/Customers"
                    asp-route-sortColumn="Country"
                    asp-route-sortOrder="asc"
+                   asp-route-searchQuery="@Request.Query["searchQuery"]"
+                   asp-route-loadedRows="@Request.Query["loadedRows"]"
                    style="text-decoration:none">
                     Up
                 </a>
@@ -51,6 +78,8 @@
                 <a asp-page="/Customers"
                    asp-route-sortColumn="Country"
                    asp-route-sortOrder="desc"
+                   asp-route-searchQuery="@Request.Query["searchQuery"]"
+                   asp-route-loadedRows="@Request.Query["loadedRows"]"
                    style="text-decoration:none">
                     Down
                 </a>
@@ -74,5 +103,14 @@
         }
 
     </tbody>
-
 </table>
+    @if (Model._customers.Count < Model.TotalCount)
+    {
+        <form method="get" asp-page="/Customers">
+            <input type="hidden" name="sortColumn" value="@Request.Query["sortColumn"]" />
+            <input type="hidden" name="sortOrder" value="@Request.Query["sortOrder"]" />
+            <input type="hidden" name="searchQuery" value="@Request.Query["searchQuery"]" />
+            <input type="hidden" name="loadedRows" value="@(Model.LoadedRows + 24)" />
+            <button type="submit" class="btn btn-primary">Load More</button>
+        </form>
+    }
