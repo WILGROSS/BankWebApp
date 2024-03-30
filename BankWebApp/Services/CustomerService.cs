@@ -6,11 +6,13 @@ namespace BankWebApp.Services
     public class CustomerService : ICustomerService
     {
         private readonly ApplicationDbContext _context;
+
         public CustomerService(ApplicationDbContext dbContext)
         {
             _context = dbContext;
         }
-        public List<CustomerViewmodel> GetCustomers(string sortColumn, string sortOrder, string searchQuery, int loadedRows)
+
+        public CustomerResult GetCustomers(string sortColumn, string sortOrder, string searchQuery, int loadedRows)
         {
             var query = _context.Customers.AsQueryable();
 
@@ -18,10 +20,12 @@ namespace BankWebApp.Services
             {
                 var lowerSearchQuery = searchQuery.ToLower();
                 query = query.Where(c => c.Givenname.ToLower().Contains(lowerSearchQuery)
-                                      || c.Surname.ToLower().Contains(lowerSearchQuery)
-                                      || c.City.ToLower().Contains(lowerSearchQuery)
-                                      || c.Country.ToLower().Contains(lowerSearchQuery));
+                                         || c.Surname.ToLower().Contains(lowerSearchQuery)
+                                         || c.City.ToLower().Contains(lowerSearchQuery)
+                                         || c.Country.ToLower().Contains(lowerSearchQuery));
             }
+
+            int totalCount = query.Count();
 
             var finalQuery = query.Select(c => new CustomerViewmodel
             {
@@ -45,9 +49,9 @@ namespace BankWebApp.Services
                 finalQuery = sortOrder == "asc" ? finalQuery.OrderBy(c => c.Country) : finalQuery.OrderByDescending(c => c.Country);
             }
 
-            finalQuery = finalQuery.Take(loadedRows);
+            var customers = finalQuery.Take(loadedRows).ToList();
 
-            return finalQuery.ToList();
+            return new CustomerResult { Customers = customers, TotalCount = totalCount };
         }
     }
 }
