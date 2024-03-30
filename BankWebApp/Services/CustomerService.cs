@@ -10,7 +10,7 @@ namespace BankWebApp.Services
         {
             _context = dbContext;
         }
-        public List<CustomerViewmodel> GetCustomers(string sortColumn, string sortOrder, string searchQuery)
+        public List<CustomerViewmodel> GetCustomers(string sortColumn, string sortOrder, string searchQuery, int loadedRows)
         {
             var query = _context.Customers.AsQueryable();
 
@@ -34,22 +34,18 @@ namespace BankWebApp.Services
 
             if (sortColumn == "Name")
             {
-                finalQuery = sortOrder == "asc" ? finalQuery
-                    .OrderBy(c => c.LastName) : finalQuery
-                    .OrderByDescending(c => c.LastName);
+                finalQuery = sortOrder == "asc" ? finalQuery.OrderBy(c => c.LastName) : finalQuery.OrderByDescending(c => c.LastName);
             }
             else if (sortColumn == "City")
             {
-                finalQuery = sortOrder == "asc" ? finalQuery
-                    .OrderBy(c => c.City) : finalQuery
-                    .OrderByDescending(c => c.City);
+                finalQuery = sortOrder == "asc" ? finalQuery.OrderBy(c => c.City) : finalQuery.OrderByDescending(c => c.City);
             }
             else if (sortColumn == "Country")
             {
-                finalQuery = sortOrder == "asc" ? finalQuery
-                    .OrderBy(c => c.Country) : finalQuery
-                    .OrderByDescending(c => c.Country);
+                finalQuery = sortOrder == "asc" ? finalQuery.OrderBy(c => c.Country) : finalQuery.OrderByDescending(c => c.Country);
             }
+
+            finalQuery = finalQuery.Take(loadedRows);
 
             return finalQuery.ToList();
         }
