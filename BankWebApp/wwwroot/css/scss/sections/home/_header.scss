@@ -88,6 +88,7 @@
           color: $white;
           @include shadow-primary;
           background: darken($primary, 2%);
+          cursor: pointer;
         }
         &:active {
           background-color: $secondary;
