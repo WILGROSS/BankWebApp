@@ -18,7 +18,7 @@
                 <div class="search-bar">
                     <form method="get" asp-page="/Customers">
                         <input type="text" name="searchQuery" />
-                        <button type="submit">Search</button>
+                        <button class="btn-medium"type="submit">Search &nbsp;<i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                 </div>
         </div>
@@ -34,7 +34,7 @@
                            asp-route-searchQuery="@Request.Query["searchQuery"]"
                            asp-route-loadedRows="@Request.Query["loadedRows"]"
                            style="text-decoration:none">
-                            Up
+                           <i class="fa-solid fa-angle-up"></i>
                         </a>
                         
                         <a asp-page="/Customers"
@@ -43,7 +43,7 @@
                            asp-route-searchQuery="@Request.Query["searchQuery"]"
                            asp-route-loadedRows="@Request.Query["loadedRows"]"
                            style="text-decoration:none">
-                            Down
+                           <i class="fa-solid fa-angle-down"></i>
                         </a>
                     </th>
                     <th scope="col">
@@ -54,7 +54,7 @@
                            asp-route-searchQuery="@Request.Query["searchQuery"]"
                            asp-route-loadedRows="@Request.Query["loadedRows"]"
                            style="text-decoration:none">
-                            Up
+                           <i class="fa-solid fa-angle-up"></i>
                         </a>
         
                         <a asp-page="/Customers"
@@ -63,7 +63,7 @@
                            asp-route-searchQuery="@Request.Query["searchQuery"]"
                            asp-route-loadedRows="@Request.Query["loadedRows"]"
                            style="text-decoration:none">
-                            Down
+                           <i class="fa-solid fa-angle-down"></i>
                         </a>
                     </th>
                                 <th scope="col">
@@ -74,7 +74,7 @@
                            asp-route-searchQuery="@Request.Query["searchQuery"]"
                            asp-route-loadedRows="@Request.Query["loadedRows"]"
                            style="text-decoration:none">
-                            Up
+                           <i class="fa-solid fa-angle-up"></i>
                         </a>
         
                         <a asp-page="/Customers"
@@ -83,7 +83,7 @@
                            asp-route-searchQuery="@Request.Query["searchQuery"]"
                            asp-route-loadedRows="@Request.Query["loadedRows"]"
                            style="text-decoration:none">
-                            Down
+                           <i class="fa-solid fa-angle-down"></i>
                         </a>
                     </th>
                     <th></th>
@@ -99,7 +99,7 @@
                         <td>@cust.City</td>
                         <td>
                             <a asp-page="/Supplier" asp-route-id="@cust.CustomerId"
-                               class="btn btn-primary">View</a>
+                                       class="btn btn-primary"><i class="fa-solid fa-angle-right"></i>&nbsp;View</a>
                         </td>
                     </tr>
                 }
@@ -115,7 +115,7 @@
                                 <input type="hidden" name="sortOrder" value="@Request.Query["sortOrder"]" />
                                 <input type="hidden" name="searchQuery" value="@Request.Query["searchQuery"]" />
                                 <input type="hidden" name="loadedRows" value="@(Model.LoadedRows + 12)" />
-                                <button type="submit" class="btn btn-primary">Load More</button>
+                                <button class ="btn-medium"type="submit" class="btn btn-primary">Load More</button>
                             </form>
                         }
                     </td>
