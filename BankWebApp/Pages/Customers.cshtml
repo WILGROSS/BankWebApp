@@ -2,7 +2,7 @@
 @model BankWebApp.Pages.CustomersModel
 @{
 }
-<div id="customers-table">
+<section id="customers-table">
     <div class="container">
         <div class="search-info">
             @if (Model.TotalCount > 0)
@@ -46,27 +46,10 @@
                            <i class="fa-solid fa-angle-down"></i>
                         </a>
                     </th>
+
+                    <th>Address</th>
+
                     <th scope="col">
-                        Country
-                        <a asp-page="/Customers"
-                           asp-route-sortColumn="Country"
-                           asp-route-sortOrder="asc"
-                           asp-route-searchQuery="@Request.Query["searchQuery"]"
-                           asp-route-loadedRows="@Request.Query["loadedRows"]"
-                           style="text-decoration:none">
-                           <i class="fa-solid fa-angle-up"></i>
-                        </a>
-        
-                        <a asp-page="/Customers"
-                           asp-route-sortColumn="Country"
-                           asp-route-sortOrder="desc"
-                           asp-route-searchQuery="@Request.Query["searchQuery"]"
-                           asp-route-loadedRows="@Request.Query["loadedRows"]"
-                           style="text-decoration:none">
-                           <i class="fa-solid fa-angle-down"></i>
-                        </a>
-                    </th>
-                                <th scope="col">
                         City
                         <a asp-page="/Customers"
                            asp-route-sortColumn="City"
@@ -86,6 +69,27 @@
                            <i class="fa-solid fa-angle-down"></i>
                         </a>
                     </th>
+                                        <th scope="col">
+                        Country
+                        <a asp-page="/Customers"
+                           asp-route-sortColumn="Country"
+                           asp-route-sortOrder="asc"
+                           asp-route-searchQuery="@Request.Query["searchQuery"]"
+                           asp-route-loadedRows="@Request.Query["loadedRows"]"
+                           style="text-decoration:none">
+                           <i class="fa-solid fa-angle-up"></i>
+                        </a>
+
+                        <a asp-page="/Customers"
+                           asp-route-sortColumn="Country"
+                           asp-route-sortOrder="desc"
+                           asp-route-searchQuery="@Request.Query["searchQuery"]"
+                           asp-route-loadedRows="@Request.Query["loadedRows"]"
+                           style="text-decoration:none">
+                           <i class="fa-solid fa-angle-down"></i>
+                        </a>
+                    </th>
+                    <th>National Id</th>
                     <th></th>
                 </tr>
             </thead>
@@ -95,8 +99,17 @@
                     <tr>
                         <td>@cust.CustomerId</td>
                         <td>@cust.FirstName @cust.LastName</td>
-                        <td>@cust.Country</td>
+                        <td>@cust.Address</td>
                         <td>@cust.City</td>
+                        <td>@cust.Country</td>
+                        @if(cust.NationalId.Length > 0)
+                        {
+                            <td>@cust.NationalId</td>
+                        }
+                        else
+                        {
+                            <td>N/A</td>
+                        }
                         <td>
                             <a asp-page="/Supplier" asp-route-id="@cust.CustomerId"
                                        class="btn btn-primary"><i class="fa-solid fa-angle-right"></i>&nbsp;View</a>
@@ -127,4 +140,4 @@
             </tfoot>
         </table>
     </div>
-</div>
+</section>

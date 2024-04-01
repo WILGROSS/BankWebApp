@@ -18,9 +18,9 @@ namespace BankWebApp.Services
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                var lowerSearchQuery = searchQuery.ToLower();
-                query = query.Where(c => c.Givenname.ToLower().Contains(lowerSearchQuery)
-                                         || c.Surname.ToLower().Contains(lowerSearchQuery)
+                var lowerSearchQuery = searchQuery.ToLower().Replace(" ", "");
+                query = query.Where(c => (c.Givenname.ToLower() + c.Surname.ToLower()).Contains(lowerSearchQuery)
+                                         || c.NationalId.Contains(lowerSearchQuery)
                                          || c.City.ToLower().Contains(lowerSearchQuery)
                                          || c.Country.ToLower().Contains(lowerSearchQuery));
             }
@@ -30,8 +30,10 @@ namespace BankWebApp.Services
             var finalQuery = query.Select(c => new CustomerViewmodel
             {
                 CustomerId = c.CustomerId,
+                NationalId = c.NationalId,
                 FirstName = c.Givenname,
                 LastName = c.Surname,
+                Address = c.Streetaddress,
                 City = c.City,
                 Country = c.Country
             });

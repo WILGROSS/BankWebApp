@@ -1,5 +1,7 @@
 #customers-table {
   .container {
+    display: flex;
+    flex-direction: column;
     .search-info {
       display: flex;
       justify-content: space-between;
