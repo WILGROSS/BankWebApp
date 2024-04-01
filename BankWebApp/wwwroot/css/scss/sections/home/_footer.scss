@@ -51,12 +51,12 @@
           height: 20px;
         }
 
-        &:hover{
-            background-color: $gray-300;
+        &:hover {
+          background-color: $gray-300;
         }
-        &:active{
-            background-color: $gray-400;
-            @include shadow-s;
+        &:active {
+          background-color: $gray-400;
+          @include shadow-s;
         }
       }
     }
