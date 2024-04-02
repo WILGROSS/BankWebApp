@@ -2,7 +2,6 @@ table {
   background-color: $dark-secondary;
   border-radius: 8px;
   border-collapse: collapse;
-  margin: 10px 0 40px;
   @include shadow-mini-highlight;
 
   thead {
