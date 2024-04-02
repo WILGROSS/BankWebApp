@@ -4,140 +4,163 @@
 }
 <section id="customers-table">
     <div class="container">
-        <div class="search-info">
-            @if (Model.TotalCount > 0)
-            {
-                <div class="info">
-                    Displaying @Math.Min(Model.LoadedRows, Model._customers.Count) of @Model.TotalCount
-                </div>
-            }
-            else
-            {
-                    <div class="info">No results were found matching search criteria</div>
-            }
-                <div class="search-bar">
-                    <form method="get" asp-page="/Customers">
-                        <input type="text" name="searchQuery" />
-                        <button class="btn-medium"type="submit">Search &nbsp;<i class="fa-solid fa-magnifying-glass"></i></button>
-                    </form>
-                </div>
+
+        <div class="filter-box">
+            <form method="get" asp-page="/Customers" id="countryFilterForm">
+                <input type="text" name="searchQuery" value="@Request.Query["searchQuery"]" hidden />
+                    @foreach (var country in Model.AllCountries)
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="selectedCountries" value="@country" 
+                                   onchange="this.form.submit();"
+                                    @(Model.SelectedCountries.Contains(country) ? "checked" : "") />
+                            <label class="form-check-label">@country</label>
+                        </div>
+                    }
+                <button class="btn btn-light" type="submit" name="action" value="clear">Clear</button>
+            </form>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">
-                        Name
-                        <a asp-page="/Customers"
-                           asp-route-sortColumn="Name"
-                           asp-route-sortOrder="asc"
-                           asp-route-searchQuery="@Request.Query["searchQuery"]"
-                           asp-route-loadedRows="@Request.Query["loadedRows"]"
-                           style="text-decoration:none">
-                           <i class="fa-solid fa-angle-up"></i>
-                        </a>
-                        
-                        <a asp-page="/Customers"
-                           asp-route-sortColumn="Name"
-                           asp-route-sortOrder="desc"
-                           asp-route-searchQuery="@Request.Query["searchQuery"]"
-                           asp-route-loadedRows="@Request.Query["loadedRows"]"
-                           style="text-decoration:none">
-                           <i class="fa-solid fa-angle-down"></i>
-                        </a>
-                    </th>
 
-                    <th>Address</th>
-
-                    <th scope="col">
-                        City
-                        <a asp-page="/Customers"
-                           asp-route-sortColumn="City"
-                           asp-route-sortOrder="asc"
-                           asp-route-searchQuery="@Request.Query["searchQuery"]"
-                           asp-route-loadedRows="@Request.Query["loadedRows"]"
-                           style="text-decoration:none">
-                           <i class="fa-solid fa-angle-up"></i>
-                        </a>
-        
-                        <a asp-page="/Customers"
-                           asp-route-sortColumn="City"
-                           asp-route-sortOrder="desc"
-                           asp-route-searchQuery="@Request.Query["searchQuery"]"
-                           asp-route-loadedRows="@Request.Query["loadedRows"]"
-                           style="text-decoration:none">
-                           <i class="fa-solid fa-angle-down"></i>
-                        </a>
-                    </th>
-                                        <th scope="col">
-                        Country
-                        <a asp-page="/Customers"
-                           asp-route-sortColumn="Country"
-                           asp-route-sortOrder="asc"
-                           asp-route-searchQuery="@Request.Query["searchQuery"]"
-                           asp-route-loadedRows="@Request.Query["loadedRows"]"
-                           style="text-decoration:none">
-                           <i class="fa-solid fa-angle-up"></i>
-                        </a>
-
-                        <a asp-page="/Customers"
-                           asp-route-sortColumn="Country"
-                           asp-route-sortOrder="desc"
-                           asp-route-searchQuery="@Request.Query["searchQuery"]"
-                           asp-route-loadedRows="@Request.Query["loadedRows"]"
-                           style="text-decoration:none">
-                           <i class="fa-solid fa-angle-down"></i>
-                        </a>
-                    </th>
-                    <th>National Id</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var cust in Model._customers)
+        <div class="main-table">
+            <div class="search-info">
+                @if (Model.TotalCount > 0)
                 {
-                    <tr>
-                        <td>@cust.CustomerId</td>
-                        <td>@cust.FirstName @cust.LastName</td>
-                        <td>@cust.Address</td>
-                        <td>@cust.City</td>
-                        <td>@cust.Country</td>
-                        @if(cust.NationalId.Length > 0)
-                        {
-                            <td>@cust.NationalId</td>
-                        }
-                        else
-                        {
-                            <td>N/A</td>
-                        }
-                        <td>
-                            <a asp-page="/Supplier" asp-route-id="@cust.CustomerId"
-                                       class="btn btn-primary"><i class="fa-solid fa-angle-right"></i>&nbsp;View</a>
-                        </td>
-                    </tr>
+                    <div class="info">
+                        Displaying @Math.Min(Model.LoadedRows, Model._customers.Count) of @Model.TotalCount
+                    </div>
                 }
-        
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td>
-                        @if (Model._customers.Count < Model.TotalCount)
-                        {
-                            <form method="get" asp-page="/Customers">
-                                <input type="hidden" name="sortColumn" value="@Request.Query["sortColumn"]" />
-                                <input type="hidden" name="sortOrder" value="@Request.Query["sortOrder"]" />
-                                <input type="hidden" name="searchQuery" value="@Request.Query["searchQuery"]" />
-                                <input type="hidden" name="loadedRows" value="@(Model.LoadedRows + 12)" />
-                                <button class ="btn-medium"type="submit" class="btn btn-primary">Load More</button>
-                            </form>
-                        }
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
+                else
+                {
+                        <div class="info">No results were found matching search criteria</div>
+                }
+                    <div class="search-bar">
+                        <form method="get" asp-page="/Customers">
+                            <input type="text" name="searchQuery" value="@Request.Query["searchQuery"]" />
+                                @foreach (var country in Model.SelectedCountries)
+                                {
+                                    <input type="hidden" name="selectedCountries" value="@country" />
+                                }
+                            <button class="btn-medium" type="submit">Search &nbsp;<i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">
+                            Name
+                            <a asp-page="/Customers"
+                               asp-route-sortColumn="Name"
+                               asp-route-sortOrder="asc"
+                               asp-route-searchQuery="@Request.Query["searchQuery"]"
+                               asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               style="text-decoration:none">
+                               <i class="fa-solid fa-angle-up"></i>
+                            </a>
+                            
+                            <a asp-page="/Customers"
+                               asp-route-sortColumn="Name"
+                               asp-route-sortOrder="desc"
+                               asp-route-searchQuery="@Request.Query["searchQuery"]"
+                               asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               style="text-decoration:none">
+                               <i class="fa-solid fa-angle-down"></i>
+                            </a>
+                        </th>
+
+                        <th>Address</th>
+
+                        <th scope="col">
+                            City
+                            <a asp-page="/Customers"
+                               asp-route-sortColumn="City"
+                               asp-route-sortOrder="asc"
+                               asp-route-searchQuery="@Request.Query["searchQuery"]"
+                               asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               style="text-decoration:none">
+                               <i class="fa-solid fa-angle-up"></i>
+                            </a>
+            
+                            <a asp-page="/Customers"
+                               asp-route-sortColumn="City"
+                               asp-route-sortOrder="desc"
+                               asp-route-searchQuery="@Request.Query["searchQuery"]"
+                               asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               style="text-decoration:none">
+                               <i class="fa-solid fa-angle-down"></i>
+                            </a>
+                        </th>
+                                            <th scope="col">
+                            Country
+                            <a asp-page="/Customers"
+                               asp-route-sortColumn="Country"
+                               asp-route-sortOrder="asc"
+                               asp-route-searchQuery="@Request.Query["searchQuery"]"
+                               asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               style="text-decoration:none">
+                               <i class="fa-solid fa-angle-up"></i>
+                            </a>
+
+                            <a asp-page="/Customers"
+                               asp-route-sortColumn="Country"
+                               asp-route-sortOrder="desc"
+                               asp-route-searchQuery="@Request.Query["searchQuery"]"
+                               asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               style="text-decoration:none">
+                               <i class="fa-solid fa-angle-down"></i>
+                            </a>
+                        </th>
+                        <th>National Id</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cust in Model._customers)
+                    {
+                        <tr>
+                            <td>@cust.CustomerId</td>
+                            <td>@cust.FirstName @cust.LastName</td>
+                            <td>@cust.Address</td>
+                            <td>@cust.City</td>
+                            <td>@cust.Country</td>
+                            @if(cust.NationalId.Length > 0)
+                            {
+                                <td>@cust.NationalId</td>
+                            }
+                            else
+                            {
+                                <td>N/A</td>
+                            }
+                            <td>
+                                <a asp-page="/Supplier" asp-route-id="@cust.CustomerId"
+                                           class="btn btn-primary"><i class="fa-solid fa-angle-right"></i>&nbsp;View</a>
+                            </td>
+                        </tr>
+                    }
+            
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                            @if (Model._customers.Count < Model.TotalCount)
+                            {
+                                <form method="get" asp-page="/Customers">
+                                    <input type="hidden" name="sortColumn" value="@Request.Query["sortColumn"]" />
+                                    <input type="hidden" name="sortOrder" value="@Request.Query["sortOrder"]" />
+                                    <input type="hidden" name="searchQuery" value="@Request.Query["searchQuery"]" />
+                                    <input type="hidden" name="loadedRows" value="@(Model.LoadedRows + 12)" />
+                                    <button class ="btn-medium"type="submit" class="btn btn-primary">Load More</button>
+                                </form>
+                            }
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 </section>
