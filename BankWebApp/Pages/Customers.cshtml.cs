@@ -18,27 +18,23 @@ namespace BankWebApp.Pages
             _customerService = customerService;
         }
 
-        public void OnGet(string sortColumn, string sortOrder, string searchQuery = "", int? loadedRows = null, List<string> selectedCountries = null, string action = "")
+        public void OnGet(string sortColumn = "Name", string sortOrder = "asc", string searchQuery = "", int? loadedRows = null, List<string> selectedCountries = null, string action = "")
         {
-            loadedRows ??= 16;
-            LoadedRows = loadedRows.Value;
+            LoadedRows = loadedRows ?? 16;
+            AllCountries = _customerService.GetAllCountries();
 
             if (action == "clear")
             {
                 SelectedCountries = new List<string>();
-                searchQuery = "";
             }
             else
             {
                 SelectedCountries = selectedCountries ?? new List<string>();
             }
 
-            AllCountries = _customerService.GetAllCountries();
-
             var customerResult = _customerService.GetCustomers(sortColumn, sortOrder, searchQuery, LoadedRows, SelectedCountries);
             _customers = customerResult.Customers;
             TotalCount = customerResult.TotalCount;
         }
-
     }
 }

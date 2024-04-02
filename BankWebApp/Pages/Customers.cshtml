@@ -6,17 +6,19 @@
     <div class="container">
 
         <div class="filter-box">
-            <form method="get" asp-page="/Customers" id="countryFilterForm">
-                <input type="text" name="searchQuery" value="@Request.Query["searchQuery"]" hidden />
-                    @foreach (var country in Model.AllCountries)
-                    {
+            <form method="get" asp-page="/Customers" id="filtersForm">
+                        @foreach (var country in Model.AllCountries)
+                        {
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="selectedCountries" value="@country" 
                                    onchange="this.form.submit();"
-                                    @(Model.SelectedCountries.Contains(country) ? "checked" : "") />
+                                @(Model.SelectedCountries.Contains(country) ? "checked" : "") />
                             <label class="form-check-label">@country</label>
                         </div>
-                    }
+                        }
+                <input type="hidden" name="sortColumn" value="@Request.Query["sortColumn"]" />
+                <input type="hidden" name="sortOrder" value="@Request.Query["sortOrder"]" />
+                <input type="hidden" name="searchQuery" value="@Request.Query["searchQuery"]" /> <!-- Keep this to maintain the search query -->
                 <button class="btn btn-light" type="submit" name="action" value="clear">Clear</button>
             </form>
         </div>
@@ -55,22 +57,22 @@
                                asp-route-sortOrder="asc"
                                asp-route-searchQuery="@Request.Query["searchQuery"]"
                                asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
                                style="text-decoration:none">
                                <i class="fa-solid fa-angle-up"></i>
                             </a>
-                            
+
                             <a asp-page="/Customers"
                                asp-route-sortColumn="Name"
                                asp-route-sortOrder="desc"
                                asp-route-searchQuery="@Request.Query["searchQuery"]"
                                asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
                                style="text-decoration:none">
                                <i class="fa-solid fa-angle-down"></i>
                             </a>
                         </th>
-
-                        <th>Address</th>
-
+                        <th scope="col">Address</th>
                         <th scope="col">
                             City
                             <a asp-page="/Customers"
@@ -78,26 +80,29 @@
                                asp-route-sortOrder="asc"
                                asp-route-searchQuery="@Request.Query["searchQuery"]"
                                asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
                                style="text-decoration:none">
                                <i class="fa-solid fa-angle-up"></i>
                             </a>
-            
+
                             <a asp-page="/Customers"
                                asp-route-sortColumn="City"
                                asp-route-sortOrder="desc"
                                asp-route-searchQuery="@Request.Query["searchQuery"]"
                                asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
                                style="text-decoration:none">
                                <i class="fa-solid fa-angle-down"></i>
                             </a>
                         </th>
-                                            <th scope="col">
+                        <th scope="col">
                             Country
                             <a asp-page="/Customers"
                                asp-route-sortColumn="Country"
                                asp-route-sortOrder="asc"
                                asp-route-searchQuery="@Request.Query["searchQuery"]"
                                asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
                                style="text-decoration:none">
                                <i class="fa-solid fa-angle-up"></i>
                             </a>
@@ -107,11 +112,12 @@
                                asp-route-sortOrder="desc"
                                asp-route-searchQuery="@Request.Query["searchQuery"]"
                                asp-route-loadedRows="@Request.Query["loadedRows"]"
+                               asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
                                style="text-decoration:none">
                                <i class="fa-solid fa-angle-down"></i>
                             </a>
                         </th>
-                        <th>National Id</th>
+                        <th scope="col">National Id</th>
                         <th></th>
                     </tr>
                 </thead>
