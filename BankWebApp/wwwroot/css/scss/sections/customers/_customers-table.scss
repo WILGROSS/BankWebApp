@@ -1,94 +1,104 @@
 #customers-table {
   .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 0 40px;
-    gap: 15px;
+    padding: 0;
 
     .main-content {
       display: flex;
-      align-items: flex-start;
-      gap: 15px;
+      justify-content: center;
+      gap: 12px;
 
-      .filter-box {
-        background-color: $dark-secondary;
-        white-space: nowrap;
-        height: auto;
-        padding: 10px;
-        margin: 40px 0;
-        border-radius: 8px;
-        @include shadow-mini-highlight;
+      .filter-holder {
+        flex-grow: 2;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding-top: 103px;
 
-        .filter-check-box .form-check-input {
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-          width: 15px;
-          height: 15px;
-          background-color: $gray-500;
-          border: 1px solid $gray-500;
-          border-radius: 50%;
-          cursor: pointer;
-          vertical-align: text-top;
+        .filter-box {
+          background-color: $dark-secondary;
+          white-space: nowrap;
+          width: fit-content;
+          border-radius: 8px;
+          padding: 8px;
+          @include shadow-mini-highlight;
+
+          .filter-check-box .form-check-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background-color: $gray-300;
+            border: 1px solid $gray-300;
+            border-radius: 50%;
+            cursor: pointer;
+            vertical-align: text-top;
+          }
+
+          .form-check-input:checked {
+            background-color: $primary;
+          }
+
+          .btn-medium {
+            margin-top: 4px;
+            margin-left: 4px;
+            border-top-left-radius: 0;
+          }
         }
+      }
 
-        .form-check-input:checked {
-          background-color: $primary;
-        }
+      .main-table {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 0 40px;
+        gap: 6px;
 
-        .btn-medium {
-          margin-top: 5px;
-          border-top-left-radius: 0;
+        .search-info {
+          display: flex;
+          align-items: end;
+          gap: 400px;
+
+          .info {
+            @include text-m;
+            color: $gray-600;
+          }
+
+          .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            font-size: 0;
+
+            input {
+              all: unset;
+              @include text-s;
+              height: 34px;
+              padding: 0 8px 0 16px;
+              border-top-left-radius: 8px;
+              background-color: $dark-secondary;
+              color: $gray-300;
+
+              &:focus {
+                border: 1px lighten($primary, 10%) solid;
+                border-right: none;
+                height: 32px;
+                background-color: lighten($dark-secondary, 1%);
+              }
+            }
+            .btn-medium {
+              border-radius: 0;
+              border-top-right-radius: 8px;
+              border-bottom-right-radius: 8px;
+            }
+          }
         }
       }
 
       .vip-customers {
-        margin: 40px 0;
-        table {
-          padding: 10px;
-        }
-      }
-    }
-
-    .search-info {
-      display: flex;
-      align-items: end;
-      gap: 400px;
-      
-      .info {
-        @include text-m;
-        color: $gray-600;
-      }
-
-      .search-bar {
-        display: flex;
-        align-items: center;
-        gap: 0;
-        font-size: 0;
-
-        input {
-          all: unset;
-          @include text-s;
-          height: 34px;
-          padding: 0 8px 0 16px;
-          border-top-left-radius: 8px;
-          background-color: $dark-secondary;
-          color: $gray-300;
-
-          &:focus {
-            border: 1px lighten($primary, 10%) solid;
-            border-right: none;
-            height: 32px;
-            background-color: lighten($dark-secondary, 1%);
-          }
-        }
-        .btn-medium {
-          border-radius: 0;
-          border-top-right-radius: 8px;
-          border-bottom-right-radius: 8px;
-        }
+        flex-grow: 1;
+        padding-top: 62px;
       }
     }
   }
