@@ -24,7 +24,24 @@
     }
 
     #logo {
-      grid-area: logo;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      img {
+        width: 110px;
+      }
+      h4 {
+        color: $gray-200;
+        transition: color 0.3s ease;
+      }
+
+      &:hover {
+        text-decoration: none;
+        h4 {
+          color: $primary;
+        }
+        cursor: pointer;
+      }
     }
 
     #menu {
@@ -73,13 +90,14 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      color: $gray-700;
+      color: $gray-500;
 
       button {
         @include text-m;
         padding: 8px 28px;
         border-radius: 6px;
         background-color: $primary;
+        color: $gray-300;
         border: none;
         transition: all 0.2s ease;
 
@@ -91,7 +109,7 @@
           cursor: pointer;
         }
         &:active {
-          background-color: $secondary;
+          background-color: $dark;
           box-shadow: none;
         }
       }

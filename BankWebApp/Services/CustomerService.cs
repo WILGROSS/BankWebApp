@@ -12,7 +12,7 @@ namespace BankWebApp.Services
             _context = dbContext;
         }
 
-        public CustomerResult GetCustomers(string sortColumn, string sortOrder, string searchQuery, int loadedRows)
+        public CustomerResult GetCustomers(string sortColumn, string sortOrder, string searchQuery, int loadedRows, List<string> selectedCountries)
         {
             var query = _context.Customers.AsQueryable();
 
@@ -23,6 +23,11 @@ namespace BankWebApp.Services
                                          || c.NationalId.Contains(lowerSearchQuery)
                                          || c.City.ToLower().Contains(lowerSearchQuery)
                                          || c.Country.ToLower().Contains(lowerSearchQuery));
+            }
+
+            if (selectedCountries != null && selectedCountries.Any())
+            {
+                query = query.Where(c => selectedCountries.Contains(c.Country));
             }
 
             int totalCount = query.Count();
@@ -53,7 +58,23 @@ namespace BankWebApp.Services
 
             var customers = finalQuery.Take(loadedRows).ToList();
 
-            return new CustomerResult { Customers = customers, TotalCount = totalCount };
+            var vipCustomers = _context.Customers
+                .Select(c => new CustomerViewmodel
+                {
+                    CustomerId = c.CustomerId,
+                    FirstName = c.Givenname,
+                    LastName = c.Surname,
+                    TotalBalance = c.Dispositions.Sum(d => d.Account.Balance)
+                })
+                .OrderByDescending(c => c.TotalBalance)
+                .Take(5)
+                .ToList();
+
+            return new CustomerResult { Customers = customers, TotalCount = totalCount, VipCustomers = vipCustomers };
+        }
+        public List<string> GetAllCountries()
+        {
+            return _context.Customers.Select(c => c.Country).Distinct().OrderBy(c => c).ToList();
         }
     }
 }

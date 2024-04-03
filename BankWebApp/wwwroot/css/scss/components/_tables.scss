@@ -2,7 +2,6 @@ table {
   background-color: $dark-secondary;
   border-radius: 8px;
   border-collapse: collapse;
-  margin: 10px 0 40px;
   @include shadow-mini-highlight;
 
   thead {
@@ -11,6 +10,11 @@ table {
     th {
       padding: 12px 10px 0px;
       border-bottom: $gray-800 solid 1px;
+      white-space: nowrap;
+    }
+
+    tr:hover {
+      background-color: inherit;
     }
   }
 
@@ -18,6 +22,7 @@ table {
     width: 100%;
     td {
       padding: 8px 10px;
+      white-space: nowrap;
     }
     transition: all 0.3s ease;
 
@@ -33,8 +38,16 @@ table {
     }
   }
 
+  tfoot tr:hover {
+    background-color: inherit;
+  }
+
   .btn-medium {
     border-radius: 8px;
     border-top-right-radius: 0;
+  }
+
+  tr {
+    width: fit-content;
   }
 }

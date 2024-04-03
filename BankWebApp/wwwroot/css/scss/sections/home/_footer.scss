@@ -6,8 +6,17 @@
     gap: 60px;
     align-items: center;
 
-    .logo {
-      transform: scale(1.3);
+    #logo {
+      transform: scale(0.3);
+      padding: 30px;
+      border-radius: 500px;
+
+      &:hover {
+        background-color: $dark-secondary;
+      }
+      &:active {
+        background-color: $secondary;
+      }
     }
 
     .menu-links {
