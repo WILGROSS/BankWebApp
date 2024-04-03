@@ -8,6 +8,7 @@ namespace BankWebApp.Pages
     {
         private readonly ICustomerService _customerService;
         public List<CustomerViewmodel> _customers { get; set; }
+        public List<CustomerViewmodel> _vipCustomers { get; set; }
         public List<string> AllCountries { get; set; } = new List<string>();
         public List<string> SelectedCountries { get; set; } = new List<string>();
         public int TotalCount { get; set; }
@@ -34,6 +35,7 @@ namespace BankWebApp.Pages
 
             var customerResult = _customerService.GetCustomers(sortColumn, sortOrder, searchQuery, LoadedRows, SelectedCountries);
             _customers = customerResult.Customers;
+            _vipCustomers = customerResult.VipCustomers;
             TotalCount = customerResult.TotalCount;
         }
     }

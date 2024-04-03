@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Globalization
 @model BankWebApp.Pages.CustomersModel
 @{
 }
@@ -32,11 +33,10 @@
                     <form method="get" asp-page="/Customers" id="filtersForm">
                             @foreach (var country in Model.AllCountries)
                             {
-                                        <div class="filter-check-box">
-                                            <input class="form-check-input" type="checkbox" name="selectedCountries" value="@country" onchange="this.form.submit();" @(Model.SelectedCountries.Contains(country) ? "checked" : "") />
-                                            <label class="form-check-label">@country</label>
-                                        </div>
-
+                                <div class="filter-check-box">
+                                    <input class="form-check-input" type="checkbox" name="selectedCountries" value="@country" onchange="this.form.submit();" @(Model.SelectedCountries.Contains(country) ? "checked" : "") />
+                                    <label class="form-check-label">@country</label>
+                                </div>
                             }
                         <input type="hidden" name="sortColumn" value="@Request.Query["sortColumn"]" />
                         <input type="hidden" name="sortOrder" value="@Request.Query["sortOrder"]" />
@@ -126,7 +126,7 @@
                                 <td>@cust.CustomerId</td>
                                 <td>@cust.FirstName @cust.LastName</td>
                                 <td>@cust.Address</td>
-                                <td>@cust.City</td>
+                                <td>@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(@cust.City.ToLower())</td>
                                 <td>@cust.Country</td>
                                 @if(cust.NationalId.Length > 0)
                                 {
@@ -153,7 +153,7 @@
                                         <input type="hidden" name="sortColumn" value="@Request.Query["sortColumn"]" />
                                         <input type="hidden" name="sortOrder" value="@Request.Query["sortOrder"]" />
                                         <input type="hidden" name="searchQuery" value="@Request.Query["searchQuery"]" />
-                                        <input type="hidden" name="loadedRows" value="@(Model.LoadedRows + 12)" />
+                                        <input type="hidden" name="loadedRows" value="@(Model.LoadedRows + 16)" />
                                         <button class ="btn-medium"type="submit" class="btn btn-primary">Load More</button>
                                     </form>
                                 }
@@ -166,19 +166,33 @@
                     </tfoot>
                 </table>
                 <div class="vip-customers">
+                    <h2>Our VIP Customers</h2>
                     <table>
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Total balance</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-
-                        </tbody>
+                        @foreach(var vipCust in Model._vipCustomers)
+                        {
+                            <tr>
+                                <td>@vipCust.FirstName @vipCust.LastName</td>
+                                <td>@vipCust.TotalBalance.ToString("C")</td>
+                                <td>
+                                    <a asp-page="/Supplier" asp-route-id="@vipCust.CustomerId"
+                                    class="btn btn-primary"><i class="fa-solid fa-angle-right"></i>&nbsp;View</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
                         <tfoot>
                             <tr>
-                                <th>hej</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </tfoot>
                     </table>

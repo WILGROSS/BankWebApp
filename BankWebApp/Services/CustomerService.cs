@@ -58,7 +58,19 @@ namespace BankWebApp.Services
 
             var customers = finalQuery.Take(loadedRows).ToList();
 
-            return new CustomerResult { Customers = customers, TotalCount = totalCount };
+            var vipCustomers = _context.Customers
+                .Select(c => new CustomerViewmodel
+                {
+                    CustomerId = c.CustomerId,
+                    FirstName = c.Givenname,
+                    LastName = c.Surname,
+                    TotalBalance = c.Dispositions.Sum(d => d.Account.Balance)
+                })
+                .OrderByDescending(c => c.TotalBalance)
+                .Take(5)
+                .ToList();
+
+            return new CustomerResult { Customers = customers, TotalCount = totalCount, VipCustomers = vipCustomers };
         }
         public List<string> GetAllCountries()
         {
