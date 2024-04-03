@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BankWebApp</title>
+    <link rel="icon" type="image/x-icon" href="images/logo/dozendozen-logo-favicon.svg">
     <link rel="stylesheet" href="~/css/layout.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BankWebApp.styles.css" asp-append-version="true" />
 
@@ -13,36 +14,13 @@ integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-            <div class="wrapper">
-@*     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">BankWebApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header> *@
+    <div class="wrapper">
     <header id="home-header">
         <div class="container">
-          <a id="logo" asp-area="" asp-page="/Index"
-            ><img
-              src="images/logo/silicon-logo-light_theme.svg"
-              alt="silicon logotype"
-          /></a>
+          <a id="logo" asp-area="" asp-page="/Index">
+            <img src="images/logo/dozendozen-logo.svg" alt="Dozen & Dozen logotype"/>
+              <h4>Dozen & Dozen</h4>
+          </a>
 
           <nav id="menu">
             <div class="menu-links">
@@ -64,11 +42,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
           <footer id="home-footer">
         <div class="container">
-          <a class="logo" href="silicon-home.html"
-            ><img
-              src="images/logo/silicon-logo-light_theme.svg"
-              alt="silicon logotype"
-          /></a>
+            <a id="logo" asp-area="" asp-page="/Index">
+                <img src="images/logo/dozendozen-logo.svg" alt="Dozen & Dozen logotype"/>
+            </a>
           <div class="menu-links">
             <a class="nav-link" href="#showcase">Overview</a>
             <a class="nav-link" href="#features">Features</a>
