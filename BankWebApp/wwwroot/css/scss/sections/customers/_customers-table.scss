@@ -91,6 +91,14 @@
               border-radius: 0;
               border-top-right-radius: 8px;
               border-bottom-right-radius: 8px;
+              transition: none;
+              transition: color 0.2s ease;
+
+              &:active {
+                height: 32px;
+                border: 1px lighten($primary, 10%) solid;
+                border-left: none;
+              }
             }
           }
         }
