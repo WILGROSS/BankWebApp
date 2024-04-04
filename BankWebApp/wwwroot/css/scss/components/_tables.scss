@@ -27,14 +27,14 @@ table {
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: $gray-700;
+      background-color: $gray-600;
     }
   }
 
   tr:nth-child(even) {
-    background: $gray-800;
+    background: $gray-700;
     &:hover {
-      background-color: $gray-700;
+      background-color: $gray-600;
     }
   }
 
