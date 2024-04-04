@@ -94,6 +94,10 @@
               transition: none;
               transition: color 0.2s ease;
 
+              .btn-icon {
+                gap: 5px;
+              }
+
               &:active {
                 height: 32px;
                 border: 1px lighten($primary, 10%) solid;
@@ -102,11 +106,29 @@
             }
           }
         }
+        table {
+          .btn-icon {
+            gap: 4px;
+
+            &:hover {
+              text-decoration: none;
+              color: $dark-secondary;
+            }
+          }
+        }
       }
 
       .vip-customers {
         flex-grow: 1;
         padding-top: 62px;
+
+        .btn-icon {
+          gap: 4px;
+          &:hover {
+            text-decoration: none;
+            color: $dark-secondary;
+          }
+        }
       }
     }
   }

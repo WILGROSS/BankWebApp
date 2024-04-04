@@ -43,7 +43,12 @@
                            {
                                    <input type="hidden" name="selectedCountries" value="@country" />
                            }
-                           <button class="btn-medium" type="submit">Search &nbsp;<i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button class="btn-medium" type="submit">
+                                <div class="btn-icon">
+                                    Search
+                                    <i class="material-symbols-outlined">person_search</i>
+                                </div>
+                            </button>
                            </form>
                        </div>
                     </div>
@@ -52,71 +57,80 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">
-                                    Name
-                                    <a asp-page="/Customers"
-                                       asp-route-sortColumn="Name"
-                                       asp-route-sortOrder="asc"
-                                       asp-route-searchQuery="@Request.Query["searchQuery"]"
-                                       asp-route-loadedRows="@Request.Query["loadedRows"]"
-                                       asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
-                                       style="text-decoration:none">
-                                       <i class="fa-solid fa-angle-up"></i>
-                                    </a>
+                                    <div class="btn-icon">
+                                        Name
+                                        <a asp-page="/Customers"
+                                           asp-route-sortColumn="Name"
+                                           asp-route-sortOrder="asc"
+                                           asp-route-searchQuery="@Request.Query["searchQuery"]"
+                                           asp-route-loadedRows="@Request.Query["loadedRows"]"
+                                           asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+                                           style="text-decoration:none">
+                                            <i class="material-symbols-outlined">expand_less</i>
 
-                                    <a asp-page="/Customers"
-                                       asp-route-sortColumn="Name"
-                                       asp-route-sortOrder="desc"
-                                       asp-route-searchQuery="@Request.Query["searchQuery"]"
-                                       asp-route-loadedRows="@Request.Query["loadedRows"]"
-                                       asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
-                                       style="text-decoration:none">
-                                       <i class="fa-solid fa-angle-down"></i>
-                                    </a>
+                                        </a>
+
+                                        <a asp-page="/Customers"
+                                           asp-route-sortColumn="Name"
+                                           asp-route-sortOrder="desc"
+                                           asp-route-searchQuery="@Request.Query["searchQuery"]"
+                                           asp-route-loadedRows="@Request.Query["loadedRows"]"
+                                           asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+                                           style="text-decoration:none">
+                                            <i class="material-symbols-outlined">expand_more</i>
+                                        </a>
+                                    </div>
                                 </th>
                                 <th scope="col">Address</th>
                                 <th scope="col">
-                                    City
-                                    <a asp-page="/Customers"
-                                       asp-route-sortColumn="City"
-                                       asp-route-sortOrder="asc"
-                                       asp-route-searchQuery="@Request.Query["searchQuery"]"
-                                       asp-route-loadedRows="@Request.Query["loadedRows"]"
-                                       asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
-                                       style="text-decoration:none">
-                                       <i class="fa-solid fa-angle-up"></i>
-                                    </a>
+                                    <div class="btn-icon">
+                                        City
+                                        <a asp-page="/Customers"
+                                           asp-route-sortColumn="City"
+                                           asp-route-sortOrder="asc"
+                                           asp-route-searchQuery="@Request.Query["searchQuery"]"
+                                           asp-route-loadedRows="@Request.Query["loadedRows"]"
+                                           asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+                                           style="text-decoration:none">
+                                            <i class="material-symbols-outlined">expand_less</i>
 
-                                    <a asp-page="/Customers"
-                                       asp-route-sortColumn="City"
-                                       asp-route-sortOrder="desc"
-                                       asp-route-searchQuery="@Request.Query["searchQuery"]"
-                                       asp-route-loadedRows="@Request.Query["loadedRows"]"
-                                       asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
-                                       style="text-decoration:none">
-                                       <i class="fa-solid fa-angle-down"></i>
-                                    </a>
+                                        </a>
+
+                                        <a asp-page="/Customers"
+                                           asp-route-sortColumn="City"
+                                           asp-route-sortOrder="desc"
+                                           asp-route-searchQuery="@Request.Query["searchQuery"]"
+                                           asp-route-loadedRows="@Request.Query["loadedRows"]"
+                                           asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+                                           style="text-decoration:none">
+                                            <i class="material-symbols-outlined">expand_more</i>
+                                        </a>
+                                    </div>
                                 </th>
                                 <th scope="col">
-                                    Country
-                                    <a asp-page="/Customers"
-                                       asp-route-sortColumn="Country"
-                                       asp-route-sortOrder="asc"
-                                       asp-route-searchQuery="@Request.Query["searchQuery"]"
-                                       asp-route-loadedRows="@Request.Query["loadedRows"]"
-                                       asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
-                                       style="text-decoration:none">
-                                       <i class="fa-solid fa-angle-up"></i>
-                                    </a>
+                                    <div class="btn-icon">
+                                        Country
+                                        <a asp-page="/Customers"
+                                           asp-route-sortColumn="Country"
+                                           asp-route-sortOrder="asc"
+                                           asp-route-searchQuery="@Request.Query["searchQuery"]"
+                                           asp-route-loadedRows="@Request.Query["loadedRows"]"
+                                           asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+                                           style="text-decoration:none">
+                                            <i class="material-symbols-outlined">expand_less</i>
 
-                                    <a asp-page="/Customers"
-                                       asp-route-sortColumn="Country"
-                                       asp-route-sortOrder="desc"
-                                       asp-route-searchQuery="@Request.Query["searchQuery"]"
-                                       asp-route-loadedRows="@Request.Query["loadedRows"]"
-                                       asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
-                                       style="text-decoration:none">
-                                       <i class="fa-solid fa-angle-down"></i>
-                                    </a>
+                                        </a>
+
+                                        <a asp-page="/Customers"
+                                           asp-route-sortColumn="Country"
+                                           asp-route-sortOrder="desc"
+                                           asp-route-searchQuery="@Request.Query["searchQuery"]"
+                                           asp-route-loadedRows="@Request.Query["loadedRows"]"
+                                           asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+                                           style="text-decoration:none">
+                                            <i class="material-symbols-outlined">expand_more</i>
+                                        </a>
+                                    </div>
                                 </th>
                                 <th scope="col">National Id</th>
                                 <th></th>
@@ -140,8 +154,9 @@
                                         <td>N/A</td>
                                     }
                                     <td>
-                                        <a asp-page="/Supplier" asp-route-id="@cust.CustomerId"
-                                                   class="btn btn-primary"><i class="fa-solid fa-angle-right"></i>&nbsp;View</a>
+                                        <a asp-page="/Supplier" asp-route-id="@cust.CustomerId" class="btn-icon">
+                                            <span class="material-symbols-outlined">expand_circle_right</span>View
+                                        </a>
                                     </td>
                                 </tr>
                             }
@@ -170,7 +185,7 @@
                     </table>
                 </div>
                 <div class="vip-customers">
-                    <h2>Our VIP Customers</h2>
+                    <h2>Our Top 5 Customers</h2>
                     <table>
                         <thead>
                             <tr>
@@ -186,8 +201,9 @@
                                 <td>@vipCust.FirstName @vipCust.LastName</td>
                                 <td>@vipCust.TotalBalance.ToString("C")</td>
                                 <td>
-                                    <a asp-page="/Supplier" asp-route-id="@vipCust.CustomerId"
-                                    class="btn btn-primary"><i class="fa-solid fa-angle-right"></i>&nbsp;View</a>
+                                    <a asp-page="/Supplier" asp-route-id="@vipCust.CustomerId" class="btn-icon">
+                                        <span class="material-symbols-outlined">expand_circle_right</span>View
+                                    </a>
                                 </td>
                             </tr>
                         }
