@@ -2,7 +2,7 @@
 
 namespace BankWebApp.Services
 {
-    public class CustomerResult
+    public class CustomersResult
     {
         public List<CustomersViewModel> Customers { get; set; }
         public List<CustomersViewModel> VipCustomers { get; set; }

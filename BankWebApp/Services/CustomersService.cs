@@ -3,16 +3,16 @@ using BankWebApp.ViewModels;
 
 namespace BankWebApp.Services
 {
-    public class CustomerService : ICustomerService
+    public class CustomersService : ICustomersService
     {
         private readonly ApplicationDbContext _context;
 
-        public CustomerService(ApplicationDbContext dbContext)
+        public CustomersService(ApplicationDbContext dbContext)
         {
             _context = dbContext;
         }
 
-        public CustomerResult GetCustomers(string sortColumn, string sortOrder, string searchQuery, int loadedRows, List<string> selectedCountries)
+        public CustomersResult GetCustomers(string sortColumn, string sortOrder, string searchQuery, int loadedRows, List<string> selectedCountries)
         {
             var query = _context.Customers.AsQueryable();
 
@@ -70,7 +70,7 @@ namespace BankWebApp.Services
                 .Take(5)
                 .ToList();
 
-            return new CustomerResult { Customers = customers, TotalCount = totalCount, VipCustomers = vipCustomers };
+            return new CustomersResult { Customers = customers, TotalCount = totalCount, VipCustomers = vipCustomers };
         }
         public List<string> GetAllCountries()
         {
