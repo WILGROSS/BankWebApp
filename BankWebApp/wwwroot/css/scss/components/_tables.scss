@@ -33,6 +33,9 @@ table {
 
   tr:nth-child(even) {
     background: $gray-700;
+    .btn-icon {
+      color: $gray-500;
+    }
     &:hover {
       background-color: $gray-600;
     }

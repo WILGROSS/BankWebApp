@@ -93,6 +93,9 @@
       color: $gray-500;
 
       button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
         @include text-m;
         padding: 8px 28px;
         border-radius: 6px;
