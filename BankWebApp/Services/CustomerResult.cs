@@ -4,8 +4,8 @@ namespace BankWebApp.Services
 {
     public class CustomerResult
     {
-        public List<CustomerViewmodel> Customers { get; set; }
-        public List<CustomerViewmodel> VipCustomers { get; set; }
+        public List<CustomersViewModel> Customers { get; set; }
+        public List<CustomersViewModel> VipCustomers { get; set; }
         public int TotalCount { get; set; }
     }
 }

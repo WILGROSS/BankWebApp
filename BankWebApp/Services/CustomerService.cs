@@ -32,7 +32,7 @@ namespace BankWebApp.Services
 
             int totalCount = query.Count();
 
-            var finalQuery = query.Select(c => new CustomerViewmodel
+            var finalQuery = query.Select(c => new CustomersViewModel
             {
                 CustomerId = c.CustomerId,
                 NationalId = c.NationalId,
@@ -59,7 +59,7 @@ namespace BankWebApp.Services
             var customers = finalQuery.Take(loadedRows).ToList();
 
             var vipCustomers = _context.Customers
-                .Select(c => new CustomerViewmodel
+                .Select(c => new CustomersViewModel
                 {
                     CustomerId = c.CustomerId,
                     FirstName = c.Givenname,

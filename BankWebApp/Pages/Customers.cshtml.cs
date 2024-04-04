@@ -7,8 +7,8 @@ namespace BankWebApp.Pages
     public class CustomersModel : PageModel
     {
         private readonly ICustomerService _customerService;
-        public List<CustomerViewmodel> _customers { get; set; }
-        public List<CustomerViewmodel> _vipCustomers { get; set; }
+        public List<CustomersViewModel> _customers { get; set; }
+        public List<CustomersViewModel> _vipCustomers { get; set; }
         public List<string> AllCountries { get; set; } = new List<string>();
         public List<string> SelectedCountries { get; set; } = new List<string>();
         public int TotalCount { get; set; }
