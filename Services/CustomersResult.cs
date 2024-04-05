@@ -1,6 +1,6 @@
-﻿using BankWebApp.ViewModels;
+﻿using ViewModels;
 
-namespace BankWebApp.Services
+namespace Services
 {
     public class CustomersResult
     {

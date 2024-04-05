@@ -1,8 +1,6 @@
-﻿using BankAppWeb.ViewModels;
-using BankWebApp.Data;
-using BankWebApp.ViewModels;
-
-namespace BankWebApp.Services
+﻿using DataAccessLayer.Data;
+using ViewModels;
+namespace Services
 {
     public class LandingPageService : ILandingPageService
     {

@@ -1,4 +1,4 @@
-﻿namespace BankWebApp.Services
+﻿namespace Services
 {
     public interface ICustomersService
     {

@@ -1,4 +1,4 @@
-﻿namespace BankWebApp.ViewModels
+﻿namespace ViewModels
 {
     public class CustomersViewModel
     {

@@ -99,17 +99,18 @@
               }
 
               &:active {
-                height: 32px;
-                border: 1px lighten($primary, 10%) solid;
-                border-left: none;
+                height: 34px;
+                // border: 1px lighten($primary, 10%) solid;
+                // border-left: none;
+                @include shadow-fake-border-except-left;
               }
             }
           }
         }
         table {
           .btn-icon {
-            gap: 4px;
-
+            gap: 2px;
+            justify-content: flex-start;
             &:hover {
               text-decoration: none;
               color: $dark-secondary;

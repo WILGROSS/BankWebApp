@@ -28,7 +28,7 @@
       gap: 10px;
       align-items: center;
       img {
-        width: 110px;
+        width: 90px;
       }
       h4 {
         color: $gray-200;
@@ -49,6 +49,7 @@
       display: none;
       gap: 40px;
       background-color: $gray-900;
+      padding-top: 6px;
       width: 100%;
       position: fixed;
       top: 0;
@@ -113,7 +114,7 @@
         }
         &:active {
           background-color: $dark;
-          box-shadow: none;
+          @include shadow-fake-border;
         }
       }
     }

@@ -13,6 +13,7 @@
   all: unset;
   @include text-m;
   height: 34px;
+  box-sizing: border-box;
   padding: 0 8px;
   border-radius: 8px;
   background-color: $primary;
@@ -27,7 +28,7 @@
   }
   &:active {
     background-color: $dark;
-    box-shadow: none;
+    @include shadow-fake-border;
   }
 }
 

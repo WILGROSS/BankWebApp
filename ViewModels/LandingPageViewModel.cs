@@ -1,6 +1,4 @@
-﻿using BankWebApp.ViewModels;
-
-namespace BankAppWeb.ViewModels
+﻿namespace ViewModels
 {
     public class LandingPageViewModel
     {

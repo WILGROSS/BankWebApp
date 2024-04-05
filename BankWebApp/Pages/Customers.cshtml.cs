@@ -1,6 +1,6 @@
-using BankWebApp.Services;
-using BankWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services;
+using ViewModels;
 
 namespace BankWebApp.Pages
 {
