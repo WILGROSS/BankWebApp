@@ -7,15 +7,18 @@
     align-items: center;
 
     #logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       transform: scale(0.3);
-      padding: 30px;
+      padding: 25px;
       border-radius: 500px;
 
       &:hover {
-        background-color: $dark-secondary;
+        background-color: $gray-700;
       }
       &:active {
-        background-color: $secondary;
+        background-color: $dark-secondary;
       }
     }
 
