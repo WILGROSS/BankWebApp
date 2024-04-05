@@ -1,7 +1,7 @@
-using BankWebApp.Data;
-using BankWebApp.Services;
+using DataAccessLayer.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Services;
 
 namespace BankWebApp
 {

@@ -1,7 +1,7 @@
-﻿using BankWebApp.Data;
-using BankWebApp.ViewModels;
+﻿using DataAccessLayer.Data;
+using ViewModels;
 
-namespace BankWebApp.Services
+namespace Services
 {
     public class CustomersService : ICustomersService
     {

@@ -1,6 +1,5 @@
-﻿using BankAppWeb.ViewModels;
-
-namespace BankWebApp.Services
+﻿using ViewModels;
+namespace Services
 {
     public interface ILandingPageService
     {

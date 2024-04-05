@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BankWebApp.Data;
+﻿namespace DataAccessLayer.Data;
 
 public partial class User
 {
