@@ -1,6 +1,6 @@
 ﻿namespace BankWebApp.ViewModels
 {
-    public class CustomerViewmodel
+    public class CustomersViewModel
     {
         public int CustomerId { get; set; }
         public string NationalId { get; set; }

@@ -23,7 +23,7 @@ namespace BankWebApp
             builder.Services.AddRazorPages();
 
             builder.Services.AddTransient<DataInitializer>();
-            builder.Services.AddTransient<ICustomerService, CustomerService>();
+            builder.Services.AddTransient<ICustomersService, CustomersService>();
             builder.Services.AddTransient<ILandingPageService, LandingPageService>();
 
             var app = builder.Build();
