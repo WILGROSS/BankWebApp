@@ -32,6 +32,31 @@
   }
 }
 
+.btn-disabled {
+  all: unset;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  @include text-m;
+  height: 34px;
+  box-sizing: border-box;
+  padding: 0 8px;
+  border-radius: 8px;
+  background-color: $gray-600;
+  color: $gray-800;
+  transition: all 0.2s ease;
+
+  &:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
+  &:active {
+    background-color: $dark;
+    color: $gray-400;
+    @include shadow-fake-border;
+  }
+}
+
 .btn-theme {
   @include button;
   color: $white;
@@ -82,4 +107,9 @@ a.buttion-circle {
 .btn-icon {
   display: flex;
   justify-content: center;
+}
+
+.header-btn-icon {
+  display: flex;
+  justify-content: flex-start;
 }

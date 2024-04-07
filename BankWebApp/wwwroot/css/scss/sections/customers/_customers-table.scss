@@ -12,7 +12,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: flex-start;
-        padding-top: 103px;
+        padding-top: 71px;
 
         .filter-box {
           background-color: $dark-secondary;
@@ -57,8 +57,10 @@
 
         .search-info {
           display: flex;
+          width: 100%;
+          justify-content: space-between;
           align-items: end;
-          gap: 400px;
+          margin-bottom: 6px;
 
           .info {
             @include text-m;
@@ -100,14 +102,13 @@
 
               &:active {
                 height: 34px;
-                // border: 1px lighten($primary, 10%) solid;
-                // border-left: none;
                 @include shadow-fake-border-except-left;
               }
             }
           }
         }
         table {
+          min-width: 800px;
           .btn-icon {
             gap: 2px;
             justify-content: flex-start;
@@ -117,11 +118,60 @@
             }
           }
         }
+
+        .pagination {
+          display: flex;
+          gap: 4px;
+
+          .btn-medium{
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            background-color: $dark-secondary;
+
+            &:hover{
+              box-shadow: none;
+              background-color: $gray-700;
+            }
+            &:active{
+              background-color: $dark;
+              @include shadow-fake-border;
+            }
+          }
+
+          .btn-current-page {
+            all: unset;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            @include text-m;
+            height: 34px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            background-color: $primary;
+            transition: all 0.2s ease;
+
+            &:hover {
+              text-decoration: none;
+              color: $white;
+              box-shadow: none;
+              background-color: $gray-500;
+              cursor: pointer;
+            }
+            &:active {
+              background-color: $dark;
+              @include shadow-fake-border;
+            }
+          }
+        }
       }
 
       .vip-customers {
+        h2 {
+          margin-bottom: 10px;
+        }
         flex-grow: 1;
-        padding-top: 62px;
+        padding-top: 21px;
 
         .btn-icon {
           gap: 4px;

@@ -8,13 +8,27 @@ table {
     text-align: left;
 
     th {
-      padding: 12px 10px 0px;
+      padding: 12px 10px 0;
       border-bottom: $gray-800 solid 1px;
       white-space: nowrap;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
     }
-
+    
     tr:hover {
       background-color: inherit;
+    }
+  }
+
+  .table-header{
+    .header-btn-icon{
+      color: inherit;
+      padding: 0;
+      margin: 0;
+      &:hover{
+        cursor: default;
+      }
     }
   }
 
@@ -28,6 +42,10 @@ table {
 
     &:hover {
       background-color: $gray-600;
+    }
+
+    .btn-icon {
+      color: $gray-500;
     }
   }
 
