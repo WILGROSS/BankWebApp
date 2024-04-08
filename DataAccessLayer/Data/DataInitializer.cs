@@ -25,6 +25,7 @@ namespace DataAccessLayer.Data
         {
             AddUserIfNotExists("richard.chalk@systementor.se", "Hejsan123#", new string[] { "Admin" });
             AddUserIfNotExists("richard.chalk@cashier.systementor.se", "Hejsan123#", new string[] { "Cashier" });
+            AddUserIfNotExists("william@gross.nu", "Hejsan123#", new string[] { "Cashier", "Admin" });
         }
 
         // Här finns möjlighet att uppdatera dina användares roller

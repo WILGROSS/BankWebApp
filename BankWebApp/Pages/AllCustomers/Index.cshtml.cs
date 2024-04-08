@@ -1,14 +1,16 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services;
 using ViewModels;
 
-namespace BankWebApp.Pages
+namespace BankWebApp.Pages.AllCustomers
 {
-    public class CustomersModel : PageModel
+    [Authorize(Roles = "Cashier")]
+    public class IndexModel : PageModel
     {
-        public readonly ICustomersService _customersService;
-        public List<CustomersViewModel> _customers { get; set; }
-        public List<CustomersViewModel> _vipCustomers { get; set; }
+        public readonly IAllCustomersService _customersService;
+        public List<AllCustomersViewModel> _customers { get; set; }
+        public List<AllCustomersViewModel> _vipCustomers { get; set; }
         public List<string> AllCountries { get; set; } = new List<string>();
         public List<string> SelectedCountries { get; set; } = new List<string>();
         public int TotalPages { get; set; }
@@ -16,7 +18,7 @@ namespace BankWebApp.Pages
         public int LoadedRows { get; set; }
         public int CurrentPage { get; set; }
 
-        public CustomersModel(ICustomersService customerService)
+        public IndexModel(IAllCustomersService customerService)
         {
             _customersService = customerService;
         }

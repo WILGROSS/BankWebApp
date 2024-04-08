@@ -1,0 +1,42 @@
+#view-customer {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    .overview {
+      display: flex;
+      gap: 32px;
+    }
+
+    .main-content {
+      display: flex;
+      gap: 64px;
+
+      .account-holder {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        .account {
+          display: flex;
+          flex-direction: column;
+          .account-summary {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 12px;
+          }
+        }
+      }
+      .personal-info-holder {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        .info-box{
+          @include shadow-fake-border;
+          border-radius: 8px;
+          padding: 12px;
+        }
+      }
+    }
+  }
+}

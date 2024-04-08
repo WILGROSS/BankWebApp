@@ -1,0 +1,256 @@
+﻿@page
+@using System.Globalization
+@model BankWebApp.Pages.AllCustomers.IndexModel
+@{
+}
+<section id="customers-table">
+	<div class="container">
+			<div class="main-content">
+				<div class="filter-holder">
+					<div class="filter-box">
+						<h6>Filter by country</h6>
+						<form method="get" asp-page="/Customers" id="filtersForm">
+						@foreach (var country in Model.AllCountries)
+						{
+										<div class="filter-check-box">
+											<input class="form-check-input" type="checkbox" name="selectedCountries" value="@country" onchange="this.form.submit();" @(Model.SelectedCountries.Contains(country) ? "checked" : "") />
+											<label class="form-check-label">@country</label>
+										</div>
+						}
+							<input type="hidden" name="sortColumn" value="@Request.Query["sortColumn"]" />
+							<input type="hidden" name="sortOrder" value="@Request.Query["sortOrder"]" />
+							<input type="hidden" name="searchQuery" value="@Request.Query["searchQuery"]" />
+							<button class ="btn-medium" type="submit" name="action" value="clear">Clear</button>
+						</form>
+					</div>
+				</div>
+				<div class="main-table">
+					<div class="search-info">
+					@if (Model.TotalCount > 0)
+					{
+						   <div class="info">
+							   Page @Model.CurrentPage of @Model.TotalPages
+						   </div>
+					}
+					else
+					{
+							   <div class="info">No results were found matching search criteria</div>
+					}
+					   <div class="search-bar">
+						   <form method="get" asp-page="/Customers">
+						   <input type="text" name="searchQuery" value="@Request.Query["searchQuery"]" />
+							@foreach (var country in Model.SelectedCountries)
+							{
+									   <input type="hidden" name="selectedCountries" value="@country" />
+							}
+							<button class="btn-medium" type="submit">
+								<div class="btn-icon">
+									Search
+									<i class="material-symbols-outlined">person_search</i>
+								</div>
+							</button>
+						   </form>
+					   </div>
+					</div>
+					<table>
+						<thead>
+							<tr class="table-header">
+								<th scope="col">Id</th>
+								<th scope="col">
+									<div class="header-btn-icon">
+										Name
+										<a asp-page="/Customers"
+										   asp-route-sortColumn="Name"
+										   asp-route-sortOrder="asc"
+										   asp-route-searchQuery="@Request.Query["searchQuery"]"
+										   asp-route-loadedRows="@Request.Query["loadedRows"]"
+										   asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+										   style="text-decoration:none">
+											<i class="material-symbols-outlined">expand_less</i>
+
+										</a>
+
+										<a asp-page="/Customers"
+										   asp-route-sortColumn="Name"
+										   asp-route-sortOrder="desc"
+										   asp-route-searchQuery="@Request.Query["searchQuery"]"
+										   asp-route-loadedRows="@Request.Query["loadedRows"]"
+										   asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+										   style="text-decoration:none">
+											<i class="material-symbols-outlined">expand_more</i>
+										</a>
+									</div>
+								</th>
+								<th scope="col">Address</th>
+								<th scope="col">
+									<div class="header-btn-icon">
+										City
+										<a asp-page="/Customers"
+										   asp-route-sortColumn="City"
+										   asp-route-sortOrder="asc"
+										   asp-route-searchQuery="@Request.Query["searchQuery"]"
+										   asp-route-loadedRows="@Request.Query["loadedRows"]"
+										   asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+										   style="text-decoration:none">
+											<i class="material-symbols-outlined">expand_less</i>
+
+										</a>
+
+										<a asp-page="/Customers"
+										   asp-route-sortColumn="City"
+										   asp-route-sortOrder="desc"
+										   asp-route-searchQuery="@Request.Query["searchQuery"]"
+										   asp-route-loadedRows="@Request.Query["loadedRows"]"
+										   asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+										   style="text-decoration:none">
+											<i class="material-symbols-outlined">expand_more</i>
+										</a>
+									</div>
+								</th>
+								<th scope="col">
+									<div class="header-btn-icon">
+										Country
+										<a asp-page="/Customers"
+										   asp-route-sortColumn="Country"
+										   asp-route-sortOrder="asc"
+										   asp-route-searchQuery="@Request.Query["searchQuery"]"
+										   asp-route-loadedRows="@Request.Query["loadedRows"]"
+										   asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+										   style="text-decoration:none">
+											<i class="material-symbols-outlined">expand_less</i>
+
+										</a>
+
+										<a asp-page="/Customers"
+										   asp-route-sortColumn="Country"
+										   asp-route-sortOrder="desc"
+										   asp-route-searchQuery="@Request.Query["searchQuery"]"
+										   asp-route-loadedRows="@Request.Query["loadedRows"]"
+										   asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+										   style="text-decoration:none">
+											<i class="material-symbols-outlined">expand_more</i>
+										</a>
+									</div>
+								</th>
+								<th scope="col">National Id</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						@foreach (var cust in Model._customers)
+						{
+									<tr>
+										<td>@cust.CustomerId</td>
+										<td>@cust.GivenName @cust.SurName</td>
+										<td>@cust.StreetAddress</td>
+										<td>@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(@cust.City.ToLower())</td>
+										<td>@cust.Country</td>
+								@if (!String.IsNullOrEmpty(cust.NationalId))
+								{
+												<td>@cust.NationalId</td>
+								}
+								else
+								{
+												<td>N/A</td>
+								}
+										<td>
+											<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@cust.CustomerId" class="btn-icon">
+												<span class="material-symbols-outlined">expand_circle_right</span>View
+											</a>
+										</td>
+									</tr>
+						}
+
+						</tbody>
+						<tfoot>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+					<div class="pagination">
+						@if (Model.CurrentPage > 1)
+						{
+								<a class="btn-medium" asp-page="/Customers/Index"
+							   asp-route-pageNo="@(Model.CurrentPage - 1)"
+							   asp-route-sortColumn="@Request.Query["sortColumn"]"
+							   asp-route-sortOrder="@Request.Query["sortOrder"]"
+							   asp-route-searchQuery="@Request.Query["searchQuery"]"
+							   asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)">
+								Prev
+							</a>
+						}
+						else
+						{
+							<span class="btn-disabled">Prev</span>
+						}
+
+						@for (int i = Math.Max(1, Model.CurrentPage - 3); i <= Math.Min(Model.TotalPages, Model.CurrentPage + 3); i++)
+						{
+							<a asp-page="/Customers/Index" asp-route-pageNo="@i"
+							   asp-route-sortColumn="@Request.Query["sortColumn"]"
+							   asp-route-sortOrder="@Request.Query["sortOrder"]"
+							   asp-route-searchQuery="@Request.Query["searchQuery"]"
+							   asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+							   class="@(i == Model.CurrentPage ? "btn-current-page" : "btn-medium")">@i</a>
+						}
+
+						@if (Model.CurrentPage < Model.TotalPages)
+						{
+								<a class="btn-medium" asp-page="/Customers/Index"
+							   asp-route-pageNo="@(Model.CurrentPage + 1)"
+							   asp-route-sortColumn="@Request.Query["sortColumn"]"
+							   asp-route-sortOrder="@Request.Query["sortOrder"]"
+							   asp-route-searchQuery="@Request.Query["searchQuery"]"
+							   asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)">
+								Next
+							</a>
+						}
+						else
+						{
+							<span class="btn-disabled">Next</span>
+						}
+					</div>
+					</div>
+					<div class="vip-customers">
+						<h2>Our Top 5 Customers</h2>
+						<table>
+							<thead>
+								<tr>
+									<th scope="col">Name</th>
+									<th scope="col">Total balance</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+							@foreach (var vipCust in Model._vipCustomers)
+							{
+									<tr>
+										<td>@vipCust.GivenName @vipCust.SurName</td>
+											<td>@vipCust.TotalBalance.ToString("C2", new CultureInfo("sv-SE"))</td>
+										<td>
+											<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@vipCust.CustomerId" class="btn-icon">
+												<span class="material-symbols-outlined">expand_circle_right</span>View
+											</a>
+										</td>
+									</tr>
+							}
+						</tbody>
+							<tfoot>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+			</div>
+		</div>
+</section>

@@ -17,7 +17,7 @@
     <header id="home-header">
         <div class="container">
           <a id="logo" asp-area="" asp-page="/Index">
-            <img src="images/logo/dozendozen-logo-alternate.svg" alt="Dozen & Dozen logotype"/>
+            <img src="~/images/logo/dozendozen-logo-alternate.svg" alt="Dozen & Dozen logotype"/>
               <h4>Dozen & Dozen</h4>
           </a>
 
@@ -27,7 +27,10 @@
               <a class="nav-link" href="#features">Features</a>
               <a class="nav-link" asp-area="" asp-page="/Contact">Contact</a>
               <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
-              <a class="nav-link" asp-area="" asp-page="/Customers">Customers</a>
+                        @if (User.IsInRole("Cashier"))
+                        {
+                            <a class="nav-link" asp-area="" asp-page="/AllCustomers/Index">Customers</a>
+                        }
             </div>
           </nav>
 
@@ -42,7 +45,7 @@
           <footer id="home-footer">
         <div class="container">
             <a id="logo" asp-area="" asp-page="/Index">
-                <img src="images/logo/dozendozen-logo-alternate.svg" alt="Dozen & Dozen logotype"/>
+                <img src="~/images/logo/dozendozen-logo-alternate.svg" alt="Dozen & Dozen logotype"/>
             </a>
           <div class="menu-links">
             <a class="nav-link" href="#showcase">Overview</a>
@@ -53,36 +56,36 @@
           </div>
           <div class="download-app">
             <a href="https://www.apple.com/app-store/"
-              ><img src="images/misc/appstore.svg" alt="Download on Appstore"
+              ><img src="~/images/misc/appstore.svg" alt="Download on Appstore"
             /></a>
             <a href="https://play.google.com/store/games?hl=en&gl=US&pli=1"
               ><img
-                src="images/misc/googleplay.svg"
+                src="~/images/misc/googleplay.svg"
                 alt="Download on Google Play"
             /></a>
           </div>
           <div class="social-media">
             <a href="http://facebook.com">
               <img
-                src="images/icons/Social_media/facebook.svg"
+                src="~/images/icons/Social_media/facebook.svg"
                 alt="facebook"
               />
             </a>
             <a href="http://twitter.com">
-              <img src="images/icons/Social_media/twitter.svg" alt="twitter" />
+              <img src="~/images/icons/Social_media/twitter.svg" alt="twitter" />
             </a>
             <a href="https://www.instagram.com/williamgross.jpg/">
               <img
-                src="images/icons/Social_media/instagram.svg"
+                src="~/images/icons/Social_media/instagram.svg"
                 alt="instagram"
               />
             </a>
             <a href="http://youtube.com">
-              <img src="images/icons/Social_media/youtube.svg" alt="youtube" />
+              <img src="~/images/icons/Social_media/youtube.svg" alt="youtube" />
             </a>
           </div>
           <div class="legal">
-            2024. All rights reserved. Pulvinar urna condimentum amet tempor,
+            @DateTime.Now.Year All rights reserved. Pulvinar urna condimentum amet tempor,
             ornare integer. Lorem odio justo malesuada suspendisse viverra
             aliquet quisque turpis non. Feugiat in odio non nunc ornare
             consectetur.

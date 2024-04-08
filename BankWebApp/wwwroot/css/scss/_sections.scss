@@ -12,7 +12,10 @@
 @import "./sections/home/footer";
 
 // Customers
-@import "./sections/customers/customers-table";
+@import "./sections/all-customers/customers-table";
+
+// View Single Customer
+@import "./sections/view-single-customer/view-customer";
 
 // Contact
 // @import "./sections/contact/header";

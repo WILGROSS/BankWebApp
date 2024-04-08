@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Globalization
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -18,7 +19,7 @@
             </div>
             <div class="line">
                 <h3>Total Balance:</h3>
-                <div class="value">@(Model._landingPageViewModel.TotalBalance.ToString("C2"))</div>
+                <div class="value">@(Model._landingPageViewModel.TotalBalance.ToString("C2", new CultureInfo("sv-SE")))</div>
             </div>
         </div>
 
@@ -31,12 +32,12 @@
                         <h4>@countryInfo.Country</h4>
                         <p>Total Customers: @countryInfo.TotalCustomers</p>
                         <p>Total Accounts: @countryInfo.TotalAccounts</p>
-                        <p>Total Balance: @countryInfo.TotalBalance.ToString("C")</p>
+                            <p>Total Balance: @countryInfo.TotalBalance.ToString("C2", new CultureInfo("sv-SE"))</p>
                         <h5>Top Accounts</h5>
                         <ul>
                             @foreach (var balance in countryInfo.TopBalances)
                             {
-                                <li>@balance.ToString("C")</li>
+                                        <li>@balance.ToString("C2", new CultureInfo("sv-SE"))</li>
                             }
                         </ul>
                     </div>

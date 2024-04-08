@@ -23,8 +23,12 @@ namespace BankWebApp
             builder.Services.AddRazorPages();
 
             builder.Services.AddTransient<DataInitializer>();
-            builder.Services.AddTransient<ICustomersService, CustomersService>();
+            builder.Services.AddTransient<IAllCustomersService, AllCustomersService>();
             builder.Services.AddTransient<ILandingPageService, LandingPageService>();
+            builder.Services.AddTransient<IViewSingleCustomerService, ViewSingleCustomerService>();
+
+            //AutoMapper
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             var app = builder.Build();
             using (var scope = app.Services.CreateScope())
