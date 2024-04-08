@@ -71,7 +71,39 @@
 			</div>
 			<div class="personal-info-holder">
 
-				<button>Edit customer info</button>
+				<h4>Personal info</h4>
+				<div class="info-box">
+					Customer ID: @Model._customer.CustomerId
+					First name: @Model._customer.GivenName
+					Last name: @Model._customer.SurName
+					Gender: @Model._customer.Gender
+					Date of birth: @Model._customer.Birthday
+					@if (!String.IsNullOrEmpty(Model._customer.NationalId))
+					{
+						<p>National ID: @Model._customer.NationalId</p>
+					}
+					else
+					{
+						<p>National ID: N/A</p>
+					}
+				</div>
+
+				<h5>Address</h5>
+				<div class="address-box">
+					Street address: @Model._customer.StreetAddress
+					Zip code: @Model._customer.ZipCode
+					City: @Model._customer.ZipCode
+					Country: @Model._customer.Country
+					Country code: @Model._customer.CountryCode
+				</div>
+
+				<h5>Contact information</h5>
+				<div class="contact-box">
+					Phone number: @Model._customer.TelephoneCountryCode @Model._customer.TelephoneNumber
+					Email address: @Model._customer.EmailAddress
+				</div>
+
+				<button>Edit personal information</button>
 			</div>
 		</div>
 	</div>
