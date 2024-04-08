@@ -23,14 +23,8 @@ namespace Services
 				.First(x => x.CustomerId == customerId);
 			var viewModel = _mapper.Map<ViewCustomerViewModel>(customer);
 
-			decimal bajskorv = 0m;
-
 			foreach (var account in viewModel.Accounts)
 			{
-				foreach (var transaction in account.Transactions)
-				{
-					bajskorv += transaction.amount;
-				}
 				viewModel.TotalBalance += account.Balance;
 			}
 
