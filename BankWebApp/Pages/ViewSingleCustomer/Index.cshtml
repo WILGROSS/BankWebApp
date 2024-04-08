@@ -6,7 +6,9 @@
 
 <section id="view-customer">
 	<div class="container">
-		<a class="nav-link" asp-area="" asp-page="/Customers/Index">Return</a>
+		<a asp-area="" asp-page="/AllCustomers/Index" class="btn-icon return">
+			<i  class="material-symbols-outlined"> keyboard_return </i> Return
+		</a>
 		<h1>@Model._customer.GivenName @Model._customer.SurName</h1>
 		<div class="overview">
 			<h5>Number of accounts: @Model._customer.Accounts.Count</h5>
@@ -19,8 +21,8 @@
 				{
 					<div class="account">
 						<div class="account-summary">
-							<h5>Account no: @account.AccountId</h5>
-							<h5>Balance: @account.Balance.ToString("C2", new CultureInfo("sv-SE"))</h5>
+							<h6>Account no: @account.AccountId</h6>
+							<h6>Balance: @account.Balance.ToString("C2", new CultureInfo("sv-SE"))</h6>
 						</div>
 						<table>
 							<thead>
@@ -59,14 +61,14 @@
 							</tfoot>
 						</table>
 						<div class="buttons">
-							<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@account.AccountId">
-								<div class="btn-view btn-icon">View Account<i class="material-symbols-outlined"> account_balance</i></div>
+								<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@account.AccountId" class="btn-view">
+								View Account<i class="material-symbols-outlined"> account_balance</i>
 							</a>
-							<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@account.AccountId">
-									<div class="btn-icon">New Deposit<i class="material-symbols-outlined"> savings</i></div>
+								<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@account.AccountId" class="btn-icon">
+									New Deposit<i class="material-symbols-outlined"> savings</i>
 							</a>
-							<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@account.AccountId">
-								<div class="btn-icon">New Withdrawal<i class="material-symbols-outlined">payments</i></div>
+								<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@account.AccountId" class="btn-icon">
+								New Withdrawal<i class="material-symbols-outlined">payments</i>
 							</a>
 						</div>
 					</div>
@@ -75,13 +77,12 @@
 			<div class="personal-info-holder">	
 				<h4>Personal info</h4>
 				<div class="info-box">
-					<h5>Basic details</h5>
 					<div class="info-section">
-						Customer ID: @Model._customer.CustomerId
-						First name: @Model._customer.GivenName
-						Last name: @Model._customer.SurName
-						Gender: @Model._customer.Gender
-						Date of birth: @Model._customer.Birthday
+						<h5>Basic details</h5>
+						<p>Customer ID: @Model._customer.CustomerId</p>
+						<p>Gender: @Model._customer.Gender</p>
+						<p>Name: @Model._customer.GivenName @Model._customer.SurName</p>
+						<p>Date of birth: @Model._customer.Birthday</p>
 						@if (!String.IsNullOrEmpty(Model._customer.NationalId))
 						{
 							<p>National ID: @Model._customer.NationalId</p>
@@ -91,23 +92,30 @@
 							<p>National ID: N/A</p>
 						}
 					</div>
-
-					<h5>Address</h5>
 					<div class="info-section">
-						Street address: @Model._customer.StreetAddress
-						Zip code: @Model._customer.ZipCode
-						City: @Model._customer.ZipCode
-						Country: @Model._customer.Country
-						Country code: @Model._customer.CountryCode
+						<h5>Address</h5>
+						<p>Street address: @Model._customer.StreetAddress</p>
+						<p>Zip code: @Model._customer.ZipCode</p>
+						<p>City: @CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Model._customer.City.ToLower())</p>
+						<p>Country: @Model._customer.Country</p>
+						<p>Country code: @Model._customer.CountryCode</p>
 					</div>
-
-					<h5>Contact information</h5>
 					<div class="info-section">
-						Phone number: +@Model._customer.TelephoneCountryCode @Model._customer.TelephoneNumber
-						Email address: @Model._customer.EmailAddress
+						<h5>Contact information</h5>
+						@if (!String.IsNullOrEmpty(Model._customer.TelephoneCountryCode))
+						{
+							<p>Phone number: +@Model._customer.TelephoneCountryCode @Model._customer.TelephoneNumber</p>
+						}
+						else
+						{
+							<p>Phone number: @Model._customer.TelephoneNumber</p>
+						}
+						<p>Email address: @Model._customer.EmailAddress</p>
 					</div>
 				</div>
-				<button>Edit personal information</button>
+				<a asp-page="/ViewSingleCustomer/EditCustomer" asp-route-id="@Model._customer.CustomerId" class="btn-view">
+					Edit Information<i class="material-symbols-outlined"> edit </i>
+				</a>
 			</div>
 		</div>
 	</div>

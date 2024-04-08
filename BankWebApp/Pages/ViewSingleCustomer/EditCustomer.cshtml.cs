@@ -6,10 +6,10 @@ using ViewModels;
 namespace BankWebApp.Pages.ViewSingleCustomer
 {
 	[Authorize(Roles = "Cashier")]
-	public class IndexModel : PageModel
+	public class EditCustomerModel : PageModel
 	{
 		public readonly IViewSingleCustomerService _viewCustomerService;
-		public IndexModel(IViewSingleCustomerService viewCustomerService)
+		public EditCustomerModel(IViewSingleCustomerService viewCustomerService)
 		{
 			_viewCustomerService = viewCustomerService;
 		}

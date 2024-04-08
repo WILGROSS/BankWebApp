@@ -70,20 +70,6 @@
   }
 }
 
-.mobile-menu {
-  padding: 18px 22px;
-  font-size: 2em;
-  background: $transparent;
-  border: none;
-
-  &:hover,
-  &:focus,
-  &:active {
-    text-decoration: none;
-    background: transparent;
-  }
-}
-
 @mixin circle-button {
   display: flex;
   justify-content: center;
@@ -107,6 +93,30 @@ a.buttion-circle {
 .btn-icon {
   display: flex;
   justify-content: center;
+}
+.btn-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  @include text-m;
+  padding: 0 8px;
+  height: 34px;
+  border-radius: 8px;
+  background-color: $primary;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $gray-700;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  &:active {
+    background-color: $dark;
+    color: $gray-400;
+    text-decoration: none;
+    @include shadow-fake-border;
+  }
 }
 
 .header-btn-icon {
