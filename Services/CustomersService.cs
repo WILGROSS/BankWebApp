@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Data;
+﻿using AutoMapper;
+using DataAccessLayer.Data;
 using ViewModels;
 
 namespace Services
@@ -6,10 +7,12 @@ namespace Services
 	public class CustomersService : ICustomersService
 	{
 		private readonly ApplicationDbContext _context;
+		private readonly IMapper _mapper;
 
-		public CustomersService(ApplicationDbContext dbContext)
+		public CustomersService(ApplicationDbContext dbContext, IMapper mapper)
 		{
 			_context = dbContext;
+			_mapper = mapper;
 		}
 
 		public CustomersResult GetCustomers(string sortColumn, string sortOrder, string searchQuery, int loadedRows, List<string> selectedCountries, int currentPage)
@@ -37,22 +40,17 @@ namespace Services
 
 			query = ApplySorting(query, sortColumn, sortOrder);
 
-			var customers = query.Skip(skipCount).Take(loadedRows).Select(c => new CustomersViewModel
-			{
-				CustomerId = c.CustomerId,
-				NationalId = c.NationalId,
-				FirstName = c.Givenname,
-				LastName = c.Surname,
-				Address = c.Streetaddress,
-				City = c.City,
-				Country = c.Country
-			}).ToList();
+			var customers = _mapper.Map<IEnumerable<CustomersViewModel>>(query)
+				.Skip(skipCount)
+				.Take(loadedRows)
+				.ToList();
 
 			var vipCustomers = _context.Customers
 				.Select(c => new CustomersViewModel
 				{
-					FirstName = c.Givenname,
-					LastName = c.Surname,
+					CustomerId = c.CustomerId,
+					GivenName = c.Givenname,
+					SurName = c.Surname,
 					TotalBalance = c.Dispositions.Sum(d => d.Account.Balance)
 				})
 				.OrderByDescending(c => c.TotalBalance)
