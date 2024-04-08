@@ -27,7 +27,7 @@ namespace Services
 			{
 				account.LatestTransactions = account.Transactions
 					.OrderByDescending(t => t.TransactionId)
-					.Take(5)
+					.Take(8)
 					.ToList();
 
 				viewModel.TotalBalance += account.Balance;
