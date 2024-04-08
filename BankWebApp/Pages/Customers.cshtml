@@ -154,7 +154,7 @@
 											<td>N/A</td>
 							}
 									<td>
-										<a asp-page="/Supplier" asp-route-id="@cust.CustomerId" class="btn-icon">
+										<a asp-page="/ViewCustomer" asp-route-id="@cust.CustomerId" class="btn-icon">
 											<span class="material-symbols-outlined">expand_circle_right</span>View
 										</a>
 									</td>
@@ -235,7 +235,7 @@
 									<td>@vipCust.FirstName @vipCust.LastName</td>
 									<td>@vipCust.TotalBalance.ToString("C")</td>
 									<td>
-										<a asp-page="/Supplier" asp-route-id="@vipCust.CustomerId" class="btn-icon">
+										<a asp-page="/ViewCustomer" asp-route-id="@vipCust.CustomerId" class="btn-icon">
 											<span class="material-symbols-outlined">expand_circle_right</span>View
 										</a>
 									</td>
