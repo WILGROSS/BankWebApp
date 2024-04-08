@@ -1,6 +1,6 @@
 ﻿namespace ViewModels
 {
-	public class ViewCustomerViewModel
+	public class ViewSingleCustomerViewModel
 	{
 		public int CustomerId { get; set; }
 		public string NationalId { get; set; }

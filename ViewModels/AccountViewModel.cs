@@ -7,5 +7,6 @@
 		public decimal Balance { get; set; }
 		public string Frequency { get; set; }
 		public List<TransactionViewModel> Transactions { get; set; }
+		public List<TransactionViewModel> LatestTransactions { get; set; }
 	}
 }

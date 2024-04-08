@@ -1,0 +1,78 @@
+﻿@page
+@using System.Globalization
+@model BankWebApp.Pages.ViewSingleCustomer.IndexModel
+@{
+}
+
+<section id="view-customer">
+	<div class="container">
+		<a class="nav-link" asp-area="" asp-page="/Customers/Index">Return</a>
+		<div class="overview">
+			<h1>@Model._customer.GivenName @Model._customer.SurName</h1>
+			<div class="customer-summary">
+				<h3>Customer Summary</h3>
+				<div class="content">
+					<h5>Number of accounts: @Model._customer.Accounts.Count</h5>
+					<h5>Total balance: @Model._customer.TotalBalance.ToString("C2", new CultureInfo("sv-SE"))</h5>
+				</div>
+			</div>
+		</div>
+		<div class="main-content">
+			<div class="accounts-holder">
+				<h4>@Model._customer.GivenName's Accounts</h4>
+				@foreach( var account in Model._customer.Accounts)
+				{
+					<div class="account">
+						<h5>Account no: @account.AccountId</h5>
+						<h5>Balance: @account.Balance.ToString("C2", new CultureInfo("sv-SE"))</h5>
+						<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@account.AccountId" class="btn-icon">View account</a>
+						<table>
+							<thead>
+								<tr>
+									<th scope="col">Date</th>
+									<th scope="col">Operation</th>
+									<th scope="col">Amount</th>
+									<th scope="col">balance</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach(var transaction in account.LatestTransactions)
+								{
+									<tr>
+										<td>@transaction.Date</td>
+										@if (!String.IsNullOrEmpty(@transaction.Operation))
+										{
+											<td>@transaction.Operation</td>
+										}
+										else
+										{
+											<td>N/A</td>
+										}
+										<td>@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
+										<td>@transaction.Balance.ToString("C2",new CultureInfo("sv-SE"))</td>
+									</tr>
+								}
+							</tbody>
+							<tfoot>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tfoot>
+						</table>
+						<div class="buttons">
+							<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@account.AccountId" class="btn-icon">New Deposit</a>
+							<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@account.AccountId" class="btn-icon">New Withdrawal</a>
+						</div>
+					</div>
+				}
+			</div>
+			<div class="personal-info-holder">
+
+				<button>Edit customer info</button>
+			</div>
+		</div>
+	</div>
+</section>
