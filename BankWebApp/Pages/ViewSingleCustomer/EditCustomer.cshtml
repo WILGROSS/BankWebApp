@@ -2,3 +2,74 @@
 @model BankWebApp.Pages.ViewSingleCustomer.EditCustomerModel
 @{
 }
+
+<section id="edit-customer">
+	<div class="container">
+		<h2>Edit @Model._customer.GivenName @Model._customer.SurName</h2>
+		<div class="form-holder">
+			<form method="post">
+				<div class="form-group">
+				<label asp-for="_customer.CustomerId"></label>
+				<input type="hidden" class="form-control" asp-for="_customer.CustomerId">
+				<span asp-validation-for="_customer.CustomerId" class="field-validation-error"></span>
+				</div>
+				<div class="form-group">
+				<label asp-for="_customer.GivenName"></label>
+				<input type="text" class="form-control" asp-for="_customer.GivenName">
+				<span asp-validation-for="_customer.GivenName" class="field-validation-error"></span>
+				</div>
+				<div class="form-group">
+				<label asp-for="_customer.SurName"></label>
+				<input type="text" class="form-control" asp-for="_customer.SurName">
+				<span asp-validation-for="_customer.SurName" class="field-validation-error"></span>
+				</div>
+				<div class="form-group">
+				<label asp-for="_customer.Birthday"></label>
+				<input type="date" class="form-control" asp-for="_customer.Birthday">
+				<span asp-validation-for="_customer.Birthday" class="field-validation-error"></span>
+				</div>
+				<div class="form-group">
+				<label asp-for="_customer.Gender"></label>
+				<input type="text" class="form-control" asp-for="_customer.Gender">
+				<span asp-validation-for="_customer.Gender" class="field-validation-error"></span>
+				</div>
+				<div class="form-group">
+				<label asp-for="_customer.StreetAddress"></label>
+				<input type="text" class="form-control" asp-for="_customer.StreetAddress">
+				<span asp-validation-for="_customer.StreetAddress" class="field-validation-error"></span>
+				</div>
+				<div class="form-group">
+				<label asp-for="_customer.ZipCode"></label>
+				<input type="text" class="form-control" asp-for="_customer.ZipCode">
+				<span asp-validation-for="_customer.ZipCode" class="field-validation-error"></span>
+				</div>
+				<div class="form-group">
+				<label asp-for="_customer.City"></label>
+				<input type="text" class="form-control" asp-for="_customer.City">
+				<span asp-validation-for="_customer.City" class="field-validation-error"></span>
+				</div>
+				<div class="form-group">
+				<label asp-for="_customer.Country"></label>
+				<input type="text" class="form-control" asp-for="_customer.Country">
+				<span asp-validation-for="_customer.Country" class="field-validation-error"></span>
+				</div>
+				<div class="form-group">
+				<label asp-for="_customer.TelephoneCountryCode"></label>
+				<input type="text" class="form-control" asp-for="_customer.TelephoneCountryCode">
+				<span asp-validation-for="_customer.TelephoneCountryCode" class="field-validation-error"></span>
+				</div>
+				<div class="form-group">
+				<label asp-for="_customer.TelephoneNumber"></label>
+				<input type="text" class="form-control" asp-for="_customer.TelephoneNumber">
+				<span asp-validation-for="_customer.TelephoneNumber" class="field-validation-error"></span>
+				</div>
+				<div class="form-group">
+				<label asp-for="_customer.EmailAddress"></label>
+				<input type="email" class="form-control" asp-for="_customer.EmailAddress">
+				<span asp-validation-for="_customer.EmailAddress" class="field-validation-error"></span>
+				</div>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+</section>

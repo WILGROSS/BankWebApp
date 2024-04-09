@@ -3,7 +3,10 @@
 @model BankWebApp.Pages.ViewSingleCustomer.IndexModel
 @{
 }
-
+@if (TempData["SuccessMessage"] != null)
+{
+	<h2>@TempData["SuccessMessage"]</h2>
+}
 <section id="view-customer">
 	<div class="container">
 		<a asp-area="" asp-page="/AllCustomers/Index" class="btn-icon return">
