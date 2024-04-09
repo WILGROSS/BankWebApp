@@ -1,0 +1,53 @@
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace ViewModels
+{
+	public class EditCustomerViewModel
+	{
+		[Required]
+		public int CustomerId { get; set; }
+		[Required]
+		[DisplayName("Gender")]
+		[StringLength(6, MinimumLength = 2, ErrorMessage = "Gender must be between 2 and 6 characters")]
+		public string Gender { get; set; }
+		[Required]
+		[DisplayName("First name")]
+		[StringLength(100, MinimumLength = 2, ErrorMessage = "First name must be between 2 and 100 characters")]
+		public string GivenName { get; set; }
+		[Required]
+		[DisplayName("Last name")]
+		[StringLength(100, MinimumLength = 2, ErrorMessage = "Last name must be between 2 and 100 characters")]
+		public string SurName { get; set; }
+		[Required]
+		[DisplayName("Date of birth")]
+		public DateOnly Birthday { get; set; }
+		[Required]
+		[DisplayName("Country")]
+		[StringLength(100, MinimumLength = 2, ErrorMessage = "Country must be between 2 and 100 characters")]
+		public string Country { get; set; }
+		[Required]
+		[DisplayName("City")]
+		[StringLength(100, MinimumLength = 2, ErrorMessage = "City must be between 2 and 100 characters")]
+		public string City { get; set; }
+		[Required]
+		[DisplayName("Street address")]
+		[StringLength(100, MinimumLength = 2, ErrorMessage = "Street address must be between 2 and 100 characters")]
+		public string StreetAddress { get; set; }
+		[Required]
+		[DisplayName("Zip code")]
+		[StringLength(15, MinimumLength = 2, ErrorMessage = "Zip code must be between 2 and 15 characters")]
+		public string ZipCode { get; set; }
+		[Required]
+		[DisplayName("Phone country code")]
+		[StringLength(10, MinimumLength = 2, ErrorMessage = "Phone country code must be between 2 and 10 characters")]
+		public string TelephoneCountryCode { get; set; }
+		[DisplayName("Phone number")]
+		[StringLength(25, MinimumLength = 2, ErrorMessage = "Phone number must be between 2 and 25 characters")]
+		public string TelephoneNumber { get; set; }
+		[Required]
+		[DisplayName("Email address")]
+		[StringLength(100, MinimumLength = 2, ErrorMessage = "Email address must be between 2 and 100 characters")]
+		public string EmailAddress { get; set; }
+	}
+}
