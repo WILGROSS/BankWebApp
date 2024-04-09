@@ -32,8 +32,29 @@ namespace Services
 
 				viewModel.TotalBalance += account.Balance;
 			}
-
 			return viewModel;
+		}
+
+		public EditCustomerViewModel GetEditableViewModel(int id)
+		{
+			var customer = _context.Customers.FirstOrDefault(x => x.CustomerId == id);
+			return _mapper.Map<EditCustomerViewModel>(customer);
+		}
+
+		public bool UpdateCustomer(EditCustomerViewModel model)
+		{
+			try
+			{
+				var customer = _context.Customers.FirstOrDefault(x => x.CustomerId == model.CustomerId);
+				_mapper.Map(model, customer);
+				_context.Update(customer);
+				_context.SaveChanges();
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
 		}
 	}
 }
