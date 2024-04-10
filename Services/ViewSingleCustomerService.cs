@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataAccessLayer.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ViewModels;
 namespace Services
@@ -40,7 +41,28 @@ namespace Services
 			var customer = _context.Customers.FirstOrDefault(x => x.CustomerId == id);
 			return _mapper.Map<EditCustomerViewModel>(customer);
 		}
-
+		public List<SelectListItem> GetGenderSelectListItems()
+		{
+			var genderList = Enum.GetValues(typeof(Genders))
+						  .Cast<Genders>()
+						  .Select(g => new SelectListItem
+						  {
+							  Text = g.ToString(),
+							  Value = ((int)g).ToString()
+						  }).ToList();
+			return genderList;
+		}
+		public List<SelectListItem> GetCountrySelectListItems()
+		{
+			var genderList = Enum.GetValues(typeof(Countries))
+						  .Cast<Countries>()
+						  .Select(c => new SelectListItem
+						  {
+							  Text = c.ToString(),
+							  Value = ((int)c).ToString()
+						  }).ToList();
+			return genderList;
+		}
 		public bool UpdateCustomer(EditCustomerViewModel model)
 		{
 			try
