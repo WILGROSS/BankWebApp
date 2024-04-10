@@ -6,7 +6,7 @@
 <section id="edit-customer">
 	<div class="container">
 		<h2>Edit @Model._customer.GivenName @Model._customer.SurName</h2>
-		<div class="form-holder">
+		<div class="form-card">
 			<form method="post">
 				<div class="form-group">
 					<label asp-for="_customer.CustomerId"></label>
@@ -70,6 +70,8 @@
 				</div>
 				<div class="buttons">
 					<button type="submit">Save Changes</button>
+					<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@Model._customer.CustomerId">Discard Changes</a>
+
 				</div>
 			</form>
 		</div>
