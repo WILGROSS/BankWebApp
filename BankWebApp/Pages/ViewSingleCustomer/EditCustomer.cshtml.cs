@@ -37,7 +37,8 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 					return RedirectToPage("index", new { id });
 				}
 			}
-
+			_gendersList = _viewSingleCustomerService.GetGenderSelectListItems();
+			_countriesList = _viewSingleCustomerService.GetCountrySelectListItems();
 			return Page();
 		}
 	}
