@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Services;
 using ViewModels;
 
@@ -10,6 +11,8 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 	public class EditCustomerModel : PageModel
 	{
 		public readonly IViewSingleCustomerService _viewSingleCustomerService;
+		public List<SelectListItem> _gendersList { get; set; }
+		public List<SelectListItem> _countriesList { get; set; }
 		public EditCustomerModel(IViewSingleCustomerService viewCustomerService)
 		{
 			_viewSingleCustomerService = viewCustomerService;
@@ -20,6 +23,8 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 		public void OnGet(int id)
 		{
 			_customer = _viewSingleCustomerService.GetEditableViewModel(id);
+			_gendersList = _viewSingleCustomerService.GetGenderSelectListItems();
+			_countriesList = _viewSingleCustomerService.GetCountrySelectListItems();
 		}
 
 		public IActionResult OnPost(int id)

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataAccessLayer.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ViewModels;
 namespace Services
@@ -40,12 +41,52 @@ namespace Services
 			var customer = _context.Customers.FirstOrDefault(x => x.CustomerId == id);
 			return _mapper.Map<EditCustomerViewModel>(customer);
 		}
-
+		public List<SelectListItem> GetGenderSelectListItems()
+		{
+			var genderList = Enum.GetValues(typeof(Genders))
+						  .Cast<Genders>()
+						  .Select(g => new SelectListItem
+						  {
+							  Text = g.ToString(),
+							  Value = ((int)g).ToString()
+						  }).ToList();
+			return genderList;
+		}
+		public List<SelectListItem> GetCountrySelectListItems()
+		{
+			var genderList = Enum.GetValues(typeof(Countries))
+						  .Cast<Countries>()
+						  .Select(c => new SelectListItem
+						  {
+							  Text = c.ToString(),
+							  Value = ((int)c).ToString()
+						  }).ToList();
+			return genderList;
+		}
 		public bool UpdateCustomer(EditCustomerViewModel model)
 		{
 			try
 			{
 				var customer = _context.Customers.FirstOrDefault(x => x.CustomerId == model.CustomerId);
+
+				switch (model.Country)
+				{
+					case Countries.Finland:
+						customer.CountryCode = "FI";
+						break;
+					case Countries.Sweden:
+						customer.CountryCode = "SE";
+						break;
+					case Countries.Norway:
+						customer.CountryCode = "NO";
+						break;
+					case Countries.Denmark:
+						customer.CountryCode = "DK";
+						break;
+					default:
+						return false;
+				}
+
 				_mapper.Map(model, customer);
 				_context.Update(customer);
 				_context.SaveChanges();

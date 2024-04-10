@@ -3,14 +3,32 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ViewModels
 {
+	public enum Genders
+	{
+		Select = 0,
+		Male = 1,
+		Female = 2,
+		Other = 3
+	}
+	public enum Countries
+	{
+		Select = 0,
+		Finland = 1,
+		Sweden = 2,
+		Norway = 3,
+		Denmark = 4
+	}
+	public enum CountryCodes
+	{
+		FI = 1,
+		SE = 2,
+		NO = 3,
+		DK = 4
+	}
 	public class EditCustomerViewModel
 	{
 		[Required]
 		public int CustomerId { get; set; }
-		[Required]
-		[DisplayName("Gender")]
-		[StringLength(6, MinimumLength = 2, ErrorMessage = "Gender must be between 2 and 6 characters")]
-		public string Gender { get; set; }
 		[Required]
 		[DisplayName("First name")]
 		[StringLength(100, MinimumLength = 2, ErrorMessage = "First name must be between 2 and 100 characters")]
@@ -23,9 +41,13 @@ namespace ViewModels
 		[DisplayName("Date of birth")]
 		public DateOnly Birthday { get; set; }
 		[Required]
+		[DisplayName("Gender")]
+		[Range(1, 99, ErrorMessage = "Please select a gender")]
+		public Genders Gender { get; set; }
+		[Required]
 		[DisplayName("Country")]
-		[StringLength(100, MinimumLength = 2, ErrorMessage = "Country must be between 2 and 100 characters")]
-		public string Country { get; set; }
+		[Range(1, 99, ErrorMessage = "Please select a country")]
+		public Countries Country { get; set; }
 		[Required]
 		[DisplayName("City")]
 		[StringLength(100, MinimumLength = 2, ErrorMessage = "City must be between 2 and 100 characters")]
