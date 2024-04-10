@@ -130,6 +130,11 @@ body {
   background-color: $dark;
 }
 
+::-webkit-scrollbar{
+  all:unset;
+  background-color: $dark-secondary;
+}
+
 .text-lead {
   @include text-lead;
 }
