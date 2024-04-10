@@ -123,3 +123,82 @@ a.buttion-circle {
   display: flex;
   justify-content: flex-start;
 }
+
+.btn-thin-red {
+  background-color: inherit;
+  color: $danger;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border: solid 1px $danger;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    text-decoration: none;
+    background-color: $dark;
+  }
+  &:active {
+    background-color: $dark;
+    color: $gray-400;
+    text-decoration: none;
+    border: solid 1px $gray-400;
+  }
+}
+
+.btn-discard {
+  background-color: inherit;
+  color: $danger;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+  border: solid 1px $danger;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: width 0.2s ease, border-radius 0.3s ease;
+  padding: 0;
+
+  .material-symbols-outlined {
+    transition: right 0.2s ease;
+    position: absolute;
+    right: 8px;
+  }
+
+  .text {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    transition: color 0.3s ease, transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  &:hover {
+    width: 150px;
+    border-radius: 800px;
+    align-items: center;
+    padding-left: 20px;
+
+    .material-symbols-outlined {
+      position: absolute;
+      right: 8px;
+    }
+
+    .text {
+      display: inline;
+      color: $danger;
+      opacity: 1;
+      transform: translate(-60%, -50%);
+    }
+  }
+
+  &:active {
+    background-color: $dark;
+    color: $gray-400;
+    border: solid 1px $gray-400;
+  }
+}
