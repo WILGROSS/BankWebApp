@@ -1,0 +1,89 @@
+#edit-customer {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 0 40px;
+
+    .title {
+      padding-bottom: 12px;
+    }
+
+    .form-card {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: $dark-secondary;
+      padding: 20px 20px 10px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+
+      .form-header{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+
+      .form-part {
+        margin-bottom: 12px;
+
+        .form-line {
+          display: flex;
+          flex-direction: row;
+          gap: 8px;
+          margin-bottom: 4px;
+
+          .form-group {
+            display: flex;
+            flex-direction: column;
+            @include text-m;
+            text-align: left;
+
+            .text-field {
+              all: unset;
+              background-color: $gray-900;
+              @include text-xl;
+              border-radius: 4px;
+              padding-left: 8px;
+              height: 40px;
+
+              &:focus {
+                @include shadow-fake-border;
+              }
+            }
+            .drop-down {
+              background-color: $gray-900;
+              @include text-xl;
+              height: 40px;
+              min-width: 273px;
+              border: none;
+              margin: 0;
+              padding: 0;
+              border-radius: 4px;
+              padding-left: 8px;
+
+              &:focus {
+                @include shadow-fake-border;
+              }
+            }
+
+            .field-validation-error {
+              @include text-xs;
+              color: $danger;
+            }
+          }
+        }
+      }
+    }
+
+    .buttons {
+      display: flex;
+      padding-left: 8px;
+      gap: 16px;
+
+      .btn-medium{
+        border-top-left-radius: 0;
+      }
+    }
+  }
+}
