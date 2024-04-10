@@ -68,6 +68,25 @@ namespace Services
 			try
 			{
 				var customer = _context.Customers.FirstOrDefault(x => x.CustomerId == model.CustomerId);
+
+				switch (model.Country)
+				{
+					case Countries.Finland:
+						customer.CountryCode = "FI";
+						break;
+					case Countries.Sweden:
+						customer.CountryCode = "SE";
+						break;
+					case Countries.Norway:
+						customer.CountryCode = "NO";
+						break;
+					case Countries.Denmark:
+						customer.CountryCode = "DK";
+						break;
+					default:
+						return false;
+				}
+
 				_mapper.Map(model, customer);
 				_context.Update(customer);
 				_context.SaveChanges();
