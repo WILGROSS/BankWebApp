@@ -125,12 +125,38 @@ a.buttion-circle {
 }
 
 .btn-thin-red {
+  @include text-m;
   background-color: inherit;
   color: $danger;
   display: flex;
   align-items: center;
+  height: 32px;
   padding: 0 8px;
   border: solid 1px $danger;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    text-decoration: none;
+    background-color: $dark;
+  }
+  &:active {
+    background-color: $dark;
+    color: $gray-400;
+    text-decoration: none;
+    border: solid 1px $gray-400;
+  }
+}
+
+.btn-thin-green {
+  @include text-m;
+  background-color: inherit;
+  color: $success;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 8px;
+  border: solid 1px $success;
   border-radius: 8px;
   transition: all 0.2s ease;
 
@@ -159,7 +185,7 @@ a.buttion-circle {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  transition: width 0.2s ease, border-radius 0.3s ease;
+  transition: all 0.2s ease;
   padding: 0;
 
   .material-symbols-outlined {
@@ -200,5 +226,9 @@ a.buttion-circle {
     background-color: $dark;
     color: $gray-400;
     border: solid 1px $gray-400;
+
+    .text{
+      color: $gray-400;
+    }
   }
 }

@@ -79,6 +79,20 @@
 			</div>
 			<div class="personal-info-holder">	
 				<h4>Personal info</h4>
+				<div class="activate-deactivate">
+					@if (Model._customer.Gender == "Male")
+					{
+						<form method="post">
+							<button type="submit" class="btn-thin-red">Deactivate User</button>
+						</form>
+					}
+					else
+					{
+						<form method="post">
+							<button type="submit" class="btn-thin-green">Activate User</button>
+						</form>
+					}
+				</div>
 				<div class="info-box">
 					<div class="info-section">
 						<h5>Basic details</h5>
