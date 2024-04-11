@@ -1,0 +1,61 @@
+﻿@page
+@using System.Globalization
+@model BankWebApp.Pages.ViewSingleCustomer.ViewAccountModel
+@{
+}
+
+<section id="view-account">
+	<div class="container">
+
+		<div class="card">
+			<div class="card-header">
+				<h2>Account no. @Model._account.AccountId</h2>
+				<h2>Balance: @Model._account.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
+			</div>
+			<div class="card-body">
+				<table id="posts-table">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Date</th>
+							<th scope="col">Message</th>
+							<th scope="col">Amount</th>
+							<th scope="col">balance</th>
+						</tr>
+					</thead>
+					<tbody id="transactions-table">
+
+					</tbody>
+				</table>
+				<button id="load-more-btn" class="button-medium" Onclick="showMore()">Load More</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+@section Scripts
+{
+	<script>
+ 			let offset = 0;
+
+			document.addEventListener("DOMContentLoaded", function ()
+			{
+				showMore();
+			});
+
+			const tableBody = document.querySelector("#transactions-table")
+
+			async function showMore()
+			{
+				const response = await fetch(`/ViewSingleCustomer/TransactionsTable?id=${@Model._account.AccountId}&offset=${offset}`);
+				const tableHtml = await response.text();
+				tableBody.innerHTML += tableHtml;
+				offset += 20;
+
+				if(tableHtml.trim().length === 0)
+				{
+					document.querySelector("#load-more-btn").setAttribute("disabled","")
+				}
+			}
+	</script>
+}

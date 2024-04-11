@@ -1,0 +1,19 @@
+﻿@page
+@model BankWebApp.Pages.ViewSingleCustomer.TransactionsTableModel
+@{
+}
+
+@{
+	Layout = null;
+}
+
+	@foreach (var transaction in Model._transactions)
+	{
+		<tr>	
+			<th scope="col">@transaction.TransactionId</th>
+			<th scope="col">@transaction.Date</th>
+			<th scope="col">@transaction.Operation</th>
+			<th scope="col">@transaction.Amount</th>
+			<th scope="col">@transaction.Balance</th>	
+		</tr>
+	}

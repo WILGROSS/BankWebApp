@@ -18,7 +18,7 @@
       margin-bottom: 16px;
       border-radius: 8px;
 
-      .form-header{
+      .form-header {
         position: absolute;
         right: 10px;
         top: 10px;
@@ -26,6 +26,10 @@
 
       .form-part {
         margin-bottom: 12px;
+
+        label {
+          margin-bottom: 4px;
+        }
 
         .form-line {
           display: flex;
@@ -42,7 +46,7 @@
             .text-field {
               all: unset;
               background-color: $gray-900;
-              @include text-xl;
+              @include text-lg;
               border-radius: 4px;
               padding-left: 8px;
               height: 40px;
@@ -51,11 +55,12 @@
                 @include shadow-fake-border;
               }
             }
+
             .drop-down {
               background-color: $gray-900;
-              @include text-xl;
+              @include text-lg;
               height: 40px;
-              min-width: 273px;
+              min-width: 246px;
               border: none;
               margin: 0;
               padding: 0;
@@ -72,6 +77,9 @@
               color: $danger;
             }
           }
+          .email {
+            width: 100%;
+          }
         }
       }
     }
@@ -81,7 +89,7 @@
       padding-left: 8px;
       gap: 16px;
 
-      .btn-medium{
+      .btn-medium {
         border-top-left-radius: 0;
       }
     }
