@@ -6,8 +6,8 @@ namespace ViewModels
 	public enum Genders
 	{
 		Select = 0,
-		Male = 1,
-		Female = 2,
+		male = 1,
+		female = 2,
 		Other = 3
 	}
 	public enum Countries
