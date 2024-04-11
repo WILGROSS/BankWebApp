@@ -1,0 +1,15 @@
+﻿@page
+@model BankWebApp.Pages.ViewSingleCustomer.ViewAccountModel
+@{
+}
+
+<section id="view-account">
+	<div class="container">
+		<div class="transactions">
+			@foreach(var transaction in Model._account.Transactions)
+			{
+				<span>@transaction.Amount</span>
+			}
+		</div>
+	</div>
+</section>
