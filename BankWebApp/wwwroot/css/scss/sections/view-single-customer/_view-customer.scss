@@ -34,7 +34,7 @@
       .account-holder {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 20px;
 
         h6 {
           color: $gray-300;
@@ -52,8 +52,8 @@
 
           .buttons {
             display: flex;
-            gap: 6px;
-            padding-top: 8px;
+            gap: 12px;
+            padding-top: 12px;
 
             .btn-icon {
               display: flex;
@@ -85,14 +85,22 @@
       .personal-info-holder {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        position: relative;
+        
+        .activate-deactivate{
+          margin-left: auto;
+          padding-right: 8px;
+        }
+
         .info-box {
           @include shadow-fake-border;
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 16px;
           border-radius: 8px;
           padding: 12px;
+          margin-bottom: 12px;
+          margin-top: 12px;
 
           .info-section {
             h5 {
