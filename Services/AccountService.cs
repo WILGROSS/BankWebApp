@@ -22,5 +22,19 @@ namespace Services
 
 			return _mapper.Map<AccountViewModel>(account);
 		}
+
+		public List<TransactionViewModel> LoadMoreTransactions(int accountId, int offset)
+		{
+			var transactionsQuery = _context.Transactions
+				.Where(t => t.AccountId == accountId)
+				.OrderBy(t => t.Date);
+
+			var transactions = transactionsQuery
+				.Skip(offset)
+				.Take(20)
+				.ToList();
+
+			return _mapper.Map<List<TransactionViewModel>>(transactions);
+		}
 	}
 }

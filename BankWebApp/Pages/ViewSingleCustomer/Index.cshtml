@@ -31,7 +31,7 @@
 							<thead>
 								<tr>
 									<th scope="col">Date</th>
-									<th scope="col">Operation</th>
+									<th scope="col">Message</th>
 									<th scope="col">Amount</th>
 									<th scope="col">balance</th>
 								</tr>
@@ -79,20 +79,6 @@
 			</div>
 			<div class="personal-info-holder">	
 				<h4>Personal info</h4>
-				<div class="activate-deactivate">
-					@if (Model._customer.Gender == "Male")
-					{
-						<form method="post">
-							<button type="submit" class="btn-thin-red">Deactivate User</button>
-						</form>
-					}
-					else
-					{
-						<form method="post">
-							<button type="submit" class="btn-thin-green">Activate User</button>
-						</form>
-					}
-				</div>
 				<div class="info-box">
 					<div class="info-section">
 						<h5>Basic details</h5>
@@ -133,6 +119,20 @@
 				<a asp-page="/ViewSingleCustomer/EditCustomer" asp-route-id="@Model._customer.CustomerId" class="btn-view">
 					Edit Information<i class="material-symbols-outlined"> edit </i>
 				</a>
+								<div class="activate-deactivate">
+					@if (Model._customer.Gender == "male")
+					{
+							<form method="post">
+								<button type="submit" class="btn-thin-red">Deactivate User</button>
+							</form>
+					}
+					else
+					{
+							<form method="post">
+								<button type="submit" class="btn-thin-green">Activate User</button>
+							</form>
+					}
+				</div>
 			</div>
 		</div>
 	</div>
