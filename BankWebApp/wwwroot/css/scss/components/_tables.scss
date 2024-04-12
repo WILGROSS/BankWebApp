@@ -72,8 +72,4 @@ table {
   tr {
     width: fit-content;
   }
-
-  .numerical{
-    @include numericals-m;
-  }
 }

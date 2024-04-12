@@ -140,19 +140,19 @@
 						@foreach (var cust in Model._customers)
 						{
 									<tr>
-										<td>@cust.CustomerId</td>
+										<td class="numerical-thin">@cust.CustomerId</td>
 										<td>@cust.GivenName @cust.SurName</td>
 										<td>@cust.StreetAddress</td>
 										<td>@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(@cust.City.ToLower())</td>
 										<td>@cust.Country</td>
-								@if (!String.IsNullOrEmpty(cust.NationalId))
-								{
-												<td>@cust.NationalId</td>
-								}
-								else
-								{
-												<td>N/A</td>
-								}
+										@if (!String.IsNullOrEmpty(cust.NationalId))
+										{
+											<td class="numerical-thin">@cust.NationalId</td>
+										}
+										else
+										{
+											<td>N/A</td>
+										}
 										<td>
 											<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@cust.CustomerId" class="btn-icon">
 												<span class="material-symbols-outlined">expand_circle_right</span>View
@@ -193,7 +193,7 @@
 
 						@for (int i = Math.Max(1, Model.CurrentPage - 3); i <= Math.Min(Model.TotalPages, Model.CurrentPage + 3); i++)
 						{
-								<a asp-page="/AllCustomers/Index" asp-route-pageNo="@i"
+							<a asp-page="/AllCustomers/Index" asp-route-pageNo="@i"
 							   asp-route-sortColumn="@Request.Query["sortColumn"]"
 							   asp-route-sortOrder="@Request.Query["sortOrder"]"
 							   asp-route-searchQuery="@Request.Query["searchQuery"]"
@@ -233,7 +233,7 @@
 							{
 									<tr>
 										<td>@vipCust.GivenName @vipCust.SurName</td>
-											<td>@vipCust.TotalBalance.ToString("C2", new CultureInfo("sv-SE"))</td>
+										<td class="numericals-thin">@vipCust.TotalBalance.ToString("C2", new CultureInfo("sv-SE"))</td>
 										<td>
 											<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@vipCust.CustomerId" class="btn-icon">
 												<span class="material-symbols-outlined">expand_circle_right</span>View

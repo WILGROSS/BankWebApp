@@ -40,7 +40,7 @@
 								@foreach(var transaction in account.LatestTransactions)
 								{
 									<tr>
-										<td>@transaction.Date</td>
+										<td class="numerical-thin">@transaction.Date</td>
 										@if (!String.IsNullOrEmpty(@transaction.Operation))
 										{
 											<td>@transaction.Operation</td>
@@ -49,8 +49,8 @@
 										{
 											<td>N/A</td>
 										}
-										<td>@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
-										<td>@transaction.Balance.ToString("C2",new CultureInfo("sv-SE"))</td>
+										<td class="numerical-thin">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
+										<td class="numerical-thin">@transaction.Balance.ToString("C2", new CultureInfo("sv-SE"))</td>
 									</tr>
 								}
 							</tbody>
