@@ -27,6 +27,7 @@ namespace BankWebApp
 			builder.Services.AddTransient<ILandingPageService, LandingPageService>();
 			builder.Services.AddTransient<IViewSingleCustomerService, ViewSingleCustomerService>();
 			builder.Services.AddTransient<IAccountService, AccountService>();
+			builder.Services.AddTransient<ITransactionService, TransactionService>();
 
 			//AutoMapper
 			builder.Services.AddAutoMapper(typeof(MappingProfile));

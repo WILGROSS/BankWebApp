@@ -23,7 +23,7 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 		public void OnGet(int id)
 		{
 			_account = _accountService.GetAccount(id);
-			_newDeposit = new();
+			_newDeposit = _transactionService.GetNewTransaction(_account, "Credit in Cash", "Debit");
 		}
 
 		public IActionResult OnPost(int id)

@@ -2,8 +2,12 @@
 @model BankWebApp.Pages.ViewSingleCustomer.NewDepositModel
 @{
 }
+
 <section id="new-deposit">
 	<div class="container">
+		<div class="title">
+			<h2>Editing Customer @Model._customer.CustomerId</h2>
+		</div>
 		<form method="post">
 			<input type="hidden" asp-for="_customer.CustomerId">
 			<input type="hidden" asp-for="_customer.Birthday">
