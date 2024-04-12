@@ -22,18 +22,21 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 			_customer = _viewSingleCustomerService.GetCustomer(id);
 		}
 
-		public IActionResult OnPost(int id)
+		public IActionResult OnPostToggleActive(int id)
 		{
-			if (ModelState.IsValid)
+			Console.Clear();
+			Console.WriteLine("penis");
+			Console.WriteLine("penis");
+
+			_editableViewModel = _viewSingleCustomerService.GetEditableViewModel(id);
+			if (_viewSingleCustomerService.ToggleCustomerActiveStatus(_editableViewModel))
 			{
-				_editableViewModel = _viewSingleCustomerService.GetEditableViewModel(id);
-				if (_viewSingleCustomerService.ToggleCustomerActiveStatus(_editableViewModel))
-				{
-					TempData["SuccessMessage"] = $"Succesfully updated {_customer.GivenName} {_customer.SurName}'s info!";
-					return RedirectToPage("index", new { id });
-				}
+				TempData["SuccessMessage"] = $"Succesfully updated {_customer.GivenName} {_customer.SurName}'s info!";
+				return RedirectToPage("index", new { id });
 			}
-			return RedirectToPage("index", new { id });
+
+			_customer = _viewSingleCustomerService.GetCustomer(id);
+			return Page();
 		}
 	}
 }

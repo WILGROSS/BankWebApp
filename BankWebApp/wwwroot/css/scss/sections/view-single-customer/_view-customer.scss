@@ -52,6 +52,7 @@
 
           .buttons {
             display: flex;
+            justify-content: center;
             gap: 12px;
             padding-top: 12px;
 
@@ -120,11 +121,6 @@
         .btn-view {
           max-width: 150px;
         }
-      }
-
-      .btn-view {
-        border-top-left-radius: 0;
-        margin-left: 8px;
       }
     }
   }

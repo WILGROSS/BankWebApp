@@ -27,7 +27,7 @@ namespace Services
 		{
 			var transactionsQuery = _context.Transactions
 				.Where(t => t.AccountId == accountId)
-				.OrderBy(t => t.Date);
+				.OrderByDescending(t => t.TransactionId);
 
 			var transactions = transactionsQuery
 				.Skip(offset)

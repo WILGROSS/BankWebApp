@@ -2,8 +2,40 @@
 @model BankWebApp.Pages.ViewSingleCustomer.NewDepositModel
 @{
 }
+
 <section id="new-deposit">
 	<div class="container">
-
+		<div class="title">
+			<h2>New cash deposit into account @Model._account.AccountId</h2>
+		</div>
+		<form method="post">
+			<input type="hidden" asp-for="_newDeposit.TransactionId">
+			<input type="hidden" asp-for="_newDeposit.AccountId">
+			<input type="hidden" asp-for="_newDeposit.Type">
+			<input type="hidden" asp-for="_newDeposit.Operation">
+			<input type="hidden" asp-for="_newDeposit.Date">
+			<input type="hidden" asp-for="_newDeposit.Balance">
+			<div class="form-card">
+				<div class="form-header">
+					<a class="btn-discard"asp-page="/ViewSingleCustomer/ViewAccount" asp-route-id="@Model._account.AccountId">
+						<span class="text">Cancel deposit</span>
+						<span class="material-symbols-outlined">close</span>
+					</a>
+				</div>
+				<div class="form-part">
+					<h4>Current Account Balance: @Model._account.Balance</h4>
+					<div class="form-line">
+						<div class="form-group">
+							<label asp-for="_newDeposit.Amount"></label>
+							<input type="number" step="any" class="text-field" asp-for="_newDeposit.Amount">
+							<span asp-validation-for="_newDeposit.Amount" class="field-validation-error"></span>
+						</div>
+						<div class="buttons">
+							<button class="btn-medium"type="submit">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
 </section>

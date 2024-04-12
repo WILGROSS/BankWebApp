@@ -31,6 +31,7 @@
 							<thead>
 								<tr>
 									<th scope="col">Date</th>
+									<th scope="col">Type</th>
 									<th scope="col">Message</th>
 									<th scope="col">Amount</th>
 									<th scope="col">balance</th>
@@ -40,7 +41,8 @@
 								@foreach(var transaction in account.LatestTransactions)
 								{
 									<tr>
-										<td>@transaction.Date</td>
+										<td class="numerical-thin">@transaction.Date</td>
+										<td>@transaction.Type</td>
 										@if (!String.IsNullOrEmpty(@transaction.Operation))
 										{
 											<td>@transaction.Operation</td>
@@ -49,8 +51,15 @@
 										{
 											<td>N/A</td>
 										}
-										<td>@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
-										<td>@transaction.Balance.ToString("C2",new CultureInfo("sv-SE"))</td>
+										@if(transaction.Amount < 0)
+										{
+											<td class="numerical-thin withdrawal">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
+										}
+										else
+										{
+											<td class="numerical-thin deposit">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
+										}
+										<td class="numerical-thin">@transaction.Balance.ToString("C2", new CultureInfo("sv-SE"))</td>
 									</tr>
 								}
 							</tbody>
@@ -60,19 +69,15 @@
 									<td></td>
 									<td></td>
 									<td></td>
+									<td></td>
 								</tr>
 							</tfoot>
 						</table>
 						<div class="buttons">
-								<a asp-page="/ViewSingleCustomer/ViewAccount" asp-route-id="@account.AccountId" class="btn-view">
-								View Account<i class="material-symbols-outlined"> account_balance</i>
-							</a>
-								<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@account.AccountId" class="btn-icon">
-									New Deposit<i class="material-symbols-outlined"> savings</i>
-							</a>
-								<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@account.AccountId" class="btn-icon">
-								New Withdrawal<i class="material-symbols-outlined">payments</i>
-							</a>
+							<a asp-page="/ViewSingleCustomer/ViewAccount" asp-route-id="@account.AccountId" class="btn-view">View Account<i class="material-symbols-outlined"> account_balance</i></a>
+							<a asp-page="/ViewSingleCustomer/NewDeposit" asp-route-id="@account.AccountId" class="btn-icon">New Deposit<i class="material-symbols-outlined"> savings</i></a>
+							<a asp-page="/ViewSingleCustomer/NewWithdrawal" asp-route-id="@account.AccountId" class="btn-icon">New Withdrawal<i class="material-symbols-outlined">payments</i></a>
+							<a asp-page="/ViewSingleCustomer/NewTransfer" asp-route-id="@account.AccountId" class="btn-icon" class="btn-lg">New Transfer <i class="material-symbols-outlined"> output </i></a>
 						</div>
 					</div>
 				}
@@ -120,48 +125,16 @@
 					Edit Information<i class="material-symbols-outlined"> edit </i>
 				</a>
 				<div class="activate-deactivate">
-					@if (Model._customer.IsDeleted == false)
+					<form method="post" asp-page-handler="ToggleActive" asp-route-id="@Model._customer.CustomerId">
+					@if (Model._customer.IsDeleted)
 					{
-						<form method="post">
-							<input type="hidden" asp-for="_customer.CustomerId">
-							<input type="hidden" asp-for="_customer.IsDeleted">
-							<input type="hidden" asp-for="_customer.Birthday">
-							<input type="hidden" asp-for="_customer.EmailAddress">
-							<input type="hidden" asp-for="_customer.TelephoneNumber">
-							<input type="hidden" asp-for="_customer.TelephoneCountryCode">
-							<input type="hidden" asp-for="_customer.Country">
-							<input type="hidden" asp-for="_customer.CountryCode">
-							<input type="hidden" asp-for="_customer.Accounts">
-							<input type="hidden" asp-for="_customer.City">
-							<input type="hidden" asp-for="_customer.ZipCode">
-							<input type="hidden" asp-for="_customer.StreetAddress">
-							<input type="hidden" asp-for="_customer.Gender">
-							<input type="hidden" asp-for="_customer.SurName">
-							<input type="hidden" asp-for="_customer.GivenName">
-							<button type="submit" class="btn-thin-red">Deactivate User</button>
-						</form>
+						<button type="submit" class="btn-thin-green">Activate User</button>
 					}
 					else
 					{
-						<form method="post">
-							<input type="hidden" asp-for="_customer.CustomerId">
-							<input type="hidden" asp-for="_customer.IsDeleted">
-							<input type="hidden" asp-for="_customer.Birthday">
-							<input type="hidden" asp-for="_customer.EmailAddress">
-							<input type="hidden" asp-for="_customer.TelephoneNumber">
-							<input type="hidden" asp-for="_customer.TelephoneCountryCode">
-							<input type="hidden" asp-for="_customer.Country">
-							<input type="hidden" asp-for="_customer.CountryCode">
-							<input type="hidden" asp-for="_customer.Accounts">
-							<input type="hidden" asp-for="_customer.City">
-							<input type="hidden" asp-for="_customer.ZipCode">
-							<input type="hidden" asp-for="_customer.StreetAddress">
-							<input type="hidden" asp-for="_customer.Gender">
-							<input type="hidden" asp-for="_customer.SurName">
-							<input type="hidden" asp-for="_customer.GivenName">
-							<button type="submit" class="btn-thin-green">Activate User</button>
-						</form>
+						<button type="submit" class="btn-thin-red">Deactivate User</button>
 					}
+					</form>
 				</div>
 			</div>
 		</div>

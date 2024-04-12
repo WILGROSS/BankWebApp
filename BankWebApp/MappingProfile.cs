@@ -13,6 +13,9 @@ namespace BankWebApp
 			CreateMap<Customer, EditCustomerViewModel>();
 			CreateMap<EditCustomerViewModel, Customer>();
 
+			CreateMap<Transaction, TransactionViewModel>();
+			CreateMap<TransactionViewModel, Transaction>();
+
 			CreateMap<Customer, ViewSingleCustomerViewModel>()
 				.ForMember(dest => dest.Accounts, opt => opt.MapFrom(src => src.Dispositions.Select(d => d.Account)));
 

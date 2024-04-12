@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Globalization
 @model BankWebApp.Pages.ViewSingleCustomer.TransactionsTableModel
 @{
 }
@@ -10,10 +11,24 @@
 	@foreach (var transaction in Model._transactions)
 	{
 		<tr>	
-			<th scope="col">@transaction.TransactionId</th>
-			<th scope="col">@transaction.Date</th>
+			<th scope="col" class="numerical">@transaction.TransactionId</th>
+			<th scope="col" class="numerical">@transaction.Date</th>
+			@if (!String.IsNullOrEmpty(transaction.Operation))
+			{
 			<th scope="col">@transaction.Operation</th>
-			<th scope="col">@transaction.Amount</th>
-			<th scope="col">@transaction.Balance</th>	
+			}
+			else
+			{
+				<th scope="col">N/A</th>
+			}
+			@if(transaction.Amount < 0)
+			{	
+				<th scope="col" class="withdrawal numerical">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</th>
+			}
+			else
+			{
+				<th scope="col" class="deposit numerical">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</th>
+			}
+				<th scope="col" class="numerical">@transaction.Balance.ToString("C2", new CultureInfo("sv-SE"))</th>	
 		</tr>
 	}
