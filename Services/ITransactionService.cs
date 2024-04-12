@@ -4,7 +4,7 @@ namespace Services
 {
 	public interface ITransactionService
 	{
-		public AccountViewModel GetAccount(int id);
+		public TransactionViewModel GetNewTransaction(AccountViewModel account, string? message, string type);
 		public bool SaveNewTransaction(TransactionViewModel newTransactionViewModel, int id);
 	}
 }
