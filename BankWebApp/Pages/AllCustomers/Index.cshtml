@@ -9,7 +9,7 @@
 				<div class="filter-holder">
 					<div class="filter-box">
 						<h6>Filter by country</h6>
-						<form method="get" asp-page="/Customers" id="filtersForm">
+						<form method="get" asp-page="/AllCustomers/Index" id="filtersForm">
 						@foreach (var country in Model.AllCountries)
 						{
 										<div class="filter-check-box">
@@ -37,7 +37,7 @@
 							   <div class="info">No results were found matching search criteria</div>
 					}
 					   <div class="search-bar">
-						   <form method="get" asp-page="/Customers">
+						   <form method="get" asp-page="/AllCustomers/Index">
 						   <input type="text" name="searchQuery" value="@Request.Query["searchQuery"]" />
 							@foreach (var country in Model.SelectedCountries)
 							{
@@ -59,7 +59,7 @@
 								<th scope="col">
 									<div class="header-btn-icon">
 										Name
-										<a asp-page="/Customers"
+										<a asp-page="/AllCustomers/Index"
 										   asp-route-sortColumn="Name"
 										   asp-route-sortOrder="asc"
 										   asp-route-searchQuery="@Request.Query["searchQuery"]"
@@ -70,7 +70,7 @@
 
 										</a>
 
-										<a asp-page="/Customers"
+										<a asp-page="/AllCustomers/Index"
 										   asp-route-sortColumn="Name"
 										   asp-route-sortOrder="desc"
 										   asp-route-searchQuery="@Request.Query["searchQuery"]"
@@ -85,7 +85,7 @@
 								<th scope="col">
 									<div class="header-btn-icon">
 										City
-										<a asp-page="/Customers"
+										<a asp-page="/AllCustomers/Index"
 										   asp-route-sortColumn="City"
 										   asp-route-sortOrder="asc"
 										   asp-route-searchQuery="@Request.Query["searchQuery"]"
@@ -96,7 +96,7 @@
 
 										</a>
 
-										<a asp-page="/Customers"
+										<a asp-page="/AllCustomers/Index"
 										   asp-route-sortColumn="City"
 										   asp-route-sortOrder="desc"
 										   asp-route-searchQuery="@Request.Query["searchQuery"]"
@@ -110,7 +110,7 @@
 								<th scope="col">
 									<div class="header-btn-icon">
 										Country
-										<a asp-page="/Customers"
+										<a asp-page="/AllCustomers/Index"
 										   asp-route-sortColumn="Country"
 										   asp-route-sortOrder="asc"
 										   asp-route-searchQuery="@Request.Query["searchQuery"]"
@@ -121,7 +121,7 @@
 
 										</a>
 
-										<a asp-page="/Customers"
+										<a asp-page="/AllCustomers/Index"
 										   asp-route-sortColumn="Country"
 										   asp-route-sortOrder="desc"
 										   asp-route-searchQuery="@Request.Query["searchQuery"]"
@@ -177,7 +177,7 @@
 					<div class="pagination">
 						@if (Model.CurrentPage > 1)
 						{
-								<a class="btn-medium" asp-page="/Customers/Index"
+							<a class="btn-medium" asp-page="/AllCustomers/Index"
 							   asp-route-pageNo="@(Model.CurrentPage - 1)"
 							   asp-route-sortColumn="@Request.Query["sortColumn"]"
 							   asp-route-sortOrder="@Request.Query["sortOrder"]"
@@ -193,7 +193,7 @@
 
 						@for (int i = Math.Max(1, Model.CurrentPage - 3); i <= Math.Min(Model.TotalPages, Model.CurrentPage + 3); i++)
 						{
-							<a asp-page="/Customers/Index" asp-route-pageNo="@i"
+								<a asp-page="/AllCustomers/Index" asp-route-pageNo="@i"
 							   asp-route-sortColumn="@Request.Query["sortColumn"]"
 							   asp-route-sortOrder="@Request.Query["sortOrder"]"
 							   asp-route-searchQuery="@Request.Query["searchQuery"]"
@@ -203,7 +203,7 @@
 
 						@if (Model.CurrentPage < Model.TotalPages)
 						{
-								<a class="btn-medium" asp-page="/Customers/Index"
+								<a class="btn-medium" asp-page="/AllCustomers/Index"
 							   asp-route-pageNo="@(Model.CurrentPage + 1)"
 							   asp-route-sortColumn="@Request.Query["sortColumn"]"
 							   asp-route-sortOrder="@Request.Query["sortOrder"]"

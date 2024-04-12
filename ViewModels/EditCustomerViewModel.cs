@@ -29,6 +29,7 @@ namespace ViewModels
 	{
 		[Required]
 		public int CustomerId { get; set; }
+		public bool IsDeleted { get; set; } = false;
 		[Required]
 		[DisplayName("First name")]
 		[StringLength(100, MinimumLength = 2, ErrorMessage = "First name must be between 2 and 100 characters")]

@@ -9,5 +9,6 @@ namespace Services
 		public List<SelectListItem> GetGenderSelectListItems();
 		public List<SelectListItem> GetCountrySelectListItems();
 		public bool UpdateCustomer(EditCustomerViewModel model);
+		public bool ToggleCustomerActiveStatus(EditCustomerViewModel model);
 	}
 }
