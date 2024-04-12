@@ -13,9 +13,9 @@
 					<h2>Balance: @Model._account.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
 				</div>
 				<div class="buttons">
-					<a class="btn-lg">New Transfer <i class="material-symbols-outlined"> output </i></a>
-					<a class="btn-lg withdrawal">New Withdrawal <i class="material-symbols-outlined">payments</i></a>
-					<a class="btn-lg deposit">New Deposit <i class="material-symbols-outlined"> savings</i></a>
+					<a asp-page="/ViewSingleCustomer/NewTransfer" asp-route-id="@Model._account.AccountId" class="btn-lg">New Transfer <i class="material-symbols-outlined"> output </i></a>
+					<a asp-page="/ViewSingleCustomer/NewWithdrawal" asp-route-id="@Model._account.AccountId" class="btn-lg withdrawal">New Withdrawal <i class="material-symbols-outlined">payments</i></a>
+					<a asp-page="/ViewSingleCustomer/NewDeposit" asp-route-id="@Model._account.AccountId" class="btn-lg deposit">New Deposit <i class="material-symbols-outlined"> savings</i></a>
 				</div>
 			</div>
 			<div class="card-body">

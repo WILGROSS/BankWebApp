@@ -17,9 +17,9 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 			_accountService = accountService;
 			_transactionService = transactionService;
 		}
-		[BindProperty(SupportsGet = true)]
 		public AccountViewModel _account { get; set; }
-		public TransactionViewModel _newDeposit;
+		[BindProperty(SupportsGet = true)]
+		public TransactionViewModel _newDeposit { get; set; }
 		public void OnGet(int id)
 		{
 			_account = _accountService.GetAccount(id);
@@ -30,12 +30,13 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 		{
 			if (ModelState.IsValid)
 			{
-				if (_transactionService.SaveNewTransaction(_newDeposit, id))
+				if (_transactionService.SaveNewTransaction(_newDeposit))
 				{
 					TempData["SuccessMessage"] = $"Succesfully deposited {_newDeposit.Amount} into account {id}";
-					return RedirectToPage("index", new { id });
+					return RedirectToPage("ViewAccount", new { id });
 				}
 			}
+			_account = _accountService.GetAccount(id);
 			return Page();
 		}
 	}

@@ -15,7 +15,9 @@ namespace ViewModels
 		public string Operation { get; set; }
 		[Required]
 		public string Type { get; set; }
-		[Required]
+		[Required(ErrorMessage = "Value must be between 100 and 100000")]
+		[Range(typeof(decimal), "100", "100000", ErrorMessage = "Value must be between 100 and 100000")]
+		[RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "Value cannot have more than 2 decimal")]
 		public decimal Amount { get; set; }
 		[Required]
 		public decimal Balance { get; set; }
