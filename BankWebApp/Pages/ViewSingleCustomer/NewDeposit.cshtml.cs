@@ -10,10 +10,12 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 	public class NewDepositModel : PageModel
 	{
 		public readonly IAccountService _accountService;
+		public readonly ITransactionService _transactionService;
 
-		public NewDepositModel(IAccountService accountService)
+		public NewDepositModel(IAccountService accountService, ITransactionService transactionService)
 		{
 			_accountService = accountService;
+			_transactionService = transactionService;
 		}
 		[BindProperty(SupportsGet = true)]
 		public AccountViewModel _account { get; set; }
@@ -21,7 +23,20 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 		public void OnGet(int id)
 		{
 			_account = _accountService.GetAccount(id);
-			_newDeposit = _accountService.GetNewTransaction(id);
+			_newDeposit = new();
+		}
+
+		public IActionResult OnPost(int id)
+		{
+			if (ModelState.IsValid)
+			{
+				if (_transactionService.SaveNewTransaction(_newDeposit, id))
+				{
+					TempData["SuccessMessage"] = $"Succesfully deposited {_newDeposit.Amount} into account {id}";
+					return RedirectToPage("index", new { id });
+				}
+			}
+			return Page();
 		}
 	}
 }
