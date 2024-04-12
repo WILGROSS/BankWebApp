@@ -1,0 +1,76 @@
+#view-account {
+  .container {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 40px;
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      .card-header {
+        .account-info {
+          display: flex;
+          justify-content: center;
+          gap: 64px;
+          margin-bottom: 4px;
+        }
+
+        .buttons {
+          display: flex;
+          justify-content: center;
+          gap: 16px;
+
+          a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+          }
+
+          .withdrawal-btn {
+            &:active {
+              @include shadow-fake-border-danger;
+              color: $danger;
+            }
+          }
+
+          .deposit-btn {
+            &:active {
+              @include shadow-fake-border-success;
+              color: $success;
+            }
+          }
+        }
+      }
+
+      .card-body {
+        display: flex;
+        flex-direction: column;
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+
+          th,
+          td {
+            text-align: left;
+            padding: 4px 8px;
+          }
+
+          .withdrawal {
+            color: $danger;
+          }
+          .deposit {
+            color: $success;
+          }
+        }
+      }
+
+      .load-more-btn-box {
+        margin-top: 16px;
+        padding-left: 8px;
+      }
+    }
+  }
+}

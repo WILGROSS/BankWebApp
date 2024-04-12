@@ -255,3 +255,26 @@ a.buttion-circle {
     }
   }
 }
+#load-more-btn{
+  all: unset;
+  @include text-lg;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 18px;
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  background-color: $primary;
+  transition: all 0.2s ease;
+
+  &:hover {
+    text-decoration: none;
+    color: $white;
+    @include shadow-primary-s;
+    background: darken($primary, 2%);
+    cursor: pointer;
+  }
+  &:active {
+    background-color: $dark;
+    @include shadow-fake-border;
+  }
+}

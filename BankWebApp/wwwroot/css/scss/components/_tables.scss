@@ -3,6 +3,7 @@ table {
   border-radius: 8px;
   border-collapse: collapse;
   @include shadow-mini-highlight;
+  @include text-m;
 
   thead {
     text-align: left;
@@ -70,5 +71,9 @@ table {
 
   tr {
     width: fit-content;
+  }
+
+  .numerical{
+    @include numericals-m;
   }
 }
