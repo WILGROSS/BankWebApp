@@ -11,6 +11,11 @@
   color: $gray-300;
   font-family: $font-manrope;
 }
+@mixin standard-numericals {
+  @include standard-text;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
 
 @mixin navigation-text {
   @include standard-text;
@@ -30,24 +35,48 @@
   @include standard-text;
   font-size: 24px;
 }
+@mixin numericals-lead {
+  @include standard-numericals();
+  font-size: 24px;
+}
 @mixin text-xl {
   @include standard-text;
+  font-size: 20px;
+}
+@mixin numericals-xl {
+  @include standard-numericals();
   font-size: 20px;
 }
 @mixin text-lg {
   @include standard-text;
   font-size: 18px;
 }
+@mixin numericals-lg {
+  @include standard-numericals();
+  font-size: 18px;
+}
 @mixin text-m {
   @include standard-text;
+  font-size: 16px;
+}
+@mixin numericals-m {
+  @include standard-numericals();
   font-size: 16px;
 }
 @mixin text-s {
   @include standard-text;
   font-size: 14px;
 }
+@mixin numericals-s {
+  @include standard-numericals();
+  font-size: 14px;
+}
 @mixin text-xs {
   @include standard-text;
+  font-size: 12px;
+}
+@mixin numericals-xs {
+  @include standard-numericals();
   font-size: 12px;
 }
 
