@@ -32,13 +32,36 @@
   }
 }
 
+.btn-lg {
+  all: unset;
+  @include text-lg;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 14px;
+  border-radius: 8px;
+  background-color: $primary;
+  transition: all 0.2s ease;
+
+  &:hover {
+    text-decoration: none;
+    color: $white;
+    @include shadow-primary-s;
+    background: darken($primary, 2%);
+    cursor: pointer;
+  }
+  &:active {
+    background-color: $dark;
+    @include shadow-fake-border;
+  }
+}
+
 .btn-disabled {
   all: unset;
   display: flex;
   align-items: center;
   padding: 10px;
   @include text-m;
-  height: 34px;
+  height: 32px;
   box-sizing: border-box;
   padding: 0 8px;
   border-radius: 8px;
@@ -138,7 +161,7 @@ a.buttion-circle {
 
   &:hover {
     text-decoration: none;
-    background-color: $dark;
+    background-color: darken($dark, 3%);
   }
   &:active {
     background-color: $dark;
@@ -162,7 +185,7 @@ a.buttion-circle {
 
   &:hover {
     text-decoration: none;
-    background-color: $dark;
+    background-color: darken($dark, 3%);
   }
   &:active {
     background-color: $dark;
@@ -227,7 +250,7 @@ a.buttion-circle {
     color: $gray-400;
     border: solid 1px $gray-400;
 
-    .text{
+    .text {
       color: $gray-400;
     }
   }
