@@ -16,18 +16,18 @@ table {
       font: inherit;
       vertical-align: baseline;
     }
-    
+
     tr:hover {
       background-color: inherit;
     }
   }
 
-  .table-header{
-    .header-btn-icon{
+  .table-header {
+    .header-btn-icon {
       color: inherit;
       padding: 0;
       margin: 0;
-      &:hover{
+      &:hover {
         cursor: default;
       }
     }
@@ -71,5 +71,12 @@ table {
 
   tr {
     width: fit-content;
+  }
+
+  .withdrawal {
+    color: $danger;
+  }
+  .deposit {
+    color: $success;
   }
 }
