@@ -17,9 +17,11 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 		}
 		[BindProperty(SupportsGet = true)]
 		public AccountViewModel _account { get; set; }
+		public TransactionViewModel _newDeposit;
 		public void OnGet(int id)
 		{
 			_account = _accountService.GetAccount(id);
+			_newDeposit = _accountService.GetNewTransaction(id);
 		}
 	}
 }
