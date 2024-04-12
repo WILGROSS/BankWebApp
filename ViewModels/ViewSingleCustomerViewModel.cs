@@ -5,6 +5,7 @@ namespace ViewModels
 	public class ViewSingleCustomerViewModel
 	{
 		public int CustomerId { get; set; }
+		public bool IsDeleted { get; set; }
 		public string? NationalId { get; set; }
 		[DisplayName("Gender")]
 		public string Gender { get; set; }

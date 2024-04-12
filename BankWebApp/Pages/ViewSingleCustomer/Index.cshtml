@@ -119,18 +119,48 @@
 				<a asp-page="/ViewSingleCustomer/EditCustomer" asp-route-id="@Model._customer.CustomerId" class="btn-view">
 					Edit Information<i class="material-symbols-outlined"> edit </i>
 				</a>
-								<div class="activate-deactivate">
-					@if (Model._customer.Gender == "male")
+				<div class="activate-deactivate">
+					@if (Model._customer.IsDeleted == false)
 					{
-							<form method="post">
-								<button type="submit" class="btn-thin-red">Deactivate User</button>
-							</form>
+						<form method="post">
+							<input type="hidden" asp-for="_customer.CustomerId">
+							<input type="hidden" asp-for="_customer.IsDeleted">
+							<input type="hidden" asp-for="_customer.Birthday">
+							<input type="hidden" asp-for="_customer.EmailAddress">
+							<input type="hidden" asp-for="_customer.TelephoneNumber">
+							<input type="hidden" asp-for="_customer.TelephoneCountryCode">
+							<input type="hidden" asp-for="_customer.Country">
+							<input type="hidden" asp-for="_customer.CountryCode">
+							<input type="hidden" asp-for="_customer.Accounts">
+							<input type="hidden" asp-for="_customer.City">
+							<input type="hidden" asp-for="_customer.ZipCode">
+							<input type="hidden" asp-for="_customer.StreetAddress">
+							<input type="hidden" asp-for="_customer.Gender">
+							<input type="hidden" asp-for="_customer.SurName">
+							<input type="hidden" asp-for="_customer.GivenName">
+							<button type="submit" class="btn-thin-red">Deactivate User</button>
+						</form>
 					}
 					else
 					{
-							<form method="post">
-								<button type="submit" class="btn-thin-green">Activate User</button>
-							</form>
+						<form method="post">
+							<input type="hidden" asp-for="_customer.CustomerId">
+							<input type="hidden" asp-for="_customer.IsDeleted">
+							<input type="hidden" asp-for="_customer.Birthday">
+							<input type="hidden" asp-for="_customer.EmailAddress">
+							<input type="hidden" asp-for="_customer.TelephoneNumber">
+							<input type="hidden" asp-for="_customer.TelephoneCountryCode">
+							<input type="hidden" asp-for="_customer.Country">
+							<input type="hidden" asp-for="_customer.CountryCode">
+							<input type="hidden" asp-for="_customer.Accounts">
+							<input type="hidden" asp-for="_customer.City">
+							<input type="hidden" asp-for="_customer.ZipCode">
+							<input type="hidden" asp-for="_customer.StreetAddress">
+							<input type="hidden" asp-for="_customer.Gender">
+							<input type="hidden" asp-for="_customer.SurName">
+							<input type="hidden" asp-for="_customer.GivenName">
+							<button type="submit" class="btn-thin-green">Activate User</button>
+						</form>
 					}
 				</div>
 			</div>

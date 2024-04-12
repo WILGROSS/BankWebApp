@@ -11,6 +11,7 @@
 		<form method="post">
 			<input type="hidden" asp-for="_customer.CustomerId">
 			<input type="hidden" asp-for="_customer.Birthday">
+			<input type="hidden" asp-for="_customer.IsDeleted">
 			<div class="form-card">
 				<div class="form-header">
 					<a class="btn-discard"asp-page="/ViewSingleCustomer/Index" asp-route-id="@Model._customer.CustomerId">
