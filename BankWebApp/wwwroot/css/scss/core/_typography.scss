@@ -14,7 +14,7 @@
 @mixin standard-numericals {
   @include standard-text;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 @mixin navigation-text {
@@ -148,5 +148,4 @@
 .numerical-thin{
   @include numericals-m;
   font-weight: 400;
-  letter-spacing: 1px;
 }
