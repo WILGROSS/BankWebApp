@@ -9,6 +9,7 @@ namespace ViewModels
 		public int TransactionId { get; set; }
 		[Required]
 		public int AccountId { get; set; }
+		public int? ReceivingAccountId { get; set; } = null;
 		[Required(ErrorMessage = "Please enter a message")]
 		[DisplayName("Message")]
 		[StringLength(100, MinimumLength = 1, ErrorMessage = "Message must be between 1 and 100 characters")]
