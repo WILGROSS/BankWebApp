@@ -1,0 +1,50 @@
+﻿@page
+@using System.Globalization
+@model BankWebApp.Pages.ViewSingleCustomer.NewWithdrawalModel
+@{
+}
+
+<section id="new-withdrawal">
+	<div class="container">
+		<div class="title">
+			<h2>New cash deposit into account @Model._account.AccountId</h2>
+		</div>
+		<div class="content">
+			<div class="quick-links">
+				<a asp-page="/ViewSingleCustomer/NewWithdrawal" asp-route-id="@Model._account.AccountId" class="btn-icon">New Withdrawal<i class="material-symbols-outlined">payments</i></a>
+				<a asp-page="/ViewSingleCustomer/NewTransfer" asp-route-id="@Model._account.AccountId" class="btn-icon" class="btn-lg">New Transfer <i class="material-symbols-outlined"> output </i></a>
+			</div>
+			<form method="post">
+				<input type="hidden" asp-for="_newDeposit.TransactionId">
+				<input type="hidden" asp-for="_newDeposit.AccountId">
+				<input type="hidden" asp-for="_newDeposit.Type">
+				<input type="hidden" asp-for="_newDeposit.Operation">
+				<input type="hidden" asp-for="_newDeposit.Date">
+				<input type="hidden" asp-for="_newDeposit.Balance">
+				<input type="hidden" asp-for="_newDeposit.Amount">
+				<div class="form-card">
+					<div class="form-header">
+						<a class="btn-discard"asp-page="/ViewSingleCustomer/ViewAccount" asp-route-id="@Model._account.AccountId">
+							<span class="text">Cancel deposit</span>
+							<span class="material-symbols-outlined">close</span>
+						</a>
+					</div>
+					<div class="form-part">
+						<h3>Current Account Balance: @Model._account.Balance.ToString("C2", new CultureInfo("sv-SE"))</h3>
+						<div class="form-line">
+							<div class="form-group">
+								<label asp-for="_newDeposit.AmountInput"></label>
+								<input type="text" class="numerical-field" asp-for="_newDeposit.AmountInput">
+								<span asp-validation-for="_newDeposit.AmountInput" class="field-validation-error"></span>
+								@Html.ValidationMessage("AmountInput")
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="buttons">
+					<button class="btn-large"type="submit">Submit<span class="material-symbols-outlined">check</span></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
