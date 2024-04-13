@@ -2,17 +2,19 @@
 
 public enum TransactionValidationCode
 {
-    Ok = 0,
-    InvalidInput = 1,
-    NullInput = 2
+	NullInput = 0,
+	InvalidInput = 1,
+	InvalidPrecision = 2,
+	AmountOutOfRange = 3,
+	Ok = 100
 }
 
 namespace Services
 {
-    public interface ITransactionService
-    {
-        public TransactionViewModel GetNewTransaction(AccountViewModel account, string? message, string type);
-        public bool SaveNewTransaction(TransactionViewModel newTransactionViewModel);
-        public TransactionValidationCode ValidateTransaction(TransactionViewModel newTransactionViewModel);
-    }
+	public interface ITransactionService
+	{
+		public TransactionViewModel GetNewTransaction(AccountViewModel account, string? message, string type);
+		public bool SaveNewTransaction(TransactionViewModel newTransactionViewModel);
+		public TransactionValidationCode ValidateTransaction(string input);
+	}
 }
