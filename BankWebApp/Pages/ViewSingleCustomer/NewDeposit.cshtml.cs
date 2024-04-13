@@ -29,7 +29,7 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 
 		public IActionResult OnPost(int id)
 		{
-			var validationCode = _transactionService.ValidateTransaction(_newDeposit.AmountInput);
+			var validationCode = _transactionService.ValidateTransaction(_newDeposit.AmountInput, null);
 
 			switch (validationCode)
 			{
@@ -46,7 +46,7 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 				case TransactionValidationCode.AmountOutOfRange:
 					ModelState.AddModelError("AmountInput", "The amount must be between 100 and 100 000");
 					break;
-				case TransactionValidationCode.Ok:
+				default:
 					_newDeposit.AmountInput.Replace(',', '.');
 					if (decimal.TryParse(_newDeposit.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
 					{

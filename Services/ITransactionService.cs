@@ -6,6 +6,7 @@ public enum TransactionValidationCode
 	InvalidInput = 1,
 	InvalidPrecision = 2,
 	AmountOutOfRange = 3,
+	InsufficientFunds = 4,
 	Ok = 100
 }
 
@@ -15,6 +16,6 @@ namespace Services
 	{
 		public TransactionViewModel GetNewTransaction(AccountViewModel account, string? message, string type);
 		public bool SaveNewTransaction(TransactionViewModel newTransactionViewModel);
-		public TransactionValidationCode ValidateTransaction(string input);
+		public TransactionValidationCode ValidateTransaction(string input, decimal? accountBalance);
 	}
 }
