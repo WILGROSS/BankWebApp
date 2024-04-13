@@ -53,13 +53,13 @@
 										}
 										@if(transaction.Amount < 0)
 										{
-											<td class="numerical-thin withdrawal">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
+											<td class="numerical-thin withdrawal right-aligned">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
 										}
 										else
 										{
-											<td class="numerical-thin deposit">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
+											<td class="numerical-thin deposit right-aligned">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
 										}
-										<td class="numerical-thin">@transaction.Balance.ToString("C2", new CultureInfo("sv-SE"))</td>
+										<td class="numerical-thin right-aligned">@transaction.Balance.ToString("C2", new CultureInfo("sv-SE"))</td>
 									</tr>
 								}
 							</tbody>

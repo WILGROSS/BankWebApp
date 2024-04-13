@@ -139,28 +139,27 @@
 						<tbody>
 						@foreach (var cust in Model._customers)
 						{
-									<tr>
-										<td class="numerical-thin">@cust.CustomerId</td>
-										<td>@cust.GivenName @cust.SurName</td>
-										<td>@cust.StreetAddress</td>
-										<td>@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(@cust.City.ToLower())</td>
-										<td>@cust.Country</td>
-										@if (!String.IsNullOrEmpty(cust.NationalId))
-										{
-											<td class="numerical-thin">@cust.NationalId</td>
-										}
-										else
-										{
-											<td>N/A</td>
-										}
-										<td>
-											<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@cust.CustomerId" class="btn-icon">
-												<span class="material-symbols-outlined">expand_circle_right</span>View
-											</a>
-										</td>
-									</tr>
+							<tr>
+								<td class="numerical-thin">@cust.CustomerId</td>
+								<td>@cust.GivenName @cust.SurName</td>
+								<td>@cust.StreetAddress</td>
+								<td>@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(@cust.City.ToLower())</td>
+								<td>@cust.Country</td>
+								@if (!String.IsNullOrEmpty(cust.NationalId))
+								{
+									<td class="numerical-thin">@cust.NationalId</td>
+								}
+								else
+								{
+									<td>N/A</td>
+								}
+								<td>
+									<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@cust.CustomerId" class="btn-icon">
+										<span class="material-symbols-outlined">expand_circle_right</span>View
+									</a>
+								</td>
+							</tr>
 						}
-
 						</tbody>
 						<tfoot>
 							<tr>
