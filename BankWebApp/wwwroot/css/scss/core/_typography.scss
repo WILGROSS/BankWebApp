@@ -55,6 +55,11 @@
   @include standard-numericals();
   font-size: 18px;
 }
+@mixin numericals-lg-thin {
+  @include standard-numericals();
+  font-size: 18px;
+  font-weight: 400;
+}
 @mixin text-m {
   @include standard-text;
   font-size: 16px;
