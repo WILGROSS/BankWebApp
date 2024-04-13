@@ -11,8 +11,9 @@
 	@foreach (var transaction in Model._transactions)
 	{
 		<tr>	
-			<th scope="col" class="numerical">@transaction.TransactionId</th>
+			<th scope="col" class="numerical right-aligned">@transaction.TransactionId</th>
 			<th scope="col" class="numerical">@transaction.Date</th>
+			<th scope="col">@transaction.Type</th>
 			@if (!String.IsNullOrEmpty(transaction.Operation))
 			{
 			<th scope="col">@transaction.Operation</th>
@@ -23,12 +24,12 @@
 			}
 			@if(transaction.Amount < 0)
 			{	
-				<th scope="col" class="withdrawal numerical">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</th>
+				<th scope="col" class="withdrawal numerical right-aligned">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</th>
 			}
 			else
 			{
-				<th scope="col" class="deposit numerical">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</th>
+				<th scope="col" class="deposit numerical right-aligned">@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</th>
 			}
-				<th scope="col" class="numerical">@transaction.Balance.ToString("C2", new CultureInfo("sv-SE"))</th>	
+				<th scope="col" class="numerical right-aligned">@transaction.Balance.ToString("C2", new CultureInfo("sv-SE"))</th>	
 		</tr>
 	}
