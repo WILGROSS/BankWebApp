@@ -34,7 +34,7 @@ namespace Services
 			return newTransaction;
 		}
 
-		public TransactionValidationCode ValidateTransaction(string amountInput)
+		public TransactionValidationCode ValidateTransaction(string amountInput, decimal? accountBalance)
 		{
 			if (string.IsNullOrEmpty(amountInput))
 			{
@@ -56,6 +56,11 @@ namespace Services
 					return TransactionValidationCode.AmountOutOfRange;
 				}
 
+				if (result > accountBalance)
+				{
+					return TransactionValidationCode.InsufficientFunds;
+				}
+
 				return TransactionValidationCode.Ok;
 			}
 			else
@@ -69,6 +74,8 @@ namespace Services
 		{
 			try
 			{
+				newTransactionViewModel.Amount = newTransactionViewModel.Type == "Credit" ? -newTransactionViewModel.Amount : newTransactionViewModel.Amount;
+
 				var account = _context.Accounts.Include(a => a.Transactions)
 				.FirstOrDefault(x => x.AccountId == newTransactionViewModel.AccountId);
 

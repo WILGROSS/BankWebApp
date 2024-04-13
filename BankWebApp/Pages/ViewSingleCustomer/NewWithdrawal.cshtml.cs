@@ -1,5 +1,4 @@
 using System.Globalization;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services;
@@ -7,29 +6,29 @@ using ViewModels;
 
 namespace BankWebApp.Pages.ViewSingleCustomer
 {
-	[Authorize(Roles = "Cashier")]
-	public class NewDepositModel : PageModel
+	public class NewWithdrawalModel : PageModel
 	{
 		public readonly IAccountService _accountService;
 		public readonly ITransactionService _transactionService;
 
-		public NewDepositModel(IAccountService accountService, ITransactionService transactionService)
+		public NewWithdrawalModel(IAccountService accountService, ITransactionService transactionService)
 		{
 			_accountService = accountService;
 			_transactionService = transactionService;
 		}
 		public AccountViewModel _account { get; set; }
 		[BindProperty]
-		public TransactionViewModel _newDeposit { get; set; }
+		public TransactionViewModel _newWithdrawal { get; set; }
 		public void OnGet(int id)
 		{
 			_account = _accountService.GetAccount(id);
-			_newDeposit = _transactionService.GetNewTransaction(_account, "Credit in Cash", "Debit");
+			_newWithdrawal = _transactionService.GetNewTransaction(_account, "Withdrawal in Cash", "Credit");
 		}
 
 		public IActionResult OnPost(int id)
 		{
-			var validationCode = _transactionService.ValidateTransaction(_newDeposit.AmountInput, null);
+			_account = _accountService.GetAccount(id);
+			var validationCode = _transactionService.ValidateTransaction(_newWithdrawal.AmountInput, _account.Balance);
 
 			switch (validationCode)
 			{
@@ -46,20 +45,23 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 				case TransactionValidationCode.AmountOutOfRange:
 					ModelState.AddModelError("AmountInput", "The amount must be between 100 and 100 000");
 					break;
+				case TransactionValidationCode.InsufficientFunds:
+					ModelState.AddModelError("AmountInput", "The account has insufficient funds for this amount");
+					break;
 				default:
-					_newDeposit.AmountInput.Replace(',', '.');
-					if (decimal.TryParse(_newDeposit.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
+					_newWithdrawal.AmountInput.Replace(',', '.');
+					if (decimal.TryParse(_newWithdrawal.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
 					{
-						_newDeposit.Amount = amount;
+						_newWithdrawal.Amount = amount;
 					}
 					break;
 			}
 
 			if (ModelState.IsValid)
 			{
-				if (_transactionService.SaveNewTransaction(_newDeposit))
+				if (_transactionService.SaveNewTransaction(_newWithdrawal))
 				{
-					TempData["SuccessMessage"] = $"Succesfully deposited {_newDeposit.Amount} into account {id}";
+					TempData["SuccessMessage"] = $"Succesfully withdrew {_newWithdrawal.Amount} from account {id}";
 					return RedirectToPage("ViewAccount", new { id });
 				}
 			}

@@ -1,0 +1,115 @@
+#new-withdrawal {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0 240px;
+
+    .title {
+      margin-bottom: 40px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .quick-links {
+        display: flex;
+        gap: 12px;
+
+        .btn-icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
+          @include text-m;
+          padding: 0 12px;
+          height: 40px;
+          border-radius: 8px;
+          background-color: $dark-secondary;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background-color: $gray-700;
+            text-decoration: none;
+            cursor: pointer;
+          }
+          &:active {
+            background-color: $dark;
+            color: $gray-400;
+            text-decoration: none;
+            @include shadow-fake-border;
+          }
+        }
+      }
+
+      .form-card {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background-color: $dark-secondary;
+        padding: 52px 100px 60px;
+        margin-bottom: 12px;
+        border-radius: 8px;
+
+        .form-header {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+        }
+
+        .form-part {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+
+          .form-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .form-group {
+              display: flex;
+              flex-direction: column;
+
+              label {
+                margin-bottom: 4px;
+              }
+
+              .numerical-field {
+                all: unset;
+                background-color: $gray-900;
+                @include numericals-lg-thin;
+                border-radius: 4px;
+                padding-left: 8px;
+                height: 40px;
+                width: 300px;
+
+                &:focus {
+                  @include shadow-fake-border;
+                }
+              }
+
+              .field-validation-error {
+                @include text-s;
+                color: $danger;
+              }
+            }
+          }
+        }
+      }
+
+      .buttons {
+        display: flex;
+        padding-left: 8px;
+        gap: 12px;
+
+        .btn-large {
+          border-top-left-radius: 0;
+        }
+      }
+    }
+  }
+}
