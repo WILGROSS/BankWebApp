@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -18,7 +19,7 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 			_transactionService = transactionService;
 		}
 		public AccountViewModel _account { get; set; }
-		[BindProperty(SupportsGet = true)]
+		[BindProperty]
 		public TransactionViewModel _newDeposit { get; set; }
 		public void OnGet(int id)
 		{
@@ -28,6 +29,32 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 
 		public IActionResult OnPost(int id)
 		{
+			var validationCode = _transactionService.ValidateTransaction(_newDeposit.AmountInput);
+
+			switch (validationCode)
+			{
+				case TransactionValidationCode.NullInput:
+					ModelState.Clear();
+					ModelState.AddModelError("AmountInput", "Please enter an amount");
+					break;
+				case TransactionValidationCode.InvalidInput:
+					ModelState.AddModelError("AmountInput", "Please enter a valid amount");
+					break;
+				case TransactionValidationCode.InvalidPrecision:
+					ModelState.AddModelError("AmountInput", "Amount may not have more than two decimals");
+					break;
+				case TransactionValidationCode.AmountOutOfRange:
+					ModelState.AddModelError("AmountInput", "The amount must be between 100 and 100 000");
+					break;
+				case TransactionValidationCode.Ok:
+					_newDeposit.AmountInput.Replace(',', '.');
+					if (decimal.TryParse(_newDeposit.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
+					{
+						_newDeposit.Amount = amount;
+					}
+					break;
+			}
+
 			if (ModelState.IsValid)
 			{
 				if (_transactionService.SaveNewTransaction(_newDeposit))
@@ -36,6 +63,7 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 					return RedirectToPage("ViewAccount", new { id });
 				}
 			}
+
 			_account = _accountService.GetAccount(id);
 			return Page();
 		}

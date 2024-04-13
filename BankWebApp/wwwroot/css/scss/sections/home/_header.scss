@@ -27,8 +27,10 @@
       display: flex;
       gap: 10px;
       align-items: center;
-      img {
+      svg {
         width: 90px;
+        fill: $gray-200;
+        transition: fill 0.3s ease;
       }
       h4 {
         color: $gray-200;
@@ -41,6 +43,21 @@
           color: $primary;
         }
         cursor: pointer;
+
+        svg {
+          fill: $primary;
+        }
+      }
+      &:active {
+        text-decoration: none;
+        h4 {
+          color: darken($primary, 9%);
+        }
+        cursor: pointer;
+
+        svg {
+          fill: darken($primary, 9%);
+        }
       }
     }
 

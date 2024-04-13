@@ -5,6 +5,19 @@ table {
   @include shadow-mini-highlight;
   @include text-m;
 
+  td {
+    border-left: 1px solid $gray-800;
+  }
+
+  th:first-child, td:first-child {
+    border-left: none;
+  }
+  tfoot{
+    td{
+      border: none;
+    }
+  }
+
   thead {
     text-align: left;
 
@@ -38,6 +51,9 @@ table {
     td {
       padding: 8px 10px;
       white-space: nowrap;
+    }
+    .right-aligned{
+      text-align: right;
     }
     transition: all 0.3s ease;
 

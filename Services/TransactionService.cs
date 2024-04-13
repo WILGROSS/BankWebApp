@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Globalization;
+using AutoMapper;
 using DataAccessLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -33,6 +34,37 @@ namespace Services
 			return newTransaction;
 		}
 
+		public TransactionValidationCode ValidateTransaction(string amountInput)
+		{
+			if (string.IsNullOrEmpty(amountInput))
+			{
+				return TransactionValidationCode.NullInput;
+			}
+
+			amountInput.Replace(',', '.');
+
+			if (decimal.TryParse(amountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal result))
+			{
+				decimal scaledResult = Math.Abs(result) * 100;
+				if (scaledResult != Math.Floor(scaledResult))
+				{
+					return TransactionValidationCode.InvalidPrecision;
+				}
+
+				if (result < 100 || result > 100000)
+				{
+					return TransactionValidationCode.AmountOutOfRange;
+				}
+
+				return TransactionValidationCode.Ok;
+			}
+			else
+			{
+				return TransactionValidationCode.InvalidInput;
+			}
+		}
+
+
 		public bool SaveNewTransaction(TransactionViewModel newTransactionViewModel)
 		{
 			try
@@ -55,3 +87,4 @@ namespace Services
 		}
 	}
 }
+

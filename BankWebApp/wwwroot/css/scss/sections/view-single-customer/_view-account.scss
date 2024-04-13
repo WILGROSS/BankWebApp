@@ -55,7 +55,10 @@
           th,
           td {
             text-align: left;
-            padding: 4px 8px;
+            padding: 4px 12px;
+          }
+          .right-aligned {
+            text-align: right;
           }
         }
       }
