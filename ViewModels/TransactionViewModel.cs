@@ -17,7 +17,7 @@ namespace ViewModels
 		public string Type { get; set; }
 		[Required]
 		public decimal Amount { get; set; }
-		[DisplayName("Amount")]
+		[DisplayName("Transaction Amount")]
 		public string AmountInput { get; set; }
 		[Required]
 		public decimal Balance { get; set; }
