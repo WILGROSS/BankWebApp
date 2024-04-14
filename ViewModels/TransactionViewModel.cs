@@ -9,12 +9,10 @@ namespace ViewModels
 		public int TransactionId { get; set; }
 		[Required]
 		public int AccountId { get; set; }
+		[DisplayName("Receiving Account number")]
 		public int? ReceivingAccountId { get; set; } = null;
-		[Required(ErrorMessage = "Please enter a message")]
 		[DisplayName("Message")]
-		[StringLength(100, MinimumLength = 1, ErrorMessage = "Message must be between 1 and 100 characters")]
-		public string Operation { get; set; }
-		[Required]
+		public string? Operation { get; set; }
 		public string Type { get; set; }
 		[Required]
 		public decimal Amount { get; set; }
