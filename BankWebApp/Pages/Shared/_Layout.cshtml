@@ -28,14 +28,13 @@
 
           <nav id="menu">
             <div class="menu-links">
-              <a class="nav-link" href="#showcase">Overview</a>
-              <a class="nav-link" href="#features">Features</a>
-              <a class="nav-link" asp-area="" asp-page="/Contact">Contact</a>
-              <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
-                        @if (User.IsInRole("Cashier"))
-                        {
-                            <a class="nav-link" asp-area="" asp-page="/AllCustomers/Index">Customers</a>
-                        }
+                <a class="nav-link" href="#showcase">Overview</a>
+                <a class="nav-link" asp-area="" asp-page="/Privacy/Index">Privacy</a>
+                <a class="nav-link" asp-area="" asp-page="/Contact/Index">Privacy</a>
+                @if (User.IsInRole("Cashier"))
+                {
+                    <a class="nav-link" asp-area="" asp-page="/AllCustomers/Index">Customers</a>
+                }
             </div>
           </nav>
 
@@ -54,10 +53,8 @@
             </a>
           <div class="menu-links">
             <a class="nav-link" href="#showcase">Overview</a>
-            <a class="nav-link" href="#features">Features</a>
-            <a class="nav-link" href="#">News</a>
-            <a class="nav-link" href="silicon-contact.html">Contact</a>
-            <a class="nav-link" href="#">Account</a>
+            <a class="nav-link" asp-area="" asp-page="/Privacy/Index">Privacy</a>
+            <a class="nav-link" asp-area="" asp-page="/Contact/Index">Privacy</a>
           </div>
           <div class="download-app">
             <a href="https://www.apple.com/app-store/"

@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace BankWebApp.Pages
+namespace BankWebApp.Pages.Contact
 {
-    public class ContactModel : PageModel
+    public class IndexModel : PageModel
     {
         public void OnGet()
         {
