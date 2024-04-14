@@ -37,20 +37,23 @@
 					<div class="info">No results were found matching search criteria</div>
 				}
 				<div>
-					<div class="search-bar">
-						<form method="get" asp-page="/AllCustomers/Index">
-							<input type="text" name="searchQuery" value="@Request.Query["searchQuery"]" />
-							@foreach (var country in Model.SelectedCountries)
-							{
-								<input type="hidden" name="selectedCountries" value="@country" />
-							}
-							<button class="btn-medium" type="submit">
-								<div class="btn-icon">
-									Search
-									<i class="material-symbols-outlined">person_search</i>
-								</div>
-							</button>
-						</form>
+					<div class="register-search">
+						<a asp-page="/AllCustomers/RegisterNewCustomer" class="btn-thin-green">Register new customer <span class="material-symbols-outlined">add_circle</span></a>
+						<div class="search-bar">
+							<form method="get" asp-page="/AllCustomers/Index">
+								<input type="text" name="searchQuery" value="@Request.Query["searchQuery"]" />
+								@foreach (var country in Model.SelectedCountries)
+								{
+									<input type="hidden" name="selectedCountries" value="@country" />
+								}
+								<button class="btn-medium" type="submit">
+									<div class="btn-icon">
+										Search
+										<i class="material-symbols-outlined">person_search</i>
+									</div>
+								</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>

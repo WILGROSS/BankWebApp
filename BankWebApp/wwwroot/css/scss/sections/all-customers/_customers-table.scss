@@ -67,45 +67,51 @@
             color: $gray-600;
           }
 
-          .search-bar {
+          .register-search{
             display: flex;
-            align-items: center;
-            gap: 0;
-            font-size: 0;
-
-            input {
-              all: unset;
-              @include text-s;
-              height: 34px;
-              padding: 0 8px 0 16px;
-              border-top-left-radius: 8px;
-              background-color: $dark-secondary;
-              color: $gray-300;
-
-              &:focus {
-                border: 1px lighten($primary, 10%) solid;
-                border-right: none;
-                height: 32px;
-                background-color: lighten($dark-secondary, 1%);
-              }
-            }
-            .btn-medium {
-              border-radius: 0;
-              border-top-right-radius: 8px;
-              border-bottom-right-radius: 8px;
-              transition: none;
-              transition: color 0.2s ease;
-
-              .btn-icon {
-                gap: 5px;
-              }
-
-              &:active {
+            gap: 12px;
+          
+            .search-bar {
+              display: flex;
+              align-items: center;
+              gap: 0;
+              font-size: 0;
+  
+              input {
+                all: unset;
+                @include text-s;
                 height: 34px;
-                @include shadow-fake-border-except-left;
+                padding: 0 8px 0 16px;
+                border-top-left-radius: 8px;
+                background-color: $dark-secondary;
+                color: $gray-300;
+  
+                &:focus {
+                  border: 1px lighten($primary, 10%) solid;
+                  border-right: none;
+                  height: 32px;
+                  background-color: lighten($dark-secondary, 1%);
+                }
+              }
+              .btn-medium {
+                border-radius: 0;
+                border-top-right-radius: 8px;
+                border-bottom-right-radius: 8px;
+                transition: none;
+                transition: color 0.2s ease;
+  
+                .btn-icon {
+                  gap: 5px;
+                }
+  
+                &:active {
+                  height: 34px;
+                  @include shadow-fake-border-except-left;
+                }
               }
             }
           }
+
         }
         table {
           min-width: 800px;
