@@ -44,6 +44,5 @@ namespace BankWebApp.Pages.AllCustomers
 			TotalCount = customerResult.TotalCount;
 			TotalPages = customerResult.TotalPages;
 		}
-
 	}
 }

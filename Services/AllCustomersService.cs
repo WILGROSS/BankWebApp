@@ -80,6 +80,11 @@ namespace Services
 						? query.OrderBy(c => EF.Functions.Collate(c.Country, collation))
 						: query.OrderByDescending(c => EF.Functions.Collate(c.Country, collation));
 					break;
+				case "ActiveStatus":
+					query = sortOrder == "asc"
+						? query.OrderBy(c => c.isDeleted)
+						: query.OrderByDescending(c => c.isDeleted);
+					break;
 				default:
 					break;
 			}
