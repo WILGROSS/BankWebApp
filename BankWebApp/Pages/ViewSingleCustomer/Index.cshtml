@@ -19,7 +19,12 @@
 		</div>
 		<div class="main-content">
 			<div class="account-holder">
+			<div class="account-holder-title">
 				<h4>@Model._customer.GivenName's Accounts</h4>
+				<form method="post" asp-page-handler="AddAccount" asp-route-id="@Model._customer.CustomerId">
+					<button type="submit" class="btn-thin-green">Add new account<span class="material-symbols-outlined">add_circle</span></button>
+				</form>				
+			</div>
 				@foreach( var account in Model._customer.Accounts)
 				{
 					<div class="account">

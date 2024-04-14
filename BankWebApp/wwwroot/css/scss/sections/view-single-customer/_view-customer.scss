@@ -36,6 +36,11 @@
         flex-direction: column;
         gap: 20px;
 
+        .account-holder-title{
+          display: flex;
+          justify-content: space-between;
+        }
+
         h6 {
           color: $gray-300;
           margin-bottom: 3px;
@@ -55,7 +60,7 @@
             justify-content: center;
             gap: 12px;
             padding-top: 12px;
-            
+
             .btn-icon {
               display: flex;
               justify-content: center;
