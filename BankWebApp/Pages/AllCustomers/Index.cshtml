@@ -37,20 +37,23 @@
 					<div class="info">No results were found matching search criteria</div>
 				}
 				<div>
-					<div class="search-bar">
-						<form method="get" asp-page="/AllCustomers/Index">
-							<input type="text" name="searchQuery" value="@Request.Query["searchQuery"]" />
-							@foreach (var country in Model.SelectedCountries)
-							{
-								<input type="hidden" name="selectedCountries" value="@country" />
-							}
-							<button class="btn-medium" type="submit">
-								<div class="btn-icon">
-									Search
-									<i class="material-symbols-outlined">person_search</i>
-								</div>
-							</button>
-						</form>
+					<div class="register-search">
+						<a asp-page="/AllCustomers/RegisterNewCustomer" class="btn-thin-green">Register new customer <span class="material-symbols-outlined">person_add</span></a>
+						<div class="search-bar">
+							<form method="get" asp-page="/AllCustomers/Index">
+								<input type="text" name="searchQuery" value="@Request.Query["searchQuery"]" />
+								@foreach (var country in Model.SelectedCountries)
+								{
+									<input type="hidden" name="selectedCountries" value="@country" />
+								}
+								<button class="btn-medium" type="submit">
+									<div class="btn-icon">
+										Search
+										<i class="material-symbols-outlined">person_search</i>
+									</div>
+								</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -129,7 +132,29 @@
 							</div>
 						</th>
 						<th scope="col">National Id</th>
-						<th scope="col">Active status</th>
+						<th scope="col">
+							<div class="header-btn-icon">
+								Active
+								<a asp-page="/AllCustomers/Index"
+									asp-route-sortColumn="ActiveStatus"
+									asp-route-sortOrder="asc"
+									asp-route-searchQuery="@Request.Query["searchQuery"]"
+									asp-route-loadedRows="@Request.Query["loadedRows"]"
+									asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+									style="text-decoration:none">
+									<i class="material-symbols-outlined">expand_less</i>
+								</a>
+								<a asp-page="/AllCustomers/Index"
+									asp-route-sortColumn="ActiveStatus"
+									asp-route-sortOrder="desc"
+									asp-route-searchQuery="@Request.Query["searchQuery"]"
+									asp-route-loadedRows="@Request.Query["loadedRows"]"
+									asp-route-selectedCountries="@String.Join(",", Model.SelectedCountries)"
+									style="text-decoration:none">
+									<i class="material-symbols-outlined">expand_more</i>
+								</a>
+							</div>
+						</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -152,11 +177,11 @@
 							}
 							@if (!cust.IsDeleted)
 							{
-								<td>Active</td>
+								<td class="btn-icon">Yes &nbsp<span class="material-symbols-outlined deposit">done</span></td>
 							}
 							else
 							{
-								<td>Deactivated</td>
+								<td class="btn-icon">No &nbsp&nbsp<span class="material-symbols-outlined withdrawal">close</span></td>
 							}
 							<td>
 								<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@cust.CustomerId" class="btn-icon">

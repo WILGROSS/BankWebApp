@@ -36,6 +36,11 @@ namespace Services
 			return viewModel;
 		}
 
+		public EditCustomerViewModel GetNewCustomerViewModel()
+		{
+			return new EditCustomerViewModel();
+		}
+
 		public EditCustomerViewModel GetEditableViewModel(int id)
 		{
 			var customer = _context.Customers.FirstOrDefault(x => x.CustomerId == id);
@@ -109,6 +114,43 @@ namespace Services
 				customer.isDeleted = !customer.isDeleted;
 				_context.Update(customer);
 				_context.SaveChanges();
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+
+		public bool SaveNewCustomer(EditCustomerViewModel newCustomer)
+		{
+			var customer = new Customer();
+
+			switch (newCustomer.Country)
+			{
+				case Countries.Finland:
+					customer.CountryCode = "FI";
+					break;
+				case Countries.Sweden:
+					customer.CountryCode = "SE";
+					break;
+				case Countries.Norway:
+					customer.CountryCode = "NO";
+					break;
+				case Countries.Denmark:
+					customer.CountryCode = "DK";
+					break;
+				default:
+					return false;
+			}
+
+			_mapper.Map(newCustomer, customer);
+
+			try
+			{
+				_context.Customers.Add(customer);
+				_context.SaveChanges();
+
 				return true;
 			}
 			catch

@@ -23,10 +23,11 @@ namespace Services
 			if (!string.IsNullOrEmpty(searchQuery))
 			{
 				var lowerSearchQuery = searchQuery.ToLower().Replace(" ", "");
-				query = query.Where(c => (c.Givenname.ToLower() + c.Surname.ToLower()).Contains(lowerSearchQuery)
+				query = query.Where(c => (c.Givenname.ToLower() + c.Surname.ToLower()).Replace(" ", "").Contains(lowerSearchQuery)
 										 || c.NationalId.Contains(lowerSearchQuery)
 										 || c.City.ToLower().Contains(lowerSearchQuery)
-										 || c.Country.ToLower().Contains(lowerSearchQuery));
+										 || c.Country.ToLower().Contains(lowerSearchQuery)
+										 || c.CustomerId.ToString().Contains(lowerSearchQuery));
 			}
 
 			if (selectedCountries != null && selectedCountries.Any())
@@ -78,6 +79,11 @@ namespace Services
 					query = sortOrder == "asc"
 						? query.OrderBy(c => EF.Functions.Collate(c.Country, collation))
 						: query.OrderByDescending(c => EF.Functions.Collate(c.Country, collation));
+					break;
+				case "ActiveStatus":
+					query = sortOrder == "asc"
+						? query.OrderBy(c => c.isDeleted)
+						: query.OrderByDescending(c => c.isDeleted);
 					break;
 				default:
 					break;

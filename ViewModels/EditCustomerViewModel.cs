@@ -25,6 +25,31 @@ namespace ViewModels
 		NO = 3,
 		DK = 4
 	}
+	public class MinimumAgeAttribute : ValidationAttribute
+	{
+		private readonly int _minimumAge;
+
+		public MinimumAgeAttribute(int minimumAge)
+		{
+			_minimumAge = minimumAge;
+			ErrorMessage = $"Must be at least {minimumAge} years old to register";
+		}
+
+		public override bool IsValid(object value)
+		{
+			if (value is DateOnly date)
+			{
+				var today = DateOnly.FromDateTime(DateTime.Today);
+				int age = today.Year - date.Year;
+
+				if (date > today.AddYears(-age))
+					age--;
+
+				return age >= _minimumAge;
+			}
+			return false;
+		}
+	}
 	public class EditCustomerViewModel
 	{
 		[Required]
@@ -40,7 +65,11 @@ namespace ViewModels
 		public string SurName { get; set; }
 
 		[DisplayName("Date of birth")]
+		[MinimumAge(18)]
 		public DateOnly? Birthday { get; set; }
+		[DisplayName("National ID")]
+		[StringLength(20, MinimumLength = 2, ErrorMessage = "Country code must be between 2 and 20 characters")]
+		public string NationalId { get; set; }
 		[Required]
 		[DisplayName("Gender")]
 		[Range(1, 99, ErrorMessage = "Please select a gender")]
