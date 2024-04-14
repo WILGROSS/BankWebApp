@@ -32,20 +32,19 @@ namespace ViewModels
 		public MinimumAgeAttribute(int minimumAge)
 		{
 			_minimumAge = minimumAge;
-			ErrorMessage = $"Customer must be at least {minimumAge} years old to register";
+			ErrorMessage = $"Must be at least {minimumAge} years old to register";
 		}
 
 		public override bool IsValid(object value)
 		{
 			if (value is DateOnly date)
 			{
-				int currentYear = DateOnly.FromDateTime(DateTime.Today).Year;
-				int birthYear = date.Year;
-				int age = currentYear - birthYear;
-				if (new DateOnly(currentYear, date.Month, date.Day) > DateOnly.FromDateTime(DateTime.Today))
-				{
+				var today = DateOnly.FromDateTime(DateTime.Today);
+				int age = today.Year - date.Year;
+
+				if (date > today.AddYears(-age))
 					age--;
-				}
+
 				return age >= _minimumAge;
 			}
 			return false;
@@ -69,6 +68,7 @@ namespace ViewModels
 		[MinimumAge(18)]
 		public DateOnly? Birthday { get; set; }
 		[DisplayName("National ID")]
+		[StringLength(20, MinimumLength = 2, ErrorMessage = "Country code must be between 2 and 20 characters")]
 		public string NationalId { get; set; }
 		[Required]
 		[DisplayName("Gender")]

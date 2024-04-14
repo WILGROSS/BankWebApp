@@ -3,19 +3,18 @@
 @{
 }
 
-<section id="edit-customer">
+<section id="register-new-customer">
 	<div class="container">
 		<div class="title">
 			<h2>Registering a New Customer</h2>
 		</div>
 		<form method="post">
 			<input type="hidden" asp-for="_newCustomer.CustomerId" />
-			<input type="hidden" asp-for="_newCustomer.Birthday" />
 			<input type="hidden" asp-for="_newCustomer.IsDeleted" />
 			<div class="form-card">
 				<div class="form-header">
-					<a class="btn-discard" asp-page="/ViewSingleCustomer/Index" asp-route-id="@Model._newCustomer.CustomerId">
-						<span class="text">Discard Changes</span>
+					<a class="btn-discard" asp-page="/AllCustomers/Index">
+						<span class="text">Discard</span>
 						<span class="material-symbols-outlined">close</span>
 					</a>
 				</div>
@@ -42,15 +41,15 @@
 						</div>
 						<div class="form-group">
 							<label asp-for="_newCustomer.Birthday"></label>
-							<input type="date" class="text-field" asp-for="_newCustomer.SurName" />
+							<input type="date" class="text-field date-of-birth" asp-for="_newCustomer.Birthday" />
 							<span asp-validation-for="_newCustomer.Birthday" class="field-validation-error"></span>
 						</div>
 					</div>
 					<div class="form-line">
 						<div class="form-group">
-							<label asp-for="_newCustomer.NationalId">Last name</label>
-							<input type="text" class="text-field" asp-for="_newCustomer.SurName" />
-							<span asp-validation-for="_newCustomer.SurName" class="field-validation-error"></span>
+							<label asp-for="_newCustomer.NationalId"></label>
+							<input type="text" class="text-field" asp-for="_newCustomer.NationalId" />
+							<span asp-validation-for="_newCustomer.NationalId" class="field-validation-error"></span>
 						</div>
 					</div>
 				</div>
@@ -101,7 +100,7 @@
 					<div class="form-line">
 						<div class="form-group email">
 							<label asp-for="_newCustomer.EmailAddress"></label>
-							<input type="email" class="text-field" asp-for="_newCustomer.EmailAddress" />
+							<input type="email" class="text-field email" asp-for="_newCustomer.EmailAddress" />
 							<span asp-validation-for="_newCustomer.EmailAddress" class="field-validation-error"></span>
 						</div>
 					</div>

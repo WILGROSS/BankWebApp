@@ -125,6 +125,25 @@ namespace Services
 		public bool SaveNewCustomer(EditCustomerViewModel newCustomer)
 		{
 			var customer = new Customer();
+
+			switch (newCustomer.Country)
+			{
+				case Countries.Finland:
+					customer.CountryCode = "FI";
+					break;
+				case Countries.Sweden:
+					customer.CountryCode = "SE";
+					break;
+				case Countries.Norway:
+					customer.CountryCode = "NO";
+					break;
+				case Countries.Denmark:
+					customer.CountryCode = "DK";
+					break;
+				default:
+					return false;
+			}
+
 			_mapper.Map(newCustomer, customer);
 
 			try

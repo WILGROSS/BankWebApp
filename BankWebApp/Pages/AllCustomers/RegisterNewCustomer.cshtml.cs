@@ -18,7 +18,7 @@ namespace BankWebApp.Pages.AllCustomers
 			_viewSingleCustomerService = viewCustomerService;
 		}
 
-		[BindProperty]
+		[BindProperty(SupportsGet = true)]
 		public EditCustomerViewModel _newCustomer { get; set; }
 		public void OnGet()
 		{
