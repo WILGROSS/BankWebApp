@@ -10,7 +10,7 @@
       display: flex;
       gap: 32px;
     }
-    
+
     .return {
       position: absolute;
       top: 5px;
@@ -18,11 +18,11 @@
       color: $gray-300;
       gap: 2px;
 
-      &:hover{
+      &:hover {
         text-decoration: none;
         color: $gray-100;
       }
-      &:active{
+      &:active {
         color: $gray-500;
       }
     }
@@ -35,6 +35,11 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+
+        .account-holder-title {
+          display: flex;
+          justify-content: space-between;
+        }
 
         h6 {
           color: $gray-300;
@@ -55,7 +60,8 @@
             justify-content: center;
             gap: 12px;
             padding-top: 12px;
-            
+            margin-bottom: 12px;
+
             .btn-icon {
               display: flex;
               justify-content: center;
@@ -81,17 +87,21 @@
               }
             }
           }
+
+          .delete-button {
+            padding-left: 4px;
+          }
         }
       }
       .personal-info-holder {
         display: flex;
         flex-direction: column;
-        
-        h4{
+
+        h4 {
           margin-bottom: 32px;
         }
 
-        .activate-deactivate{
+        .activate-deactivate {
           margin-top: 12px;
           padding-left: 8px;
         }
@@ -118,8 +128,23 @@
             gap: 4px;
           }
         }
-        .btn-view {
-          max-width: 150px;
+        .info-buttons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 12px;
+
+          .btn-view {
+            max-width: 150px;
+          }
+          .btn-thin-red{
+            padding: 0 8px;
+            height: 34px;
+          }
+          .btn-thin-green{
+            padding: 0 8px;
+            height: 34px;
+          }
         }
       }
     }

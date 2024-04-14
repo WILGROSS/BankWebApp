@@ -10,9 +10,12 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 	public class IndexModel : PageModel
 	{
 		public readonly IViewSingleCustomerService _viewSingleCustomerService;
-		public IndexModel(IViewSingleCustomerService viewCustomerService)
+		public readonly IAccountService _accountService;
+
+		public IndexModel(IViewSingleCustomerService viewCustomerService, IAccountService accountService)
 		{
 			_viewSingleCustomerService = viewCustomerService;
+			_accountService = accountService;
 		}
 		[BindProperty(SupportsGet = true)]
 		public ViewSingleCustomerViewModel _customer { get; set; }
@@ -24,10 +27,6 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 
 		public IActionResult OnPostToggleActive(int id)
 		{
-			Console.Clear();
-			Console.WriteLine("penis");
-			Console.WriteLine("penis");
-
 			_editableViewModel = _viewSingleCustomerService.GetEditableViewModel(id);
 			if (_viewSingleCustomerService.ToggleCustomerActiveStatus(_editableViewModel))
 			{
@@ -35,6 +34,30 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 				return RedirectToPage("index", new { id });
 			}
 
+			_customer = _viewSingleCustomerService.GetCustomer(id);
+			return Page();
+		}
+		public IActionResult OnPostAddAccount(int id)
+		{
+			if (_accountService.AddNewAccount(id, out int newAccountId))
+			{
+				TempData["SuccessMessage"] = $"Succesfully added account no. {newAccountId} for {_customer.GivenName} {_customer.SurName}!";
+				return RedirectToPage("index", new { id });
+			}
+
+			_customer = _viewSingleCustomerService.GetCustomer(id);
+			return Page();
+		}
+
+		public IActionResult OnPostDeleteAccount(int accountId, int id)
+		{
+			if (_accountService.TryDeleteAccount(accountId))
+			{
+				TempData["SuccessMessage"] = $"Succesfully deleted account no. {accountId}!";
+				return RedirectToPage("index", new { id });
+			}
+
+			ModelState.AddModelError("BalanceNotZero", $"Account {accountId} can only be deleted once it's balance is 0 kr");
 			_customer = _viewSingleCustomerService.GetCustomer(id);
 			return Page();
 		}

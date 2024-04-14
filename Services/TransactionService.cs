@@ -18,7 +18,7 @@ namespace Services
 			_context = context;
 		}
 
-		public TransactionViewModel GetNewTransaction(AccountViewModel account, string? message, string type)
+		public TransactionViewModel GetNewTransaction(AccountViewModel account, string type)
 		{
 			var newTransaction = new TransactionViewModel()
 			{
@@ -28,45 +28,80 @@ namespace Services
 				Type = type
 			};
 
-			if (!message.IsNullOrEmpty())
-				newTransaction.Operation = message;
-
 			return newTransaction;
 		}
 
-		public TransactionValidationCode ValidateTransaction(string amountInput, decimal? accountBalance)
+		public TransactionViewModel GetNewReceiverTransaction(TransactionViewModel newOutgoingTransfer, int receivingAccountId)
 		{
-			if (string.IsNullOrEmpty(amountInput))
+			var receiverTransaction = _mapper.Map<TransactionViewModel>(newOutgoingTransfer);
+			var receivingAccount = _context.Accounts.FirstOrDefault(x => x.AccountId == receivingAccountId);
+
+			receiverTransaction.Amount = newOutgoingTransfer.Amount;
+			receiverTransaction.AccountId = receivingAccountId;
+			receiverTransaction.Balance = receivingAccount.Balance;
+			receiverTransaction.Type = "Debit";
+
+			return receiverTransaction;
+		}
+
+		public List<TransactionValidationCode> ValidateTransaction(TransactionViewModel newTransaction, decimal? accountBalance, int? receivingAccountId)
+		{
+			var validationCodes = new List<TransactionValidationCode>();
+
+			if (string.IsNullOrEmpty(newTransaction.AmountInput))
 			{
-				return TransactionValidationCode.NullInput;
+				validationCodes.Add(TransactionValidationCode.NullInput);
+			}
+			else
+			{
+				newTransaction.AmountInput.Replace(',', '.');
 			}
 
-			amountInput.Replace(',', '.');
-
-			if (decimal.TryParse(amountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal result))
+			if (decimal.TryParse(newTransaction.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal result))
 			{
 				decimal scaledResult = Math.Abs(result) * 100;
 				if (scaledResult != Math.Floor(scaledResult))
 				{
-					return TransactionValidationCode.InvalidPrecision;
+					validationCodes.Add(TransactionValidationCode.InvalidPrecision);
 				}
 
 				if (result < 100 || result > 100000)
 				{
-					return TransactionValidationCode.AmountOutOfRange;
+					validationCodes.Add(TransactionValidationCode.AmountOutOfRange);
 				}
 
 				if (result > accountBalance)
 				{
-					return TransactionValidationCode.InsufficientFunds;
+					validationCodes.Add(TransactionValidationCode.InsufficientFunds);
 				}
-
-				return TransactionValidationCode.Ok;
 			}
 			else
 			{
-				return TransactionValidationCode.InvalidInput;
+				validationCodes.Add(TransactionValidationCode.InvalidInput);
 			}
+
+			if (!receivingAccountId.HasValue)
+			{
+				validationCodes.Add(TransactionValidationCode.ReceivingAccountFieldEmpty);
+			}
+			else if (_context.Accounts.FirstOrDefault(x => x.AccountId == receivingAccountId) == null)
+			{
+				validationCodes.Add(TransactionValidationCode.ReceivingAccountNotFound);
+			}
+
+			if (newTransaction.Operation.IsNullOrEmpty())
+			{
+				validationCodes.Add(TransactionValidationCode.NoPersonalMessage);
+			}
+			else if (newTransaction.Operation.Length > 50 || newTransaction.Operation.Length < 2)
+			{
+				validationCodes.Add(TransactionValidationCode.InvalidPersonalMessageLength);
+			}
+
+			if (validationCodes.Count == 0)
+				validationCodes.Add(TransactionValidationCode.Ok);
+
+			return validationCodes;
 		}
 
 

@@ -26,21 +26,19 @@
         <div class="top-accounts">
             <h2>Our top accounts</h2>
             <div class="country-holder">
-                @foreach (var countryInfo in Model._landingPageViewModel.CountriesInfo)
-                {
-                    <div class="country-box">
-                        <h4>@countryInfo.Country</h4>
-                        <p>Total Customers: @countryInfo.TotalCustomers</p>
-                        <p>Total Accounts: @countryInfo.TotalAccounts</p>
-                            <p>Total Balance: @countryInfo.TotalBalance.ToString("C2", new CultureInfo("sv-SE"))</p>
-                        <h5>Top Accounts</h5>
-                        <ul>
-                            @foreach (var balance in countryInfo.TopBalances)
-                            {
-                                        <li>@balance.ToString("C2", new CultureInfo("sv-SE"))</li>
-                            }
-                        </ul>
-                    </div>
+                @foreach (var countryInfo in Model._landingPageViewModel.CountriesInfo) {
+                <div class="country-box">
+                    <h4>@countryInfo.Country</h4>
+                    <p>Total Customers: @countryInfo.TotalCustomers</p>
+                    <p>Total Accounts: @countryInfo.TotalAccounts</p>
+                    <p>Total Balance: @countryInfo.TotalBalance.ToString("C2", new CultureInfo("sv-SE"))</p>
+                    <h5>Top Accounts</h5>
+                    <ul>
+                        @foreach (var balance in countryInfo.TopBalances) {
+                        <li>@balance.ToString("C2", new CultureInfo("sv-SE"))</li>
+                        }
+                    </ul>
+                </div>
                 }
             </div>
         </div>

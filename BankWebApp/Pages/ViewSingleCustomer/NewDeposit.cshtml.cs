@@ -2,6 +2,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 using Services;
 using ViewModels;
 
@@ -24,35 +25,39 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 		public void OnGet(int id)
 		{
 			_account = _accountService.GetAccount(id);
-			_newDeposit = _transactionService.GetNewTransaction(_account, "Credit in Cash", "Debit");
+			_newDeposit = _transactionService.GetNewTransaction(_account, "Debit");
 		}
 
 		public IActionResult OnPost(int id)
 		{
-			var validationCode = _transactionService.ValidateTransaction(_newDeposit.AmountInput, null);
+			var validationCodes = _transactionService.ValidateTransaction(_newDeposit, null, null);
+			_newDeposit.Operation = "Credit in Cash";
 
-			switch (validationCode)
+			foreach (var validationCode in validationCodes)
 			{
-				case TransactionValidationCode.NullInput:
-					ModelState.Clear();
-					ModelState.AddModelError("AmountInput", "Please enter an amount");
-					break;
-				case TransactionValidationCode.InvalidInput:
-					ModelState.AddModelError("AmountInput", "Please enter a valid amount");
-					break;
-				case TransactionValidationCode.InvalidPrecision:
-					ModelState.AddModelError("AmountInput", "Amount may not have more than two decimals");
-					break;
-				case TransactionValidationCode.AmountOutOfRange:
-					ModelState.AddModelError("AmountInput", "The amount must be between 100 and 100 000");
-					break;
-				default:
-					_newDeposit.AmountInput.Replace(',', '.');
-					if (decimal.TryParse(_newDeposit.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
-					{
-						_newDeposit.Amount = amount;
-					}
-					break;
+				switch (validationCode)
+				{
+					case TransactionValidationCode.NullInput:
+						ModelState.Clear();
+						ModelState.AddModelError("AmountInput", "Please enter an amount");
+						break;
+					case TransactionValidationCode.InvalidInput:
+						ModelState.AddModelError("AmountInput", "Please enter a valid amount");
+						break;
+					case TransactionValidationCode.InvalidPrecision:
+						ModelState.AddModelError("AmountInput", "Amount may not have more than two decimals");
+						break;
+					case TransactionValidationCode.AmountOutOfRange:
+						ModelState.AddModelError("AmountInput", "The amount must be between 100 and 100 000");
+						break;
+					default:
+						_newDeposit.AmountInput = _newDeposit.AmountInput.IsNullOrEmpty() ? _newDeposit.AmountInput : _newDeposit.AmountInput.Replace(',', '.');
+						if (decimal.TryParse(_newDeposit.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
+						{
+							_newDeposit.Amount = amount;
+						}
+						break;
+				}
 			}
 
 			if (ModelState.IsValid)

@@ -1,6 +1,7 @@
 using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 using Services;
 using ViewModels;
 
@@ -22,39 +23,43 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 		public void OnGet(int id)
 		{
 			_account = _accountService.GetAccount(id);
-			_newWithdrawal = _transactionService.GetNewTransaction(_account, "Withdrawal in Cash", "Credit");
+			_newWithdrawal = _transactionService.GetNewTransaction(_account, "Credit");
 		}
 
 		public IActionResult OnPost(int id)
 		{
 			_account = _accountService.GetAccount(id);
-			var validationCode = _transactionService.ValidateTransaction(_newWithdrawal.AmountInput, _account.Balance);
+			var validationCodes = _transactionService.ValidateTransaction(_newWithdrawal, _account.Balance, null);
+			_newWithdrawal.Operation = "Withdrawal in Cash";
 
-			switch (validationCode)
+			foreach (var validationCode in validationCodes)
 			{
-				case TransactionValidationCode.NullInput:
-					ModelState.Clear();
-					ModelState.AddModelError("AmountInput", "Please enter an amount");
-					break;
-				case TransactionValidationCode.InvalidInput:
-					ModelState.AddModelError("AmountInput", "Please enter a valid amount");
-					break;
-				case TransactionValidationCode.InvalidPrecision:
-					ModelState.AddModelError("AmountInput", "Amount may not have more than two decimals");
-					break;
-				case TransactionValidationCode.AmountOutOfRange:
-					ModelState.AddModelError("AmountInput", "The amount must be between 100 and 100 000");
-					break;
-				case TransactionValidationCode.InsufficientFunds:
-					ModelState.AddModelError("AmountInput", "The account has insufficient funds for this amount");
-					break;
-				default:
-					_newWithdrawal.AmountInput.Replace(',', '.');
-					if (decimal.TryParse(_newWithdrawal.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
-					{
-						_newWithdrawal.Amount = amount;
-					}
-					break;
+				switch (validationCode)
+				{
+					case TransactionValidationCode.NullInput:
+						ModelState.Clear();
+						ModelState.AddModelError("AmountInput", "Please enter an amount");
+						break;
+					case TransactionValidationCode.InvalidInput:
+						ModelState.AddModelError("AmountInput", "Please enter a valid amount");
+						break;
+					case TransactionValidationCode.InvalidPrecision:
+						ModelState.AddModelError("AmountInput", "Amount may not have more than two decimals");
+						break;
+					case TransactionValidationCode.AmountOutOfRange:
+						ModelState.AddModelError("AmountInput", "The amount must be between 100 and 100 000");
+						break;
+					case TransactionValidationCode.InsufficientFunds:
+						ModelState.AddModelError("AmountInput", "The account has insufficient funds for this amount");
+						break;
+					default:
+						_newWithdrawal.AmountInput = _newWithdrawal.AmountInput.IsNullOrEmpty() ? _newWithdrawal.AmountInput : _newWithdrawal.AmountInput.Replace(',', '.');
+						if (decimal.TryParse(_newWithdrawal.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
+						{
+							_newWithdrawal.Amount = amount;
+						}
+						break;
+				}
 			}
 
 			if (ModelState.IsValid)

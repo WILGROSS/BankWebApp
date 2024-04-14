@@ -13,9 +13,18 @@
 					<h2>Balance: @Model._account.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
 				</div>
 				<div class="buttons">
-					<a asp-page="/ViewSingleCustomer/NewWithdrawal" asp-route-id="@Model._account.AccountId" class="btn-lg withdrawal">New Withdrawal <i class="material-symbols-outlined">payments</i></a>
-					<a asp-page="/ViewSingleCustomer/NewDeposit" asp-route-id="@Model._account.AccountId" class="btn-lg deposit">New Deposit <i class="material-symbols-outlined"> savings</i></a>
-					<a asp-page="/ViewSingleCustomer/NewTransfer" asp-route-id="@Model._account.AccountId" class="btn-lg">New Transfer <i class="material-symbols-outlined"> output </i></a>
+					<a asp-page="/ViewSingleCustomer/NewWithdrawal" asp-route-id="@Model._account.AccountId" class="btn-lg withdrawal">
+						New Withdrawal
+						<i class="material-symbols-outlined">payments</i>
+					</a>
+					<a asp-page="/ViewSingleCustomer/NewDeposit" asp-route-id="@Model._account.AccountId" class="btn-lg deposit">
+						New Deposit
+						<i class="material-symbols-outlined">savings</i>
+					</a>
+					<a asp-page="/ViewSingleCustomer/NewTransfer" asp-route-id="@Model._account.AccountId" class="btn-lg">
+						New Transfer
+						<i class="material-symbols-outlined">output</i>
+					</a>
 				</div>
 			</div>
 			<div class="card-body">
@@ -30,16 +39,14 @@
 							<th scope="col">balance</th>
 						</tr>
 					</thead>
-					<tbody id="transactions-table">
-
-					</tbody>
+					<tbody id="transactions-table"></tbody>
 					<tfoot>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tfoot>
 				</table>
 				<div class="load-more-btn-box">
@@ -50,29 +57,22 @@
 	</div>
 </section>
 
-@section Scripts
-{
-	<script>
- 			let offset = 0;
-
-			document.addEventListener("DOMContentLoaded", function ()
-			{
-				showMore();
-			});
-
-			const tableBody = document.querySelector("#transactions-table")
-
-			async function showMore()
-			{
-				const response = await fetch(`/ViewSingleCustomer/TransactionsTable?id=${@Model._account.AccountId}&offset=${offset}`);
-				const tableHtml = await response.text();
-				tableBody.innerHTML += tableHtml;
-				offset += 20;
-
-				if(tableHtml.trim().length === 0)
-				{
-					document.querySelector("#load-more-btn").setAttribute("disabled","")
-				}
-			}
-	</script>
+@section Scripts {
+<script>
+	let offset = 0;
+	document.addEventListener("DOMContentLoaded", function() {
+		showMore();
+	});
+	const tableBody = document.querySelector("#transactions-table")
+	async function showMore() {
+		const response = await fetch(
+			`/ViewSingleCustomer/TransactionsTable?id=${@Model._account.AccountId}&offset=${offset}`);
+		const tableHtml = await response.text();
+		tableBody.innerHTML += tableHtml;
+		offset += 20;
+		if (tableHtml.trim().length === 0) {
+			document.querySelector("#load-more-btn").setAttribute("disabled", "")
+		}
+	}
+</script>
 }
