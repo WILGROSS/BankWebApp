@@ -4,6 +4,7 @@
 	{
 		public int CustomerId { get; set; }
 		public string NationalId { get; set; }
+		public bool IsDeleted { get; set; }
 		public string GivenName { get; set; }
 		public string SurName { get; set; }
 		public string Country { get; set; }

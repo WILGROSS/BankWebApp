@@ -87,6 +87,7 @@
 				<div class="info-box">
 					<div class="info-section">
 						<h5>Basic details</h5>
+						<p>Active status: @(Model._customer.IsDeleted ? "Deactivated" : "Active")</p>
 						<p>Customer ID: @Model._customer.CustomerId</p>
 						<p>Gender: @Model._customer.Gender</p>
 						<p>Name: @Model._customer.GivenName @Model._customer.SurName</p>

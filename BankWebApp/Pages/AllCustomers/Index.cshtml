@@ -133,6 +133,7 @@
 									</div>
 								</th>
 								<th scope="col">National Id</th>
+								<th scope="col">Active status</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -152,6 +153,14 @@
 								else
 								{
 									<td>N/A</td>
+								}
+								@if (!cust.IsDeleted)
+								{
+									<td>Active</td>
+								}
+								else
+								{
+									<td>Deactivated</td>
 								}
 								<td>
 									<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@cust.CustomerId" class="btn-icon">
