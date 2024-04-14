@@ -48,5 +48,17 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 			_customer = _viewSingleCustomerService.GetCustomer(id);
 			return Page();
 		}
+
+		public IActionResult OnPostDeleteAccount(int accountId, int customerId)
+		{
+			if (_accountService.TryDeleteAccount(accountId))
+			{
+				TempData["SuccessMessage"] = $"Succesfully deleted account no. {accountId}!";
+				return RedirectToPage("index", new { customerId });
+			}
+
+			_customer = _viewSingleCustomerService.GetCustomer(customerId);
+			return Page();
+		}
 	}
 }

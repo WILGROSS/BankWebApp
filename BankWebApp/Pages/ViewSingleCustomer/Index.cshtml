@@ -22,7 +22,7 @@
 			<div class="account-holder-title">
 				<h4>@Model._customer.GivenName's Accounts</h4>
 				<form method="post" asp-page-handler="AddAccount" asp-route-id="@Model._customer.CustomerId">
-					<button type="submit" class="btn-thin-green">Add new account<span class="material-symbols-outlined">add_circle</span></button>
+					<button type="submit" class="btn-thin-green">Add new account<span class="material-symbols-outlined"> add_circle </span></button>
 				</form>				
 			</div>
 				@foreach( var account in Model._customer.Accounts)
@@ -84,6 +84,10 @@
 							<a asp-page="/ViewSingleCustomer/NewDeposit" asp-route-id="@account.AccountId" class="btn-icon">New Deposit<i class="material-symbols-outlined"> savings</i></a>
 							<a asp-page="/ViewSingleCustomer/NewTransfer" asp-route-id="@account.AccountId" class="btn-icon" class="btn-lg">New Transfer <i class="material-symbols-outlined"> output </i></a>
 						</div>
+								<form method="post" asp-page-handler="DeleteAccount" asp-route-accountId="@account.AccountId" asp-route-customerId="@Model._customer.CustomerId">
+							<button type="submit" class="btn-thin-red">Delete account<span class="material-symbols-outlined"> cancel </span></button>
+							@Html.ValidationMessage("BalanceNotZero")
+					</form>
 					</div>
 				}
 			</div>
@@ -134,11 +138,11 @@
 					<form method="post" asp-page-handler="ToggleActive" asp-route-id="@Model._customer.CustomerId">
 					@if (Model._customer.IsDeleted)
 					{
-						<button type="submit" class="btn-thin-green">Activate User</button>
+							<button type="submit" class="btn-thin-green">Activate User<span class="material-symbols-outlined"> toggle_on </span></button>
 					}
 					else
 					{
-						<button type="submit" class="btn-thin-red">Deactivate User</button>
+							<button type="submit" class="btn-thin-red">Deactivate User<span class="material-symbols-outlined"> toggle_off </span></button>
 					}
 					</form>
 				</div>

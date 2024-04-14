@@ -81,5 +81,18 @@ namespace Services
 
 			return _mapper.Map<List<TransactionViewModel>>(transactions);
 		}
+
+		public bool TryDeleteAccount(int accountId)
+		{
+			var account = _context.Accounts.FirstOrDefault(x => x.AccountId == accountId);
+			var disposition = _context.Dispositions.FirstOrDefault(x => x.AccountId == accountId);
+
+			if (account.Balance == 0)
+			{
+
+			}
+
+			return false;
+		}
 	}
 }
