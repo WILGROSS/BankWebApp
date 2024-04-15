@@ -33,7 +33,7 @@ namespace BankWebApp.Pages.AllCustomers
 			{
 				if (_viewSingleCustomerService.SaveNewCustomer(_newCustomer))
 				{
-					TempData["SuccessMessage"] = $"Succesfully created a customer account for {_newCustomer.GivenName} {_newCustomer.SurName}!";
+					TempData["SuccessMessage"] = $"Succesfully created a customer account for {_newCustomer.GivenName} {_newCustomer.SurName}";
 					return RedirectToPage("index");
 				}
 			}

@@ -79,7 +79,7 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 
 				if (_transactionService.SaveNewTransaction(_newOutgoingTransfer) && _transactionService.SaveNewTransaction(newIncomingTransfer))
 				{
-					TempData["SuccessMessage"] = $"Succesfully withdrew {_newOutgoingTransfer.Amount} from account {id}";
+					TempData["SuccessMessage"] = $"Succesfully transfered {(-_newOutgoingTransfer.Amount).ToString("C2", new CultureInfo("sv-SE"))} from account {id} to account {newIncomingTransfer.AccountId}";
 					return RedirectToPage("ViewAccount", new { id });
 				}
 			}

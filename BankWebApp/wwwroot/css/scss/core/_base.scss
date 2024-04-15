@@ -202,3 +202,19 @@ h6 {
 .d6 {
   @include d6;
 }
+
+section{
+  position: relative;
+
+  .success-message{
+    position: fixed;
+    bottom: 0px;
+    right: 100px;
+    @include text-lg;
+    color: $gray-100;
+    background-color: $success;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 4px 12px;
+  }
+}

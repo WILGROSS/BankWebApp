@@ -30,7 +30,8 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 			_editableViewModel = _viewSingleCustomerService.GetEditableViewModel(id);
 			if (_viewSingleCustomerService.ToggleCustomerActiveStatus(_editableViewModel))
 			{
-				TempData["SuccessMessage"] = $"Succesfully updated {_customer.GivenName} {_customer.SurName}'s info!";
+				var statusWord = _editableViewModel.IsDeleted ? "activated" : "deactivated";
+				TempData["SuccessMessage"] = $"Succesfully {statusWord} customer's account";
 				return RedirectToPage("index", new { id });
 			}
 
@@ -41,7 +42,7 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 		{
 			if (_accountService.AddNewAccount(id, out int newAccountId))
 			{
-				TempData["SuccessMessage"] = $"Succesfully added account no. {newAccountId} for {_customer.GivenName} {_customer.SurName}!";
+				TempData["SuccessMessage"] = $"Succesfully added account {newAccountId} for {_customer.GivenName} {_customer.SurName}";
 				return RedirectToPage("index", new { id });
 			}
 
@@ -53,11 +54,11 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 		{
 			if (_accountService.TryDeleteAccount(accountId))
 			{
-				TempData["SuccessMessage"] = $"Succesfully deleted account no. {accountId}!";
+				TempData["SuccessMessage"] = $"Succesfully deleted account {accountId}";
 				return RedirectToPage("index", new { id });
 			}
 
-			ModelState.AddModelError("BalanceNotZero", $"Account {accountId} can only be deleted once it's balance is 0 kr");
+			ModelState.AddModelError($"BalanceNotZero{accountId}", $"Account {accountId} can only be deleted once it's balance is 0 kr");
 			_customer = _viewSingleCustomerService.GetCustomer(id);
 			return Page();
 		}

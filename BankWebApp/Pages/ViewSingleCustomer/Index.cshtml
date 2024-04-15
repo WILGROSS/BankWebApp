@@ -4,9 +4,6 @@
 @{
 }
 
-@if (TempData["SuccessMessage"] != null) {
-<h2>@TempData["SuccessMessage"]</h2>
-}
 <section id="view-customer">
 	<div class="container">
 		<a asp-area="" asp-page="/AllCustomers/Index" class="btn-icon return">
@@ -100,7 +97,7 @@
 								<span class="material-symbols-outlined">cancel</span>
 							</button>
 							<p class="field-validation-error">
-								@Html.ValidationMessage("BalanceNotZero")
+								@Html.ValidationMessage($"BalanceNotZero{account.AccountId}")
 							</p>
 						</form>
 					</div>
@@ -164,3 +161,35 @@
 		</div>
 	</div>
 </section>
+
+@section Scripts {
+	<script type="text/javascript">
+		toastr.options = {
+		  "closeButton": false,
+		  "debug": false,
+		  "newestOnTop": false,
+		  "progressBar": false,
+		  "positionClass": "toast-bottom-center",
+		  "preventDuplicates": true,
+		  "onclick": null,
+		  "showDuration": "300",
+		  "hideDuration": "1000",
+		  "timeOut": "5000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+		};
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var successMessage = '@TempData["SuccessMessage"]';
+			if (successMessage && successMessage.length > 0) {
+				toastr.success(successMessage);
+				'@TempData.Remove("SuccessMessage")';
+			}
+		});
+	</script>
+}
