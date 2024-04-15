@@ -64,7 +64,7 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 			{
 				if (_transactionService.SaveNewTransaction(_newDeposit))
 				{
-					TempData["SuccessMessage"] = $"Succesfully deposited {_newDeposit.Amount} into account {id}";
+					TempData["SuccessMessage"] = $"Succesfully deposited {_newDeposit.Amount.ToString("C2", new CultureInfo("sv-SE"))} into account {id}";
 					return RedirectToPage("ViewAccount", new { id });
 				}
 			}

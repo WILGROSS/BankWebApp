@@ -33,7 +33,7 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 			{
 				if (_viewSingleCustomerService.UpdateCustomer(_customer))
 				{
-					TempData["SuccessMessage"] = $"Succesfully updated {_customer.GivenName} {_customer.SurName}'s info!";
+					TempData["SuccessMessage"] = $"Succesfully updated {_customer.GivenName} {_customer.SurName}'s info";
 					return RedirectToPage("index", new { id });
 				}
 			}

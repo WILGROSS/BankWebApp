@@ -66,7 +66,7 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 			{
 				if (_transactionService.SaveNewTransaction(_newWithdrawal))
 				{
-					TempData["SuccessMessage"] = $"Succesfully withdrew {_newWithdrawal.Amount} from account {id}";
+					TempData["SuccessMessage"] = $"Succesfully withdrew {(-_newWithdrawal.Amount).ToString("C2", new CultureInfo("sv-SE"))} from account {id}";
 					return RedirectToPage("ViewAccount", new { id });
 				}
 			}
