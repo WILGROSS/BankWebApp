@@ -1,0 +1,21 @@
+-Remake landing page - country card accordions with cached data
+-Restyle footer
+-Remove old links from header, remove their css too
+-fix return button, flesh out funtionality to return to pages with cached url
+-Fix success message for all pages where applicable
+-Restyle Contact and Privacy pages
+
+---LOGIN PAGE---
+-Remove links like sign up etc.
+-Add a restricted role requirement for all pages not in use, in order to block access
+-Style
+
+--ADMIN--
+-Create new users
+-Read all users
+-Update users
+-Delete users
+
+--MONEY LAUNDERING--
+--DEPLOY TO AZURE--
+--API--
