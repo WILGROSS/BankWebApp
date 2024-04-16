@@ -1,4 +1,5 @@
 using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.IdentityModel.Tokens;
@@ -7,6 +8,7 @@ using ViewModels;
 
 namespace BankWebApp.Pages.ViewSingleCustomer
 {
+	[Authorize(Roles = "Cashier")]
 	public class NewWithdrawalModel : PageModel
 	{
 		public readonly IAccountService _accountService;
