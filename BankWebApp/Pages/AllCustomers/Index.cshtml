@@ -177,11 +177,11 @@
 							}
 							@if (!cust.IsDeleted)
 							{
-								<td class="btn-icon">Yes &nbsp<span class="material-symbols-outlined deposit">done</span></td>
+								<td class="active-col">Yes &nbsp<span class="material-symbols-outlined deposit">done</span></td>
 							}
 							else
 							{
-								<td class="btn-icon">No &nbsp&nbsp<span class="material-symbols-outlined withdrawal">close</span></td>
+								<td class="active-col">No &nbsp&nbsp<span class="material-symbols-outlined withdrawal">close</span></td>
 							}
 							<td>
 								<a asp-page="/ViewSingleCustomer/Index" asp-route-id="@cust.CustomerId" class="btn-icon">
