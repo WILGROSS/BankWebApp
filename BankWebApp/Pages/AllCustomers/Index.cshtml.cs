@@ -26,7 +26,7 @@ namespace BankWebApp.Pages.AllCustomers
 		public void OnGet(string sortColumn = "Name", string sortOrder = "asc", string searchQuery = "", int? pageNo = 1, int? loadedRows = null, List<string> selectedCountries = null, string action = "")
 		{
 			CurrentPage = pageNo ?? 1;
-			LoadedRows = loadedRows ?? 32;
+			LoadedRows = loadedRows ?? 50;
 			AllCountries = _customersService.GetAllCountries();
 
 			if (action == "clear")

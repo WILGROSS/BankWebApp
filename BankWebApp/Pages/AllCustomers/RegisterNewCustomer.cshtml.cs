@@ -31,10 +31,10 @@ namespace BankWebApp.Pages.AllCustomers
 		{
 			if (ModelState.IsValid)
 			{
-				if (_viewSingleCustomerService.SaveNewCustomer(_newCustomer))
+				if (_viewSingleCustomerService.SaveNewCustomer(_newCustomer, out int newCustomerId))
 				{
 					TempData["SuccessMessage"] = $"Succesfully created a customer account for {_newCustomer.GivenName} {_newCustomer.SurName}";
-					return RedirectToPage("index");
+					return RedirectToPage("/ViewSingleCustomer/Index", new { id = newCustomerId });
 				}
 			}
 			_gendersList = _viewSingleCustomerService.GetGenderSelectListItems();

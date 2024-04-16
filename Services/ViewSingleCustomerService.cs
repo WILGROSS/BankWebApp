@@ -122,8 +122,9 @@ namespace Services
 			}
 		}
 
-		public bool SaveNewCustomer(EditCustomerViewModel newCustomer)
+		public bool SaveNewCustomer(EditCustomerViewModel newCustomer, out int newCustomerId)
 		{
+			newCustomerId = 0;
 			var customer = new Customer();
 
 			switch (newCustomer.Country)
@@ -146,11 +147,26 @@ namespace Services
 
 			_mapper.Map(newCustomer, customer);
 
+			var account = new Account
+			{
+				Frequency = "Monthly",
+				Created = DateOnly.FromDateTime(DateTime.Today)
+			};
+			var disposition = new Disposition
+			{
+				Customer = customer,
+				Account = account,
+				Type = "Owner"
+			};
+
 			try
 			{
 				_context.Customers.Add(customer);
+				_context.Accounts.Add(account);
+				_context.Dispositions.Add(disposition);
 				_context.SaveChanges();
 
+				newCustomerId = customer.CustomerId;
 				return true;
 			}
 			catch

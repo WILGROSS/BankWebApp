@@ -11,6 +11,6 @@ namespace Services
 		public List<SelectListItem> GetCountrySelectListItems();
 		public bool UpdateCustomer(EditCustomerViewModel model);
 		public bool ToggleCustomerActiveStatus(EditCustomerViewModel model);
-		bool SaveNewCustomer(EditCustomerViewModel newCustomer);
+		bool SaveNewCustomer(EditCustomerViewModel newCustomer, out int newCustomerId);
 	}
 }

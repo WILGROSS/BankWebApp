@@ -4,7 +4,7 @@ DELETE THIS FILE BEFORE TURNING IN ASSIGNMENT
     Local:
 
     "ConnectionStrings": {
-        "DefaultConnection": "Server=tcp:william-gross-server.database.windows.net,1433;Initial Catalog=BankAppData;Persist Security Info=False;User ID=wilgro;Password=Secretstrongpassword123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        "DefaultConnection": "Server=localhost;Database=BankAppData;Trusted_Connection=True;TrustServerCertificate=true;MultipleActiveResultSets=true"
     },
 
 

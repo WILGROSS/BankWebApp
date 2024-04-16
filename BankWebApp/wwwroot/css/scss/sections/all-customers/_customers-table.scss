@@ -1,6 +1,6 @@
 #customers-table {
   .container {
-    padding: 0;
+    padding: 40px 0 70px 210px;
 
     .main-content {
       display: flex;
@@ -168,6 +168,16 @@
               background-color: $dark;
               @include shadow-fake-border;
             }
+          }
+        }
+
+        .active-col{
+          color: inherit;
+          display: flex;
+          justify-content: center;
+
+          &:hover{
+            color: inherit;
           }
         }
       }

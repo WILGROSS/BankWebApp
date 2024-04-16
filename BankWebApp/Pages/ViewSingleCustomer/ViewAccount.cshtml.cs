@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services;
 using ViewModels;
 
 namespace BankWebApp.Pages.ViewSingleCustomer
 {
+	[Authorize(Roles = "Cashier")]
 	public class ViewAccountModel : PageModel
 	{
 		public readonly IAccountService _accountService;
