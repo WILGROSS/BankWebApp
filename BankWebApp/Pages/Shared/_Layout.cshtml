@@ -38,6 +38,10 @@
                 {
                     <a class="nav-link" asp-area="" asp-page="/AllCustomers/Index">Customers</a>
                 }
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="nav-link" asp-area="" asp-page="/AllUsers/Index">Users</a>
+                }
             </div>
           </nav>
 
