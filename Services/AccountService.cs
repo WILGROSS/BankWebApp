@@ -68,6 +68,17 @@ namespace Services
 			return _mapper.Map<AccountViewModel>(account);
 		}
 
+		public int GetCustomerIdFromAccountId(int accountId)
+		{
+			var disposition = _context.Dispositions.FirstOrDefault(d => d.AccountId == accountId);
+			if (disposition == null)
+			{
+				throw new InvalidOperationException("No customer associated with this account.");
+			}
+			return disposition.CustomerId;
+		}
+
+
 		public List<TransactionViewModel> LoadMoreTransactions(int accountId, int offset)
 		{
 			var transactionsQuery = _context.Transactions

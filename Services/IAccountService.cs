@@ -8,5 +8,6 @@ namespace Services
 		public AccountViewModel GetAccount(int id);
 		public List<TransactionViewModel> LoadMoreTransactions(int id, int offset);
 		bool TryDeleteAccount(int accountId);
+		public int GetCustomerIdFromAccountId(int accountId);
 	}
 }
