@@ -86,26 +86,33 @@ namespace Services
 		{
 			var account = _context.Accounts.FirstOrDefault(x => x.AccountId == accountId);
 
-			if (account.Balance == 0)
+			try
 			{
-				var disposition = _context.Dispositions.FirstOrDefault(x => x.AccountId == accountId);
-				var transactions = _context.Transactions.Where(x => x.AccountId == accountId);
-				var loans = _context.Loans.Where(x => x.AccountId == accountId);
-				var PermenentOrder = _context.Transactions.FirstOrDefault(x => x.AccountId == accountId);
+                if (account.Balance == 0)
+                {
+                    var disposition = _context.Dispositions.FirstOrDefault(x => x.AccountId == accountId);
+                    var transactions = _context.Transactions.Where(x => x.AccountId == accountId);
+                    var loans = _context.Loans.Where(x => x.AccountId == accountId);
+                    var PermenentOrder = _context.Transactions.FirstOrDefault(x => x.AccountId == accountId);
 
-				_context.RemoveRange(transactions);
-				_context.RemoveRange(loans);
+                    _context.RemoveRange(transactions);
+                    _context.RemoveRange(loans);
 
-				if (PermenentOrder != null)
-					_context.Remove(PermenentOrder);
+                    if (PermenentOrder != null)
+                        _context.Remove(PermenentOrder);
 
-				if (disposition != null)
-					_context.Remove(disposition);
+                    if (disposition != null)
+                        _context.Remove(disposition);
 
-				_context.Remove(account);
-				_context.SaveChanges();
+                    _context.Remove(account);
+                    _context.SaveChanges();
 
-				return true;
+                    return true;
+                }
+            }
+			catch
+			{
+				return false;
 			}
 
 			return false;

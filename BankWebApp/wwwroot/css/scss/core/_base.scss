@@ -130,8 +130,8 @@ body {
   background-color: $dark;
 }
 
-::-webkit-scrollbar{
-  all:unset;
+::-webkit-scrollbar {
+  all: unset;
   background-color: $dark-secondary;
 }
 
@@ -203,10 +203,12 @@ h6 {
   @include d6;
 }
 
-section{
+section {
   position: relative;
+  min-height: calc(100vh - 58px);
+  background-color: $dark;
 
-  .success-message{
+  .success-message {
     position: fixed;
     bottom: 0px;
     right: 100px;
