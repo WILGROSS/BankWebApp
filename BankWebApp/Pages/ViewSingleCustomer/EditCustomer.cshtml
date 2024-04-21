@@ -4,6 +4,10 @@
 }
 
 <section id="edit-customer">
+	<a asp-area="" asp-page="/ViewSingleCustomer/Index" asp-route-id="@Model._customer.CustomerId" class="return-btn">
+		<i class="material-symbols-outlined">keyboard_return</i>
+		Return
+	</a>
 	<div class="container">
 		<div class="title">
 			<h2>Editing Customer @Model._customer.CustomerId</h2>

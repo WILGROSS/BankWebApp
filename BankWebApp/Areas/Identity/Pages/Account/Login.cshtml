@@ -2,10 +2,14 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Sign in as a cashier or an admin";
+    ViewData["Title"] = "Sign in as a cashier or an administrator";
 }
 
 <section id="sign-in">
+    <a asp-area="" asp-page="/Index" class="return-btn">
+        <i class="material-symbols-outlined">keyboard_return</i>
+        Return
+    </a>
     <div class="container">
         <h1 class="title">@ViewData["Title"]</h1>
         <div class="content">
@@ -41,7 +45,7 @@
                 </div>
             </form>
             <div class="trouble-box">
-                <h2>Trouble signing in? Don't have an account?</h2>
+                <h2>Trouble signing in? Don't have an account yet?</h2>
                 <p>Contact human resources or speak directly to an administrator</p>
             </div>
         </div>

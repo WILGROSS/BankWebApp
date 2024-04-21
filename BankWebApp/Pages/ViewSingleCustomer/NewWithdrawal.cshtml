@@ -6,6 +6,10 @@
 
 <section id="new-withdrawal">
 	<div class="container">
+		<a asp-area="" asp-page="/ViewSingleCustomer/ViewAccount" asp-route-id="@Model._account.AccountId" class="return-btn">
+			<i class="material-symbols-outlined">keyboard_return</i>
+			Return
+		</a>
 		<div class="title">
 			<h2>New cash withdrawal from account @Model._account.AccountId</h2>
 		</div>

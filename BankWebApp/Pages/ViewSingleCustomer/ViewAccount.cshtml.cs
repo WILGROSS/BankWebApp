@@ -10,14 +10,16 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 	{
 		public readonly IAccountService _accountService;
 
-		public ViewAccountModel(IAccountService accountService)
+		public ViewAccountModel(IAccountService accountService, IViewSingleCustomerService viewSingleCustomerService)
 		{
 			_accountService = accountService;
 		}
 		public AccountViewModel _account { get; set; }
+		public int _customerId { get; set; }
 		public void OnGet(int id)
 		{
 			_account = _accountService.GetAccount(id);
+			_customerId = _accountService.GetCustomerIdFromAccountId(id);
 		}
 	}
 }
