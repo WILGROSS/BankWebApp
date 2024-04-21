@@ -1,0 +1,126 @@
+#sign-in {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0 0;
+    min-height: 895px;
+
+    .title {
+      margin-bottom: 40px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+
+      .form-card {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background-color: $dark-secondary;
+        padding: 52px 100px 60px;
+        margin-bottom: 12px;
+        border-radius: 8px;
+
+        .form-header {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+        }
+
+        .form-part {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+
+          .form-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+
+            .form-group {
+              display: flex;
+              flex-direction: column;
+
+              label {
+                margin-bottom: 4px;
+              }
+
+              .field-validation-error {
+                @include text-s;
+                color: $danger;
+              }
+
+              .text-field {
+                all: unset;
+                background-color: $gray-900;
+                @include text-lg;
+                border-radius: 4px;
+                padding-left: 8px;
+                height: 40px;
+
+                &:focus {
+                  @include shadow-fake-border;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .buttons {
+        display: flex;
+        padding-left: 8px;
+        gap: 12px;
+        margin-bottom: 100px;
+
+        .btn-large {
+          border-top-left-radius: 0;
+        }
+      }
+
+      .trouble-box {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        p {
+          @include text-lg;
+        }
+      }
+    }
+  }
+}
+
+#remember-me {
+  all: unset;
+  .remember-me-check-box {
+    .form-check-input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      background-color: $gray-300;
+      border: 1px solid $gray-300;
+      border-radius: 3px;
+      cursor: pointer;
+      vertical-align: text-top;
+      transition: background-color 0.3s;
+
+      &:checked {
+        background-color: $primary;
+      }
+    }
+
+    .form-check-label {
+      margin-left: 8px;
+      cursor: pointer;
+    }
+  }
+}
