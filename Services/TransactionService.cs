@@ -48,36 +48,20 @@ namespace Services
 		{
 			var validationCodes = new List<TransactionValidationCode>();
 
-			if (string.IsNullOrEmpty(newTransaction.AmountInput))
+			decimal scaledResult = Math.Abs(newTransaction.Amount) * 100;
+			if (scaledResult != Math.Floor(scaledResult))
 			{
-				validationCodes.Add(TransactionValidationCode.NullInput);
-			}
-			else
-			{
-				newTransaction.AmountInput.Replace(',', '.');
+				validationCodes.Add(TransactionValidationCode.InvalidPrecision);
 			}
 
-			if (decimal.TryParse(newTransaction.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal result))
+			if (newTransaction.Amount < 100 || newTransaction.Amount > 100000)
 			{
-				decimal scaledResult = Math.Abs(result) * 100;
-				if (scaledResult != Math.Floor(scaledResult))
-				{
-					validationCodes.Add(TransactionValidationCode.InvalidPrecision);
-				}
-
-				if (result < 100 || result > 100000)
-				{
-					validationCodes.Add(TransactionValidationCode.AmountOutOfRange);
-				}
-
-				if (result > accountBalance)
-				{
-					validationCodes.Add(TransactionValidationCode.InsufficientFunds);
-				}
+				validationCodes.Add(TransactionValidationCode.AmountOutOfRange);
 			}
-			else
+
+			if (newTransaction.Amount > accountBalance)
 			{
-				validationCodes.Add(TransactionValidationCode.InvalidInput);
+				validationCodes.Add(TransactionValidationCode.InsufficientFunds);
 			}
 
 			if (!receivingAccountId.HasValue)

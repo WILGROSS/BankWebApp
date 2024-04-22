@@ -39,24 +39,18 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 				{
 					case TransactionValidationCode.NullInput:
 						ModelState.Clear();
-						ModelState.AddModelError("AmountInput", "Please enter an amount");
+						ModelState.AddModelError("Amount", "Please enter an amount");
 						break;
 					case TransactionValidationCode.InvalidInput:
-						ModelState.AddModelError("AmountInput", "Please enter a valid amount");
+						ModelState.AddModelError("Amount", "Please enter a valid amount");
 						break;
 					case TransactionValidationCode.InvalidPrecision:
-						ModelState.AddModelError("AmountInput", "Amount may not have more than two decimals");
+						ModelState.AddModelError("Amount", "Amount may not have more than two decimals");
 						break;
 					case TransactionValidationCode.AmountOutOfRange:
-						ModelState.AddModelError("AmountInput", "The amount must be between 100 and 100 000");
+						ModelState.AddModelError("Amount", "The amount must be between 100 and 100 000");
 						break;
-					default:
-						_newDeposit.AmountInput = _newDeposit.AmountInput.IsNullOrEmpty() ? _newDeposit.AmountInput : _newDeposit.AmountInput.Replace(',', '.');
-						if (decimal.TryParse(_newDeposit.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
-						{
-							_newDeposit.Amount = amount;
-						}
-						break;
+
 				}
 			}
 

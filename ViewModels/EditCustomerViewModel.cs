@@ -25,31 +25,23 @@ namespace ViewModels
 		NO = 3,
 		DK = 4
 	}
-	public class MinimumAgeAttribute : ValidationAttribute
-	{
-		private readonly int _minimumAge;
+public class MinimumAgeAttribute : ValidationAttribute
+{
+    private const int MinimumAge = 18;
 
-		public MinimumAgeAttribute(int minimumAge)
-		{
-			_minimumAge = minimumAge;
-			ErrorMessage = $"Must be at least {minimumAge} years old to register";
-		}
+    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+    {
+        if (value is not DateOnly birthDay)
+            return new ValidationResult("Please enter a valid date format");
 
-		public override bool IsValid(object value)
-		{
-			if (value is DateOnly date)
-			{
-				var today = DateOnly.FromDateTime(DateTime.Today);
-				int age = today.Year - date.Year;
+        if (birthDay.AddYears(MinimumAge) <= DateOnly.FromDateTime(DateTime.Now))
+        {
+            return ValidationResult.Success;
+        }
 
-				if (date > today.AddYears(-age))
-					age--;
-
-				return age >= _minimumAge;
-			}
-			return false;
-		}
-	}
+        return new ValidationResult("You have to be at least 18 years old to register");
+    }
+}
 	public class EditCustomerViewModel
 	{
 		[Required]
@@ -65,7 +57,7 @@ namespace ViewModels
 		public string SurName { get; set; }
 
 		[DisplayName("Date of birth")]
-		[MinimumAge(18)]
+		[MinimumAge]
 		public DateOnly? Birthday { get; set; }
 		[DisplayName("National ID")]
 		[StringLength(20, MinimumLength = 2, ErrorMessage = "Country code must be between 2 and 20 characters")]
@@ -99,7 +91,8 @@ namespace ViewModels
 		public string? TelephoneNumber { get; set; }
 
 		[DisplayName("Email address")]
-		[StringLength(100, MinimumLength = 2, ErrorMessage = "Email address must be between 2 and 100 characters")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Email address must be between 2 and 100 characters")]
 		public string? EmailAddress { get; set; }
 	}
 }
