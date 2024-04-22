@@ -1,42 +1,14 @@
 #contact-us {
-  background-color: $gray-100;
   .container {
+    padding-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    
     .full-section {
-      position: absolute;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 50px 0;
       gap: 10px;
-
-      .breadcrumb {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-
-        a {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          color: $gray-600;
-
-          transition: color 0.3s ease;
-
-          &:active {
-            color: $gray-700;
-            text-decoration: none;
-          }
-
-          &:last-child {
-            color: $primary;
-            &:active {
-              color: darken($primary, 7%);
-              text-decoration: none;
-            }
-          }
-        }
-      }
 
       .quick-contact {
         padding: 20px 0 40px;
@@ -50,7 +22,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: white;
+            background-color: $gray-200;
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -96,18 +68,15 @@
     }
 
     .consultation {
-      position: relative;
-      left: 660px;
-      top: 94px;
       width: 636px;
-      height: 718px;
+      height: 518px;
       border-radius: 8px;
       display: flex;
       flex-direction: column;
       padding: 72px;
       gap: 40px;
       @include shadow-l;
-      background-color: white;
+      background-color: $dark-secondary;
 
       .date-time {
         display: flex;
@@ -120,16 +89,14 @@
         width: 100%;
         margin-bottom: 5px;
         padding-left: 16px;
-        border: 1px $gray-400 solid;
         border-radius: 6px;
+        background-color: $dark;
       }
       input:focus {
-        @include shadow-s;
-        background-color: white;
-        border: 1px lighten($primary, 20%) solid;
+        @include shadow-fake-border;
       }
 
-      select{
+      select {
         display: block;
         height: 52px;
         width: 100%;
@@ -137,11 +104,11 @@
         padding-left: 16px;
         border: 1px $gray-400 solid;
         border-radius: 6px;
-        background-color: white;
+        background-color: $gray-300;
       }
       select:focus {
         @include shadow-s;
-        background-color: white;
+        background-color: $gray-300;
         border: 1px lighten($primary, 20%) solid;
       }
 
@@ -160,13 +127,13 @@
         background-color: lighten($success, 40%);
       }
 
-      button{
+      button {
         width: 229px;
         height: 52px;
         border: none;
         border-radius: 8px;
-        @include shadow-primary;
-        color: white;
+        @include text-m;
+        color: $gray-300;
         background-color: $primary;
         margin-top: 30px;
       }
