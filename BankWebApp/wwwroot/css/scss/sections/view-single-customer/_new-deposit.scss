@@ -92,6 +92,16 @@
                 }
               }
 
+              .numerical-field::-webkit-inner-spin-button,
+              .numerical-field::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+
+              .numerical-field[type="number"] {
+                -moz-appearance: textfield;
+              }
+
               .field-validation-error {
                 @include text-s;
                 color: $danger;

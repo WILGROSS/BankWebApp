@@ -24,7 +24,7 @@ namespace DataAccessLayer.Data
 		private void SeedUsers()
 		{
 			AddUserIfNotExists("richard.chalk@systementor.se", "Hejsan123#", new string[] { "Admin" });
-			AddUserIfNotExists("richard.chalk@cashier.systementor.se", "Hejsan123#", new string[] { "Cashier" });
+			AddUserIfNotExists("richard.erdos.chalk@gmail.se", "Hejsan123#", new string[] { "Cashier" });
 			AddUserIfNotExists("william@gross.nu", "Hejsan123#", new string[] { "Cashier", "Admin" });
 		}
 

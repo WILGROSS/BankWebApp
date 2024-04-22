@@ -39,19 +39,19 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 				{
 					case TransactionValidationCode.NullInput:
 						ModelState.Clear();
-						ModelState.AddModelError("AmountInput", "Please enter an amount");
+						ModelState.AddModelError("Amount", "Please enter an amount");
 						break;
 					case TransactionValidationCode.InvalidInput:
-						ModelState.AddModelError("AmountInput", "Please enter a valid amount");
+						ModelState.AddModelError("	", "Please enter a valid amount");
 						break;
 					case TransactionValidationCode.InvalidPrecision:
-						ModelState.AddModelError("AmountInput", "Amount may not have more than two decimals");
+						ModelState.AddModelError("Amount", "Amount may not have more than two decimals");
 						break;
 					case TransactionValidationCode.AmountOutOfRange:
-						ModelState.AddModelError("AmountInput", "The amount must be between 100 and 100 000");
+						ModelState.AddModelError("Amount", "The amount must be between 100 and 100 000");
 						break;
 					case TransactionValidationCode.InsufficientFunds:
-						ModelState.AddModelError("AmountInput", "The account has insufficient funds for this amount");
+						ModelState.AddModelError("Amount", "The account has insufficient funds for this amount");
 						break;
 					case TransactionValidationCode.ReceivingAccountFieldEmpty:
 						ModelState.AddModelError("ReceivingAccountId", "Please enter a receiving account no.");
@@ -64,13 +64,6 @@ namespace BankWebApp.Pages.ViewSingleCustomer
 						break;
 					case TransactionValidationCode.InvalidPersonalMessageLength:
 						ModelState.AddModelError("Operation", $"Message must be between 2 and 50 characters");
-						break;
-					default:
-						_newOutgoingTransfer.AmountInput = _newOutgoingTransfer.AmountInput.IsNullOrEmpty() ? _newOutgoingTransfer.AmountInput : _newOutgoingTransfer.AmountInput.Replace(',', '.');
-						if (decimal.TryParse(_newOutgoingTransfer.AmountInput, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
-						{
-							_newOutgoingTransfer.Amount = amount;
-						}
 						break;
 				}
 			}

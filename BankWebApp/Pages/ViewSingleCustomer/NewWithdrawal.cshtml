@@ -5,56 +5,65 @@
 }
 
 <section id="new-withdrawal">
-	<div class="container">
-		<div class="title">
-			<h2>New cash withdrawal from account @Model._account.AccountId</h2>
-		</div>
-		<div class="content">
-			<div class="quick-links">
-				<a asp-page="/ViewSingleCustomer/NewDeposit" asp-route-id="@Model._account.AccountId" class="btn-icon">
-					New Deposit
-					<i class="material-symbols-outlined">savings</i>
-				</a>
-				<a asp-page="/ViewSingleCustomer/NewTransfer" asp-route-id="@Model._account.AccountId" class="btn-icon" class="btn-lg">
-					New Transfer
-					<i class="material-symbols-outlined">output</i>
-				</a>
-			</div>
-			<form method="post">
-				<input type="hidden" asp-for="_newWithdrawal.TransactionId" />
-				<input type="hidden" asp-for="_newWithdrawal.AccountId" />
-				<input type="hidden" asp-for="_newWithdrawal.Type" />
-				<input type="hidden" asp-for="_newWithdrawal.Operation" />
-				<input type="hidden" asp-for="_newWithdrawal.Date" />
-				<input type="hidden" asp-for="_newWithdrawal.Balance" />
-				<input type="hidden" asp-for="_newWithdrawal.Amount" />
-				<input type="hidden" asp-for="_newWithdrawal.ReceivingAccountId" />
-				<div class="form-card">
-					<div class="form-header">
-						<a class="btn-discard" asp-page="/ViewSingleCustomer/ViewAccount" asp-route-id="@Model._account.AccountId">
-							<span class="text">Cancel withdrawal</span>
-							<span class="material-symbols-outlined">close</span>
-						</a>
-					</div>
-					<div class="form-part">
-						<h3>Current Account Balance: @Model._account.Balance.ToString("C2", new CultureInfo("sv-SE"))</h3>
-						<div class="form-line">
-							<div class="form-group">
-								<label asp-for="_newWithdrawal.AmountInput"></label>
-								<input type="text" class="numerical-field" asp-for="_newWithdrawal.AmountInput" />
-								<span asp-validation-for="_newWithdrawal.AmountInput" class="field-validation-error"></span>
-								@Html.ValidationMessage("AmountInput")
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="buttons">
-					<button class="btn-large" type="submit">
-						Submit
-						<span class="material-symbols-outlined">check</span>
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
+    <div class="container">
+        <a asp-area="" asp-page="/ViewSingleCustomer/ViewAccount" asp-route-id="@Model._account.AccountId" class="return-btn">
+            <i class="material-symbols-outlined">keyboard_return</i>
+            Return
+        </a>
+        <div class="title">
+            <h2>New cash withdrawal from account @Model._account.AccountId</h2>
+        </div>
+        <div class="content">
+            <div class="quick-links">
+                <a asp-page="/ViewSingleCustomer/NewDeposit" asp-route-id="@Model._account.AccountId" class="btn-icon">
+                    New Deposit
+                    <i class="material-symbols-outlined">savings</i>
+                </a>
+                <a asp-page="/ViewSingleCustomer/NewTransfer" asp-route-id="@Model._account.AccountId" class="btn-icon" class="btn-lg">
+                    New Transfer
+                    <i class="material-symbols-outlined">output</i>
+                </a>
+            </div>
+            <form method="post">
+                <input type="hidden" asp-for="_newWithdrawal.TransactionId" />
+                <input type="hidden" asp-for="_newWithdrawal.AccountId" />
+                <input type="hidden" asp-for="_newWithdrawal.Type" />
+                <input type="hidden" asp-for="_newWithdrawal.Operation" />
+                <input type="hidden" asp-for="_newWithdrawal.Date" />
+                <input type="hidden" asp-for="_newWithdrawal.Balance" />
+                <input type="hidden" asp-for="_newWithdrawal.ReceivingAccountId" />
+                <div class="form-card">
+                    <div class="form-header">
+                        <a class="btn-discard" asp-page="/ViewSingleCustomer/ViewAccount" asp-route-id="@Model._account.AccountId">
+                            <span class="text">Cancel withdrawal</span>
+                            <span class="material-symbols-outlined">close</span>
+                        </a>
+                    </div>
+                    <div class="form-part">
+                        <h3>Current Account Balance: @Model._account.Balance.ToString("C2", new CultureInfo("sv-SE"))</h3>
+                        <div class="form-line">
+                            <div class="form-group">
+                                <label asp-for="_newWithdrawal.Amount"></label>
+                                <input type="number" step="0.01" class="numerical-field" asp-for="_newWithdrawal.Amount" />
+                                <span asp-validation-for="_newWithdrawal.Amount" class="field-validation-error"></span>
+                                @Html.ValidationMessage("Amount")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="btn-large" type="submit">
+                        Submit
+                        <span class="material-symbols-outlined">check</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </section>
+
+@section Scripts {
+
+    <partial name="Shared/_ValidationScriptsPartial" />
+
+}

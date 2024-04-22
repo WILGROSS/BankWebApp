@@ -4,111 +4,144 @@
 }
 
 <section id="register-new-customer">
-	<div class="container">
-		<div class="title">
-			<h2>Registering a New Customer</h2>
-		</div>
-		<form method="post">
-			<input type="hidden" asp-for="_newCustomer.CustomerId" />
-			<input type="hidden" asp-for="_newCustomer.IsDeleted" />
-			<div class="form-card">
-				<div class="form-header">
-					<a class="btn-discard" asp-page="/AllCustomers/Index">
-						<span class="text">Discard</span>
-						<span class="material-symbols-outlined">close</span>
-					</a>
-				</div>
-				<div class="form-part">
-					<h4>Basic Details</h4>
-					<div class="form-line">
-						<div class="form-group">
-							<label asp-for="_newCustomer.GivenName"></label>
-							<input type="text" class="text-field" asp-for="_newCustomer.GivenName" />
-							<span asp-validation-for="_newCustomer.GivenName" class="field-validation-error"></span>
-						</div>
-						<div class="form-group">
-							<label asp-for="_newCustomer.SurName">Last name</label>
-							<input type="text" class="text-field" asp-for="_newCustomer.SurName" />
-							<span asp-validation-for="_newCustomer.SurName" class="field-validation-error"></span>
-						</div>
-					</div>
+    <div class="container">
+        <div class="title">
+            <h2>Registering a New Customer</h2>
+        </div>
+        <form method="post">
+            <input type="hidden" asp-for="_newCustomer.CustomerId" />
+            <input type="hidden" asp-for="_newCustomer.IsDeleted" />
+            <div class="form-card">
+                <div class="form-header">
+                    <a class="btn-discard" asp-page="/AllCustomers/Index">
+                        <span class="text">Discard</span>
+                        <span class="material-symbols-outlined">close</span>
+                    </a>
+                </div>
+                <div class="form-part">
+                    <h4>Basic Details</h4>
+                    <div class="form-line">
+                        <div class="form-group">
+                            <label asp-for="_newCustomer.GivenName"></label>
+                            <input type="text" class="text-field" asp-for="_newCustomer.GivenName" />
+                            <span asp-validation-for="_newCustomer.GivenName" class="field-validation-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_newCustomer.SurName">Last name</label>
+                            <input type="text" class="text-field" asp-for="_newCustomer.SurName" />
+                            <span asp-validation-for="_newCustomer.SurName" class="field-validation-error"></span>
+                        </div>
+                    </div>
 
-					<div class="form-line">
-						<div class="form-group">
-							<label asp-for="_newCustomer.Gender"></label>
-							<select class="drop-down" asp-for="_newCustomer.Gender" asp-items="@Model._gendersList"></select>
-							<span asp-validation-for="_newCustomer.Gender" class="field-validation-error"></span>
-						</div>
-						<div class="form-group">
-							<label asp-for="_newCustomer.Birthday"></label>
-							<input type="date" class="text-field date-of-birth" asp-for="_newCustomer.Birthday" />
-							<span asp-validation-for="_newCustomer.Birthday" class="field-validation-error"></span>
-						</div>
-					</div>
-					<div class="form-line">
-						<div class="form-group">
-							<label asp-for="_newCustomer.NationalId"></label>
-							<input type="text" class="text-field" asp-for="_newCustomer.NationalId" />
-							<span asp-validation-for="_newCustomer.NationalId" class="field-validation-error"></span>
-						</div>
-					</div>
-				</div>
+                    <div class="form-line">
+                        <div class="form-group">
+                            <label asp-for="_newCustomer.Gender"></label>
+                            <select class="drop-down" asp-for="_newCustomer.Gender" asp-items="@Model._gendersList"></select>
+                            <span asp-validation-for="_newCustomer.Gender" class="field-validation-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_newCustomer.Birthday"></label>
+                            <input type="date" class="text-field date-of-birth" asp-for="_newCustomer.Birthday" />
+                            <span asp-validation-for="_newCustomer.Birthday" class="field-validation-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-line">
+                        <div class="form-group">
+                            <label asp-for="_newCustomer.NationalId"></label>
+                            <input type="text" class="text-field" asp-for="_newCustomer.NationalId" />
+                            <span asp-validation-for="_newCustomer.NationalId" class="field-validation-error"></span>
+                        </div>
+                    </div>
+                </div>
 
-				<div class="form-part">
-					<h4>Address</h4>
-					<div class="form-line">
-						<div class="form-group">
-							<label asp-for="_newCustomer.StreetAddress"></label>
-							<input type="text" class="text-field" asp-for="_newCustomer.StreetAddress" />
-							<span asp-validation-for="_newCustomer.StreetAddress" class="field-validation-error"></span>
-						</div>
-						<div class="form-group">
-							<label asp-for="_newCustomer.ZipCode"></label>
-							<input type="text" class="text-field" asp-for="_newCustomer.ZipCode" />
-							<span asp-validation-for="_newCustomer.ZipCode" class="field-validation-error"></span>
-						</div>
-					</div>
+                <div class="form-part">
+                    <h4>Address</h4>
+                    <div class="form-line">
+                        <div class="form-group">
+                            <label asp-for="_newCustomer.StreetAddress"></label>
+                            <input type="text" class="text-field" asp-for="_newCustomer.StreetAddress" />
+                            <span asp-validation-for="_newCustomer.StreetAddress" class="field-validation-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_newCustomer.ZipCode"></label>
+                            <input type="text" class="text-field" asp-for="_newCustomer.ZipCode" />
+                            <span asp-validation-for="_newCustomer.ZipCode" class="field-validation-error"></span>
+                        </div>
+                    </div>
 
-					<div class="form-line">
-						<div class="form-group">
-							<label asp-for="_newCustomer.City"></label>
-							<input type="text" class="text-field" asp-for="_newCustomer.City" />
-							<span asp-validation-for="_newCustomer.City" class="field-validation-error"></span>
-						</div>
-						<div class="form-group">
-							<label asp-for="_newCustomer.Country"></label>
-							<select class="drop-down" asp-for="_newCustomer.Country" asp-items="@Model._countriesList"></select>
-							<span asp-validation-for="_newCustomer.Country" class="field-validation-error"></span>
-						</div>
-					</div>
-				</div>
-				<div class="form-part">
-					<h4>Contact</h4>
-					<div class="form-line">
-						<div class="form-group">
-							<label asp-for="_newCustomer.TelephoneCountryCode"></label>
-							<input type="text" class="text-field" asp-for="_newCustomer.TelephoneCountryCode" />
-							<span asp-validation-for="_newCustomer.TelephoneCountryCode" class="field-validation-error"></span>
-						</div>
-						<div class="form-group">
-							<label asp-for="_newCustomer.TelephoneNumber"></label>
-							<input type="text" class="text-field" asp-for="_newCustomer.TelephoneNumber" />
-							<span asp-validation-for="_newCustomer.TelephoneNumber" class="field-validation-error"></span>
-						</div>
-					</div>
+                    <div class="form-line">
+                        <div class="form-group">
+                            <label asp-for="_newCustomer.City"></label>
+                            <input type="text" class="text-field" asp-for="_newCustomer.City" />
+                            <span asp-validation-for="_newCustomer.City" class="field-validation-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_newCustomer.Country"></label>
+                            <select class="drop-down" asp-for="_newCustomer.Country" asp-items="@Model._countriesList"></select>
+                            <span asp-validation-for="_newCustomer.Country" class="field-validation-error"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-part">
+                    <h4>Contact</h4>
+                    <div class="form-line">
+                        <div class="form-group">
+                            <label asp-for="_newCustomer.TelephoneCountryCode"></label>
+                            <input type="text" class="text-field" asp-for="_newCustomer.TelephoneCountryCode" />
+                            <span asp-validation-for="_newCustomer.TelephoneCountryCode" class="field-validation-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="_newCustomer.TelephoneNumber"></label>
+                            <input type="text" class="text-field" asp-for="_newCustomer.TelephoneNumber" />
+                            <span asp-validation-for="_newCustomer.TelephoneNumber" class="field-validation-error"></span>
+                        </div>
+                    </div>
 
-					<div class="form-line">
-						<div class="form-group email">
-							<label asp-for="_newCustomer.EmailAddress"></label>
-							<input type="email" class="text-field email" asp-for="_newCustomer.EmailAddress" />
-							<span asp-validation-for="_newCustomer.EmailAddress" class="field-validation-error"></span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="buttons">
-				<button class="btn-medium" type="submit">Save Changes</button>
-			</div>
-		</form>
-	</div>
+                    <div class="form-line">
+                        <div class="form-group email">
+                            <label asp-for="_newCustomer.EmailAddress"></label>
+                            <input type="email" class="text-field email" asp-for="_newCustomer.EmailAddress" />
+                            <span asp-validation-for="_newCustomer.EmailAddress" class="field-validation-error"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="btn-medium" type="submit">Save Changes</button>
+            </div>
+        </form>
+    </div>
 </section>
+
+@section Scripts {
+
+    <partial name="Shared/_ValidationScriptsPartial" />
+
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-center",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ('@TempData["SuccessMessage"]' != "") {
+                toastr.success('@TempData["SuccessMessage"]');
+            }
+        });
+    </script>
+}

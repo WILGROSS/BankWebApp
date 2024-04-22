@@ -130,8 +130,8 @@ body {
   background-color: $dark;
 }
 
-::-webkit-scrollbar{
-  all:unset;
+::-webkit-scrollbar {
+  all: unset;
   background-color: $dark-secondary;
 }
 
@@ -203,18 +203,42 @@ h6 {
   @include d6;
 }
 
-section{
+section {
   position: relative;
+  min-height: calc(100vh - 58px);
+  background-color: $dark;
 
-  .success-message{
+  .success-message {
     position: fixed;
     bottom: 0px;
     right: 100px;
     @include text-lg;
     color: $gray-100;
     background-color: $success;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-radius: 8px;
+    border-radius: 8px;
     padding: 4px 12px;
+  }
+
+  .return-btn {
+    position: absolute;
+    left: 500px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
+    border-radius: 8px;
+
+    @include text-xl;
+    background-color: $dark-secondary;
+    &:hover {
+      text-decoration: none;
+      background-color: $gray-700;
+    }
+    &:active {
+      background-color: $dark;
+      @include shadow-fake-border;
+    }
   }
 }

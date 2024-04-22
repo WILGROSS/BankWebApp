@@ -1,0 +1,20 @@
+﻿@using System.Globalization
+@using ViewModels
+@{
+}
+
+@model CountryInfoViewModel
+
+<div class="country-box">
+    <h4>@Model.Country</h4>
+    <p>Total Customers: @Model.TotalCustomers</p>
+    <p>Total Accounts: @Model.TotalAccounts</p>
+    <p>Total Balance: @Model.TotalBalance.ToString("C2", new CultureInfo("sv-SE"))</p>
+    <h5>Top Accounts</h5>
+    <ul>
+        @foreach (var balance in @Model.TopBalances)
+        {
+            <li>@balance.ToString("C2", new CultureInfo("sv-SE"))</li>
+        }
+    </ul>
+</div>

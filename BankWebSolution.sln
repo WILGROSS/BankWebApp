@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModels", "ViewModels\ViewModels.csproj", "{E1D2C2AD-737C-4814-946E-034171E66A66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsApi", "AdsApi\AdsApi.csproj", "{133D3D5F-A406-42E0-829F-E34C0D431E04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsApi", "AdsApi\AdsApi.csproj", "{133D3D5F-A406-42E0-829F-E34C0D431E04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
