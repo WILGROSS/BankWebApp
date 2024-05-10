@@ -1,11 +1,12 @@
-#home-header {
-  padding: 8px 0;
+#header {
   background-color: $dark-secondary;
-
+  
   .container {
     display: grid;
     align-items: center;
     background-color: $dark-secondary;
+    padding-top: 8px;
+    padding-bottom: 8px;
 
     gap: 30px;
     grid-template-columns: 1fr auto;
