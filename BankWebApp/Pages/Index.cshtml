@@ -13,36 +13,41 @@
         <h1>Secure Finances, Limitless Living</h1>
         <h2>Whenever, wherever</h2>
         <div class="buttons">
-            <a class="hero-btn left" href="#landing-page">Learn More</a>
+            <a class="hero-btn left" href="#statistics">Learn More</a>
             <a class="hero-btn right" asp-area="" asp-page="/AllCustomers/Index">View Customers</a>
         </div>
     </div>
 </section>
-<div id="landing-page">
+<section id="statistics">
     <div class="container">
-        <h2 class="text-center">Overview</h2>
-        <div class="totals-card">
-            <div class="line">
-                <h3>Total Customers:</h3>
-                <div class="value">@Model._landingPageViewModel.TotalCustomers</div>
+        <h1 class="title">Statistics</h1>
+        <div class="content">
+            <div class="overview">
+                <h1 class="overview-title">Overview</h1>
+                <div class="totals-card">
+                    <div class="line">
+                        <h5>Total Customers</h5>
+                        <h4>@Model._landingPageViewModel.TotalCustomers</h4>
+                    </div>
+                    <div class="line">
+                        <h5>Total Accounts</h5>
+                        <h4>@Model._landingPageViewModel.TotalAccounts</h4>
+                    </div>
+                    <div class="line">
+                        <h5>Total Balance</h5>
+                        <h4>@(Model._landingPageViewModel.TotalBalance.ToString("C2", new CultureInfo("sv-SE")))</h4>
+                    </div>
+                </div>
             </div>
-            <div class="line">
-                <h3>Total Accounts:</h3>
-                <div class="value">@Model._landingPageViewModel.TotalAccounts</div>
-            </div>
-            <div class="line">
-                <h3>Total Balance:</h3>
-                <div class="value">@(Model._landingPageViewModel.TotalBalance.ToString("C2", new CultureInfo("sv-SE")))</div>
-            </div>
-        </div>
 
-        <div class="top-accounts">
-            <h2>Our top accounts</h2>
-            <div class="country-holder">
-                @foreach (var countryInfo in Model._landingPageViewModel.CountriesInfo) {
-                    <partial name="_CountryBox" model="countryInfo" />
-                }
+            <div class="top-accounts">
+                <h1>Our top accounts by country</h1>
+                <div class="country-holder">
+                    @foreach (var countryInfo in Model._landingPageViewModel.CountriesInfo) {
+                        <partial name="_CountryBox" model="countryInfo" />
+                    }
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
