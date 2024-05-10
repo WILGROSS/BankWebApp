@@ -6,15 +6,29 @@
 @model CountryInfoViewModel
 
 <div class="country-box">
-    <h4>@Model.Country</h4>
-    <p>Total Customers: @Model.TotalCustomers</p>
-    <p>Total Accounts: @Model.TotalAccounts</p>
-    <p>Total Balance: @Model.TotalBalance.ToString("C2", new CultureInfo("sv-SE"))</p>
-    <h5>Top Accounts</h5>
-    <ul>
-        @foreach (var balance in @Model.TopBalances)
-        {
-            <li>@balance.ToString("C2", new CultureInfo("sv-SE"))</li>
-        }
-    </ul>
+    <div class="country-title">
+        <h3>@Model.Country</h3>
+        <img src="@($"images/flags/flag-{Model.Country}.svg")" alt="@Model.Country's flag"/>
+    </div>
+	<div class="country-box-content">
+        <div class="country-box-line">
+            <h6>Total Customers</h6>
+            <h4>@Model.TotalCustomers</h4>
+        </div>
+        <div class="country-box-line">
+            <h6>Total Accounts</h6>
+            <h4>@Model.TotalAccounts</h4>
+        </div>
+        <div class="country-box-line">
+            <h6>Total Balance</h6>
+            <h4>@Model.TotalBalance.ToString("C2", new CultureInfo("sv-SE"))</h4>
+        </div>
+        <ul>
+            <h5>Top Accounts</h5>
+            @foreach (var balance in @Model.TopBalances)
+            {
+                <li class="account-balance">@balance.ToString("C2", new CultureInfo("sv-SE"))</li>
+            }
+        </ul>
+	</div>
 </div>

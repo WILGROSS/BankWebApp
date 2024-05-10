@@ -1,0 +1,85 @@
+#statistics {
+  min-height: 100vh;
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding-top: 60px;
+
+    .title {
+      @include d4;
+    }
+
+    .content {
+      display: flex;
+      justify-content: center;
+      gap: 56px;
+      .overview {
+        display: flex;
+        flex-direction: column;
+        margin-top: 52px;
+        .totals-card {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 24px;
+          gap: 12px;
+          background: $secondary;
+          border-radius: 8px;
+
+          .line {
+            display: flex;
+            flex-direction: column;
+
+            .value {
+              @include text-lg;
+              margin-bottom: -0.5em;
+            }
+          }
+        }
+      }
+      .top-accounts {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .country-holder {
+          display: flex;
+          gap: 16px;
+          .country-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .country-title{
+              display: flex;
+              gap: 8px;
+              img {
+                max-width: 48px;
+                height: auto;
+                border-radius: 4px;
+              }
+            }
+
+            .country-box-content {
+              background-color: $secondary;
+              display: flex;
+              flex-direction: column;
+              gap: 14px;
+              padding: 12px;
+              border-radius: 8px;
+              .country-box-line {
+                min-width: 200px;
+              }
+              .account-balance{
+                @include numericals-lg;
+                color: $gray-100;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

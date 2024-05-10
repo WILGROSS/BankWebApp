@@ -1,6 +1,7 @@
 // Home
 @import "./sections/home/header";
-@import "./sections/home/landing-page";
+@import "./sections/home/hero";
+@import "./sections/home/statistics";
 @import "./sections/home/footer";
 
 // Sign in
@@ -22,3 +23,7 @@
 // Contact
 @import "./sections/contact/contact-us";
 @import "./sections/contact/locations";
+
+// Privacy
+@import "./sections/privacy/privacy";
+
