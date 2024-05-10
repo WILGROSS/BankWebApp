@@ -1,0 +1,69 @@
+#hero {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 100px;
+  .hero-background {
+    width: 100%;
+    opacity: 0.75;
+  }
+  .container {
+    position: absolute;
+    left: 350px;
+    top: 80px;
+    background: transparent;
+
+    h1 {
+      @include d4;
+    }
+    h2 {
+      @include d6;
+    }
+
+    .buttons {
+      display: flex;
+      margin-top: 40px;
+      gap: 28px;
+
+      .hero-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        padding: 4px 16px;
+        @include text-lg;
+
+        &:hover{
+            text-decoration: none;
+        }
+      }
+
+      .left {
+        background-color: $gray-200;
+        color: $dark;
+
+        &:hover{
+            background-color: $gray-300;
+        }
+        &:active{
+            background-color: $primary-opacity;
+            color: $gray-100;
+            @include shadow-fake-border;
+        }
+      }
+      .right {
+        background-color: $primary;
+        color: $gray-100;
+
+        &:hover{
+            background-color: darken($primary, 11%);
+        }
+        &:active{
+            background-color: $primary-opacity;
+            color: $gray-100;
+            @include shadow-fake-border;
+        }
+      }
+    }
+  }
+}
