@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 60px 0 0;
+    padding: 80px 0 0;
 
     .title {
       margin-bottom: 40px;
@@ -34,23 +34,27 @@
         .form-part {
           display: flex;
           flex-direction: column;
+          min-height: 150px;
           gap: 20px;
 
           .form-line {
             display: flex;
             justify-content: space-between;
             gap: 16px;
-            align-items: center;
+            align-items :flex-start;
 
             .form-group {
+              margin-bottom: 40px;
               display: flex;
               flex-direction: column;
+              min-width: 300px;
 
               label {
                 margin-bottom: 4px;
               }
 
               .field-validation-error {
+                width: 100%;
                 @include text-s;
                 color: $danger;
               }
