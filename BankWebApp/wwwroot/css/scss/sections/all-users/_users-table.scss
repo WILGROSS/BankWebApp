@@ -1,0 +1,28 @@
+#users-table {
+  .container {
+    padding: 60px 0 70px 210px;
+    display: flex;
+    justify-content: center;
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: fit-content;
+      gap: 12px;
+
+      table {
+        margin-right: 200px;
+        min-width: 400px;
+        .btn-icon {
+          gap: 2px;
+          justify-content: flex-start;
+          &:hover {
+            text-decoration: none;
+            color: $dark-secondary;
+          }
+        }
+      }
+    }
+  }
+}
