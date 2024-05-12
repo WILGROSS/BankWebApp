@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="BankWebApp/wwwroot/images/logo/DozenDozen-logo-alternate.svg" alt="Dozen & Dozen Bank Logo">
+</p>
+
 # Dozen & Dozen Bank
   a web app project by William Gross
 
