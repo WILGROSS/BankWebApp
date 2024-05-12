@@ -2,3 +2,34 @@
 @model BankWebApp.Pages.AllUsers.IndexModel
 @{
 }
+<section id="users-table">
+    <div class="container">
+         <a asp-area="" asp-page="/Index" class="return-btn">
+            <i class="material-symbols-outlined">keyboard_return</i>
+            Return
+        </a>
+        <div class="main-content">
+            <h2>All Users</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td>@user.Name</td>
+                            <td>@user.Email</td>
+                            <td>@string.Join(", ", user.Roles)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
