@@ -40,10 +40,10 @@ The link to the app, hosted on Azure: https://dozendozenbank.azurewebsites.net/
  To be able to go on the trip, without interrupting my education, I spent a little more than a week working very hard on the project, from early morning to late at night, only leaving my apartment once to buy groceries.
  It was exhausting, to say the least. However, a productive crunch, although exhausting, is often worthwhile.
 
- I kept studying and working on the project while away, but there were too many things to see, too many things to do and too many beers to drink. The stress of managing studying with pleasure grew too large, and the project suffered because of it
- Somewhere between Osaka and Tokyo I decided to lower the goals I had set for myself, and only aim for a G in this assignment.
+ I kept studying and working on the project while away, but there were too many things to see, too many things to do and too many beers to drink. The stress of balancing work with pleasure grew too large, and the project suffered because of it.
+ Finally, somewhere between Osaka and Tokyo, I decided to lower the goals I had set for myself and to only work toward a G in this assignment.
  
- Though I am a bit disappointed in myself, I made sure it would be the best damn G you'll grade in this course. That's why you'll se a bunch of things that were only required for VG, as well as some extra features for flair, like the filtering function on the customers page or the (non functional) contact page. I hope my dedication is still clear and that you're not too disappointed!
+ Though I am a disappointed in efforts, I made sure it would be the best damn G you'll grade in this course. That's why you'll see a bunch of things that were only required for VG, as well as some extra features for flair. Features like the filtering function on the customers page and the (non functional) contact page. I hope my dedication is still clear and that you're not too disappointed!
 
  ## BACKEND
 
