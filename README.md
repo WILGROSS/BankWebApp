@@ -97,4 +97,4 @@ The meat and bones for the project. In order to access this page you must be log
 ### INPUT VALIDATION
 All input forms utilize both client-side and server-side validation where applicable.
 
-For some reason, the client-side is a little wonky. Sometimes it works, sometimes it doesn't. Though, I've been made aware that most likely is not because of my app, and more a strange issue with JS doing it's own thing.
+For some reason, the client-side is a little wonky. Sometimes it works, sometimes it doesn't. Though, I've been made aware that most likely is not because of my app, and more a strange issue with JS/Ajax doing it's own thing.
